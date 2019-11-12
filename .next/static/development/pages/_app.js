@@ -22094,6 +22094,20 @@ function (_App) {
 
 /***/ }),
 
+/***/ "./tourvo.config.js":
+/*!**************************!*\
+  !*** ./tourvo.config.js ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var config = {
+  graphqlUrl: 'http://tourvo.localhost/graphql/'
+};
+module.exports = config;
+
+/***/ }),
+
 /***/ "./util/apollo-client.js":
 /*!*******************************!*\
   !*** ./util/apollo-client.js ***!
@@ -22110,13 +22124,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! apollo-link-http */ "./node_modules/apollo-link-http/lib/bundle.esm.js");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! isomorphic-unfetch */ "./node_modules/next/dist/build/polyfills/fetch.js");
 /* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _tourvo_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../tourvo.config */ "./tourvo.config.js");
+/* harmony import */ var _tourvo_config__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_tourvo_config__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
 
  // Update the GraphQL endpoint to any instance of GraphQL that you like
 
-var GRAPHQL_URL = 'http://tourvo.localhost/graphql/';
+var GRAPHQL_URL = _tourvo_config__WEBPACK_IMPORTED_MODULE_5___default.a.graphqlUrl;
 var link = Object(apollo_link_http__WEBPACK_IMPORTED_MODULE_3__["createHttpLink"])({
   fetch: isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default.a,
   // Switches between unfetch & node-fetch for client & server.

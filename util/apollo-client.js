@@ -4,8 +4,10 @@ import withApollo from 'next-with-apollo'
 import { createHttpLink } from 'apollo-link-http'
 import fetch from 'isomorphic-unfetch'
 
+import config from '../tourvo.config'
+
 // Update the GraphQL endpoint to any instance of GraphQL that you like
-const GRAPHQL_URL = 'http://tourvo.localhost/graphql/'
+const GRAPHQL_URL = config.graphqlUrl
 
 const link = createHttpLink({
   fetch, // Switches between unfetch & node-fetch for client & server.

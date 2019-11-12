@@ -21828,7 +21828,7 @@ var Products = function Products() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!*************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fproducts&absolutePagePath=%2FUsers%2Fpabsromerojr%2FDocuments%2FProjects%2Ftourvo-apollo%2Fpages%2Fproducts.js ***!
   \*************************************************************************************************************************************************************/
@@ -21851,5 +21851,5 @@ module.exports = dll_13346faca0e924a89b24;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=products.js.map
