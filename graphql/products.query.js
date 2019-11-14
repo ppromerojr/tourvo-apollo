@@ -1,20 +1,22 @@
 import gql from 'graphql-tag'
 
 const PRODUCTS_QUERY = gql`
-  query Products {
-    products {
-      nodes {
-        id
-        name
-        slug
-        image {
-          mediaItemUrl
-        }
-        galleryImages {
-          nodes {
-            mediaItemUrl
-            title
-          }
+  query Products($first: Int, $after: String) {
+    products(first: $first, after: $after) {
+      pageInfo {
+        hasNextPage
+        startCursor
+        endCursor
+        total
+      }
+      edges {
+        cursor
+        node {
+          name
+          slug
+          id
+          description
+          date
         }
       }
     }

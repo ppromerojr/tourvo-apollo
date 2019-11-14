@@ -923,7 +923,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _apollo_react_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @apollo/react-common */ "./node_modules/@apollo/react-common/lib/react-common.esm.js");
-/* harmony import */ var _apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @apollo/react-hooks */ "./node_modules/@apollo/react-hooks/lib/react-hooks.esm.js");
+/* harmony import */ var _apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @apollo/react-hooks */ "./node_modules/@apollo/react-ssr/node_modules/@apollo/react-hooks/lib/react-hooks.esm.js");
 
 
 
@@ -942,7 +942,7 @@ function getMarkupFromTree(_a) {
     var renderPromises = new _apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__["RenderPromises"]();
     function process() {
         var ApolloContext = Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_2__["getApolloContext"])();
-        var html = renderFunction(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ApolloContext.Provider, { value: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, context, { renderPromises: renderPromises }) }, tree));
+        var html = renderFunction(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ApolloContext.Provider, { value: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"])({}, context), { renderPromises: renderPromises }) }, tree));
         return renderPromises.hasPromises()
             ? renderPromises.consumeAndAwaitPromises().then(process)
             : html;
@@ -959,6 +959,778 @@ function renderToStringWithData(component) {
 
 
 //# sourceMappingURL=react-ssr.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@apollo/react-ssr/node_modules/@apollo/react-hooks/lib/react-hooks.esm.js":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/@apollo/react-ssr/node_modules/@apollo/react-hooks/lib/react-hooks.esm.js ***!
+  \************************************************************************************************/
+/*! exports provided: ApolloConsumer, ApolloProvider, getApolloContext, resetApolloContext, RenderPromises, useApolloClient, useLazyQuery, useMutation, useQuery, useSubscription */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RenderPromises", function() { return RenderPromises; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useApolloClient", function() { return useApolloClient; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLazyQuery", function() { return useLazyQuery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useMutation", function() { return useMutation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useQuery", function() { return useQuery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useSubscription", function() { return useSubscription; });
+/* harmony import */ var _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @apollo/react-common */ "./node_modules/@apollo/react-common/lib/react-common.esm.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApolloConsumer", function() { return _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["ApolloConsumer"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApolloProvider", function() { return _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["ApolloProvider"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getApolloContext", function() { return _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["getApolloContext"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "resetApolloContext", function() { return _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["resetApolloContext"]; });
+
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! apollo-client */ "./node_modules/apollo-client/bundle.esm.js");
+/* harmony import */ var _wry_equality__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wry/equality */ "./node_modules/@wry/equality/lib/equality.esm.js");
+/* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ts-invariant */ "./node_modules/ts-invariant/lib/invariant.esm.js");
+
+
+
+
+
+
+
+
+var OperationData = (function () {
+    function OperationData(options, context) {
+        this.isMounted = false;
+        this.previousOptions = {};
+        this.context = {};
+        this.options = {};
+        this.options = options || {};
+        this.context = context || {};
+    }
+    OperationData.prototype.getOptions = function () {
+        return this.options;
+    };
+    OperationData.prototype.setOptions = function (newOptions, storePrevious) {
+        if (storePrevious === void 0) { storePrevious = false; }
+        if (storePrevious && !Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(this.options, newOptions)) {
+            this.previousOptions = this.options;
+        }
+        this.options = newOptions;
+    };
+    OperationData.prototype.unmount = function () {
+        this.isMounted = false;
+    };
+    OperationData.prototype.refreshClient = function () {
+        var client = (this.options && this.options.client) ||
+            (this.context && this.context.client);
+         false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_5__["invariant"])(!!client, 'Could not find "client" in the context or passed in as an option. ' +
+            'Wrap the root component in an <ApolloProvider>, or pass an ' +
+            'ApolloClient instance in via options.');
+        var isNew = false;
+        if (client !== this.client) {
+            isNew = true;
+            this.client = client;
+            this.cleanup();
+        }
+        return {
+            client: this.client,
+            isNew: isNew
+        };
+    };
+    OperationData.prototype.verifyDocumentType = function (document, type) {
+        var operation = Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["parser"])(document);
+        var requiredOperationName = Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["operationName"])(type);
+        var usedOperationName = Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["operationName"])(operation.type);
+         false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_5__["invariant"])(operation.type === type, "Running a " + requiredOperationName + " requires a graphql " +
+            (requiredOperationName + ", but a " + usedOperationName + " was used instead."));
+    };
+    return OperationData;
+}());
+
+var QueryData = (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__extends"])(QueryData, _super);
+    function QueryData(_a) {
+        var options = _a.options, context = _a.context, forceUpdate = _a.forceUpdate;
+        var _this = _super.call(this, options, context) || this;
+        _this.previousData = {};
+        _this.currentObservable = {};
+        _this.runLazy = false;
+        _this.runLazyQuery = function (options) {
+            _this.cleanup();
+            _this.runLazy = true;
+            _this.lazyOptions = options;
+            _this.forceUpdate();
+        };
+        _this.getExecuteResult = function () {
+            var result = _this.getQueryResult();
+            _this.startQuerySubscription();
+            return result;
+        };
+        _this.obsRefetch = function (variables) {
+            return _this.currentObservable.query.refetch(variables);
+        };
+        _this.obsFetchMore = function (fetchMoreOptions) { return _this.currentObservable.query.fetchMore(fetchMoreOptions); };
+        _this.obsUpdateQuery = function (mapFn) { return _this.currentObservable.query.updateQuery(mapFn); };
+        _this.obsStartPolling = function (pollInterval) {
+            _this.currentObservable &&
+                _this.currentObservable.query &&
+                _this.currentObservable.query.startPolling(pollInterval);
+        };
+        _this.obsStopPolling = function () {
+            _this.currentObservable &&
+                _this.currentObservable.query &&
+                _this.currentObservable.query.stopPolling();
+        };
+        _this.obsSubscribeToMore = function (options) { return _this.currentObservable.query.subscribeToMore(options); };
+        _this.forceUpdate = forceUpdate;
+        return _this;
+    }
+    QueryData.prototype.execute = function () {
+        this.refreshClient();
+        var _a = this.getOptions(), skip = _a.skip, query = _a.query;
+        if (skip || query !== this.previousData.query) {
+            this.removeQuerySubscription();
+            this.previousData.query = query;
+        }
+        this.updateObservableQuery();
+        if (this.isMounted)
+            this.startQuerySubscription();
+        return this.getExecuteSsrResult() || this.getExecuteResult();
+    };
+    QueryData.prototype.executeLazy = function () {
+        return !this.runLazy
+            ? [
+                this.runLazyQuery,
+                {
+                    loading: false,
+                    networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].ready,
+                    called: false,
+                    data: undefined
+                }
+            ]
+            : [this.runLazyQuery, this.execute()];
+    };
+    QueryData.prototype.fetchData = function () {
+        var options = this.getOptions();
+        if (options.skip || options.ssr === false)
+            return false;
+        var obs = this.currentObservable.query;
+        var currentResult = obs.getCurrentResult();
+        return currentResult.loading ? obs.result() : false;
+    };
+    QueryData.prototype.afterExecute = function (_a) {
+        var _this = this;
+        var _b = (_a === void 0 ? {} : _a).lazy, lazy = _b === void 0 ? false : _b;
+        this.isMounted = true;
+        if (!lazy || this.runLazy) {
+            this.handleErrorOrCompleted();
+            setTimeout(function () {
+                _this.currentObservable.query &&
+                    _this.currentObservable.query.resetQueryStoreErrors();
+            });
+        }
+        this.previousOptions = this.getOptions();
+        return this.unmount.bind(this);
+    };
+    QueryData.prototype.cleanup = function () {
+        this.removeQuerySubscription();
+        delete this.currentObservable.query;
+        delete this.previousData.result;
+    };
+    QueryData.prototype.getOptions = function () {
+        var options = _super.prototype.getOptions.call(this);
+        if (this.lazyOptions) {
+            options.variables = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options.variables), this.lazyOptions.variables);
+            options.context = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options.context), this.lazyOptions.context);
+        }
+        if (this.runLazy) {
+            delete options.skip;
+        }
+        return options;
+    };
+    QueryData.prototype.getExecuteSsrResult = function () {
+        var treeRenderingInitiated = this.context && this.context.renderPromises;
+        var ssrDisabled = this.getOptions().ssr === false;
+        var fetchDisabled = this.refreshClient().client.disableNetworkFetches;
+        var ssrLoading = {
+            loading: true,
+            networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].loading,
+            called: true,
+            data: undefined
+        };
+        if (ssrDisabled && (treeRenderingInitiated || fetchDisabled)) {
+            return ssrLoading;
+        }
+        var result;
+        if (treeRenderingInitiated) {
+            result =
+                this.context.renderPromises.addQueryPromise(this, this.getExecuteResult) || ssrLoading;
+        }
+        return result;
+    };
+    QueryData.prototype.prepareObservableQueryOptions = function () {
+        var options = this.getOptions();
+        this.verifyDocumentType(options.query, _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["DocumentType"].Query);
+        var displayName = options.displayName || 'Query';
+        if (this.context &&
+            this.context.renderPromises &&
+            (options.fetchPolicy === 'network-only' ||
+                options.fetchPolicy === 'cache-and-network')) {
+            options.fetchPolicy = 'cache-first';
+        }
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options), { displayName: displayName, context: options.context, metadata: { reactComponent: { displayName: displayName } } });
+    };
+    QueryData.prototype.initializeObservableQuery = function () {
+        if (this.context && this.context.renderPromises) {
+            this.currentObservable.query = this.context.renderPromises.getSSRObservable(this.getOptions());
+        }
+        if (!this.currentObservable.query) {
+            var observableQueryOptions = this.prepareObservableQueryOptions();
+            this.previousData.observableQueryOptions = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, observableQueryOptions), { children: null });
+            this.currentObservable.query = this.refreshClient().client.watchQuery(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, observableQueryOptions));
+            if (this.context && this.context.renderPromises) {
+                this.context.renderPromises.registerSSRObservable(this.currentObservable.query, observableQueryOptions);
+            }
+        }
+    };
+    QueryData.prototype.updateObservableQuery = function () {
+        if (!this.currentObservable.query) {
+            this.initializeObservableQuery();
+            return;
+        }
+        var newObservableQueryOptions = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, this.prepareObservableQueryOptions()), { children: null });
+        if (!Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(newObservableQueryOptions, this.previousData.observableQueryOptions)) {
+            this.previousData.observableQueryOptions = newObservableQueryOptions;
+            this.currentObservable
+                .query.setOptions(newObservableQueryOptions)
+                .catch(function () { });
+        }
+    };
+    QueryData.prototype.startQuerySubscription = function () {
+        var _this = this;
+        if (this.currentObservable.subscription || this.getOptions().skip)
+            return;
+        var obsQuery = this.currentObservable.query;
+        this.currentObservable.subscription = obsQuery.subscribe({
+            next: function (_a) {
+                var loading = _a.loading, networkStatus = _a.networkStatus, data = _a.data;
+                var previousResult = _this.previousData.result;
+                if (previousResult &&
+                    previousResult.loading === loading &&
+                    previousResult.networkStatus === networkStatus &&
+                    Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(previousResult.data, data)) {
+                    return;
+                }
+                _this.forceUpdate();
+            },
+            error: function (error) {
+                _this.resubscribeToQuery();
+                if (!error.hasOwnProperty('graphQLErrors'))
+                    throw error;
+                var previousResult = _this.previousData.result;
+                if ((previousResult && previousResult.loading) ||
+                    !Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(error, _this.previousData.error)) {
+                    _this.previousData.error = error;
+                    _this.forceUpdate();
+                }
+            }
+        });
+    };
+    QueryData.prototype.resubscribeToQuery = function () {
+        this.removeQuerySubscription();
+        var lastError = this.currentObservable.query.getLastError();
+        var lastResult = this.currentObservable.query.getLastResult();
+        this.currentObservable.query.resetLastResults();
+        this.startQuerySubscription();
+        Object.assign(this.currentObservable.query, {
+            lastError: lastError,
+            lastResult: lastResult
+        });
+    };
+    QueryData.prototype.getQueryResult = function () {
+        var result = this.observableQueryFields();
+        var options = this.getOptions();
+        if (options.skip) {
+            result = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, result), { data: undefined, error: undefined, loading: false, called: true });
+        }
+        else {
+            var currentResult = this.currentObservable.query.getCurrentResult();
+            var loading = currentResult.loading, partial = currentResult.partial, networkStatus = currentResult.networkStatus, errors = currentResult.errors;
+            var error = currentResult.error, data = currentResult.data;
+            if (errors && errors.length > 0) {
+                error = new apollo_client__WEBPACK_IMPORTED_MODULE_3__["ApolloError"]({ graphQLErrors: errors });
+            }
+            result = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, result), { loading: loading,
+                networkStatus: networkStatus,
+                error: error, called: true });
+            if (loading) {
+                var previousData = this.previousData.result && this.previousData.result.data;
+                result.data =
+                    previousData && data
+                        ? Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, previousData), data) : previousData || data;
+            }
+            else if (error) {
+                Object.assign(result, {
+                    data: (this.currentObservable.query.getLastResult() || {})
+                        .data
+                });
+            }
+            else {
+                var fetchPolicy = this.currentObservable.query.options.fetchPolicy;
+                var partialRefetch = options.partialRefetch;
+                if (partialRefetch &&
+                    !data &&
+                    partial &&
+                    fetchPolicy !== 'cache-only') {
+                    Object.assign(result, {
+                        loading: true,
+                        networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].loading
+                    });
+                    result.refetch();
+                    return result;
+                }
+                result.data = data;
+            }
+        }
+        result.client = this.client;
+        this.previousData.loading =
+            (this.previousData.result && this.previousData.result.loading) || false;
+        this.previousData.result = result;
+        return result;
+    };
+    QueryData.prototype.handleErrorOrCompleted = function () {
+        var obsQuery = this.currentObservable.query;
+        if (!obsQuery)
+            return;
+        var _a = obsQuery.getCurrentResult(), data = _a.data, loading = _a.loading, error = _a.error;
+        if (!loading) {
+            var _b = this.getOptions(), query = _b.query, variables = _b.variables, onCompleted = _b.onCompleted, onError = _b.onError;
+            if (this.previousOptions &&
+                !this.previousData.loading &&
+                Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(this.previousOptions.query, query) &&
+                Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(this.previousOptions.variables, variables)) {
+                return;
+            }
+            if (onCompleted && !error) {
+                onCompleted(data);
+            }
+            else if (onError && error) {
+                onError(error);
+            }
+        }
+    };
+    QueryData.prototype.removeQuerySubscription = function () {
+        if (this.currentObservable.subscription) {
+            this.currentObservable.subscription.unsubscribe();
+            delete this.currentObservable.subscription;
+        }
+    };
+    QueryData.prototype.observableQueryFields = function () {
+        var observable = this.currentObservable.query;
+        return {
+            variables: observable.variables,
+            refetch: this.obsRefetch,
+            fetchMore: this.obsFetchMore,
+            updateQuery: this.obsUpdateQuery,
+            startPolling: this.obsStartPolling,
+            stopPolling: this.obsStopPolling,
+            subscribeToMore: this.obsSubscribeToMore
+        };
+    };
+    return QueryData;
+}(OperationData));
+
+function useDeepMemo(memoFn, key) {
+    var ref = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])();
+    if (!ref.current || !Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(key, ref.current.key)) {
+        ref.current = { key: key, value: memoFn() };
+    }
+    return ref.current.value;
+}
+
+function useBaseQuery(query, options, lazy) {
+    if (lazy === void 0) { lazy = false; }
+    var context = Object(react__WEBPACK_IMPORTED_MODULE_2__["useContext"])(Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["getApolloContext"])());
+    var _a = Object(react__WEBPACK_IMPORTED_MODULE_2__["useReducer"])(function (x) { return x + 1; }, 0), tick = _a[0], forceUpdate = _a[1];
+    var updatedOptions = options ? Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options), { query: query }) : { query: query };
+    var queryDataRef = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])();
+    if (!queryDataRef.current) {
+        queryDataRef.current = new QueryData({
+            options: updatedOptions,
+            context: context,
+            forceUpdate: forceUpdate
+        });
+    }
+    var queryData = queryDataRef.current;
+    queryData.setOptions(updatedOptions);
+    queryData.context = context;
+    var memo = {
+        options: Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, updatedOptions), { onError: undefined, onCompleted: undefined }),
+        context: context,
+        tick: tick
+    };
+    var result = useDeepMemo(function () { return (lazy ? queryData.executeLazy() : queryData.execute()); }, memo);
+    var queryResult = lazy
+        ? result[1]
+        : result;
+    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () { return queryData.afterExecute({ lazy: lazy }); }, [
+        queryResult.loading,
+        queryResult.networkStatus,
+        queryResult.error,
+        queryResult.data
+    ]);
+    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+        return function () { return queryData.cleanup(); };
+    }, []);
+    return result;
+}
+
+function useQuery(query, options) {
+    return useBaseQuery(query, options, false);
+}
+
+function useLazyQuery(query, options) {
+    return useBaseQuery(query, options, true);
+}
+
+var MutationData = (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__extends"])(MutationData, _super);
+    function MutationData(_a) {
+        var options = _a.options, context = _a.context, result = _a.result, setResult = _a.setResult;
+        var _this = _super.call(this, options, context) || this;
+        _this.runMutation = function (mutationFunctionOptions) {
+            if (mutationFunctionOptions === void 0) { mutationFunctionOptions = {}; }
+            _this.onMutationStart();
+            var mutationId = _this.generateNewMutationId();
+            return _this.mutate(mutationFunctionOptions)
+                .then(function (response) {
+                _this.onMutationCompleted(response, mutationId);
+                return response;
+            })
+                .catch(function (error) {
+                _this.onMutationError(error, mutationId);
+                if (!_this.getOptions().onError)
+                    throw error;
+            });
+        };
+        _this.verifyDocumentType(options.mutation, _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["DocumentType"].Mutation);
+        _this.result = result;
+        _this.setResult = setResult;
+        _this.mostRecentMutationId = 0;
+        return _this;
+    }
+    MutationData.prototype.execute = function (result) {
+        this.isMounted = true;
+        this.verifyDocumentType(this.getOptions().mutation, _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["DocumentType"].Mutation);
+        result.client = this.refreshClient().client;
+        return [this.runMutation, result];
+    };
+    MutationData.prototype.afterExecute = function () {
+        this.isMounted = true;
+        return this.unmount.bind(this);
+    };
+    MutationData.prototype.cleanup = function () {
+    };
+    MutationData.prototype.mutate = function (mutationFunctionOptions) {
+        var _a = this.getOptions(), mutation = _a.mutation, variables = _a.variables, optimisticResponse = _a.optimisticResponse, update = _a.update, _b = _a.context, mutationContext = _b === void 0 ? {} : _b, _c = _a.awaitRefetchQueries, awaitRefetchQueries = _c === void 0 ? false : _c, fetchPolicy = _a.fetchPolicy;
+        var mutateOptions = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, mutationFunctionOptions);
+        var mutateVariables = Object.assign({}, variables, mutateOptions.variables);
+        delete mutateOptions.variables;
+        return this.refreshClient().client.mutate(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({ mutation: mutation,
+            optimisticResponse: optimisticResponse, refetchQueries: mutateOptions.refetchQueries || this.getOptions().refetchQueries, awaitRefetchQueries: awaitRefetchQueries,
+            update: update, context: mutationContext, fetchPolicy: fetchPolicy, variables: mutateVariables }, mutateOptions));
+    };
+    MutationData.prototype.onMutationStart = function () {
+        if (!this.result.loading && !this.getOptions().ignoreResults) {
+            this.updateResult({
+                loading: true,
+                error: undefined,
+                data: undefined,
+                called: true
+            });
+        }
+    };
+    MutationData.prototype.onMutationCompleted = function (response, mutationId) {
+        var _a = this.getOptions(), onCompleted = _a.onCompleted, ignoreResults = _a.ignoreResults;
+        var data = response.data, errors = response.errors;
+        var error = errors && errors.length > 0
+            ? new apollo_client__WEBPACK_IMPORTED_MODULE_3__["ApolloError"]({ graphQLErrors: errors })
+            : undefined;
+        var callOncomplete = function () {
+            return onCompleted ? onCompleted(data) : null;
+        };
+        if (this.isMostRecentMutation(mutationId) && !ignoreResults) {
+            this.updateResult({
+                called: true,
+                loading: false,
+                data: data,
+                error: error
+            });
+        }
+        callOncomplete();
+    };
+    MutationData.prototype.onMutationError = function (error, mutationId) {
+        var onError = this.getOptions().onError;
+        if (this.isMostRecentMutation(mutationId)) {
+            this.updateResult({
+                loading: false,
+                error: error,
+                data: undefined,
+                called: true
+            });
+        }
+        if (onError) {
+            onError(error);
+        }
+    };
+    MutationData.prototype.generateNewMutationId = function () {
+        return ++this.mostRecentMutationId;
+    };
+    MutationData.prototype.isMostRecentMutation = function (mutationId) {
+        return this.mostRecentMutationId === mutationId;
+    };
+    MutationData.prototype.updateResult = function (result) {
+        if (this.isMounted &&
+            (!this.previousResult || !Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(this.previousResult, result))) {
+            this.setResult(result);
+            this.previousResult = result;
+        }
+    };
+    return MutationData;
+}(OperationData));
+
+function useMutation(mutation, options) {
+    var context = Object(react__WEBPACK_IMPORTED_MODULE_2__["useContext"])(Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["getApolloContext"])());
+    var _a = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({ called: false, loading: false }), result = _a[0], setResult = _a[1];
+    var updatedOptions = options ? Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options), { mutation: mutation }) : { mutation: mutation };
+    var mutationDataRef = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])();
+    function getMutationDataRef() {
+        if (!mutationDataRef.current) {
+            mutationDataRef.current = new MutationData({
+                options: updatedOptions,
+                context: context,
+                result: result,
+                setResult: setResult
+            });
+        }
+        return mutationDataRef.current;
+    }
+    var mutationData = getMutationDataRef();
+    mutationData.setOptions(updatedOptions);
+    mutationData.context = context;
+    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () { return mutationData.afterExecute(); });
+    return mutationData.execute(result);
+}
+
+var SubscriptionData = (function (_super) {
+    Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__extends"])(SubscriptionData, _super);
+    function SubscriptionData(_a) {
+        var options = _a.options, context = _a.context, setResult = _a.setResult;
+        var _this = _super.call(this, options, context) || this;
+        _this.currentObservable = {};
+        _this.setResult = setResult;
+        _this.initialize(options);
+        return _this;
+    }
+    SubscriptionData.prototype.execute = function (result) {
+        if (this.getOptions().skip === true) {
+            this.cleanup();
+            return {
+                loading: false,
+                error: undefined,
+                data: undefined,
+                variables: this.getOptions().variables
+            };
+        }
+        var currentResult = result;
+        if (this.refreshClient().isNew) {
+            currentResult = this.getLoadingResult();
+        }
+        var shouldResubscribe = this.getOptions().shouldResubscribe;
+        if (typeof shouldResubscribe === 'function') {
+            shouldResubscribe = !!shouldResubscribe(this.getOptions());
+        }
+        if (shouldResubscribe !== false &&
+            this.previousOptions &&
+            Object.keys(this.previousOptions).length > 0 &&
+            (this.previousOptions.subscription !== this.getOptions().subscription ||
+                !Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(this.previousOptions.variables, this.getOptions().variables) ||
+                this.previousOptions.skip !== this.getOptions().skip)) {
+            this.cleanup();
+            currentResult = this.getLoadingResult();
+        }
+        this.initialize(this.getOptions());
+        this.startSubscription();
+        this.previousOptions = this.getOptions();
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, currentResult), { variables: this.getOptions().variables });
+    };
+    SubscriptionData.prototype.afterExecute = function () {
+        this.isMounted = true;
+    };
+    SubscriptionData.prototype.cleanup = function () {
+        this.endSubscription();
+        delete this.currentObservable.query;
+    };
+    SubscriptionData.prototype.initialize = function (options) {
+        if (this.currentObservable.query || this.getOptions().skip === true)
+            return;
+        this.currentObservable.query = this.refreshClient().client.subscribe({
+            query: options.subscription,
+            variables: options.variables,
+            fetchPolicy: options.fetchPolicy
+        });
+    };
+    SubscriptionData.prototype.startSubscription = function () {
+        if (this.currentObservable.subscription)
+            return;
+        this.currentObservable.subscription = this.currentObservable.query.subscribe({
+            next: this.updateCurrentData.bind(this),
+            error: this.updateError.bind(this),
+            complete: this.completeSubscription.bind(this)
+        });
+    };
+    SubscriptionData.prototype.getLoadingResult = function () {
+        return {
+            loading: true,
+            error: undefined,
+            data: undefined
+        };
+    };
+    SubscriptionData.prototype.updateResult = function (result) {
+        if (this.isMounted) {
+            this.setResult(result);
+        }
+    };
+    SubscriptionData.prototype.updateCurrentData = function (result) {
+        var onSubscriptionData = this.getOptions().onSubscriptionData;
+        this.updateResult({
+            data: result.data,
+            loading: false,
+            error: undefined
+        });
+        if (onSubscriptionData) {
+            onSubscriptionData({
+                client: this.refreshClient().client,
+                subscriptionData: result
+            });
+        }
+    };
+    SubscriptionData.prototype.updateError = function (error) {
+        this.updateResult({
+            error: error,
+            loading: false
+        });
+    };
+    SubscriptionData.prototype.completeSubscription = function () {
+        var onSubscriptionComplete = this.getOptions().onSubscriptionComplete;
+        if (onSubscriptionComplete)
+            onSubscriptionComplete();
+        this.endSubscription();
+    };
+    SubscriptionData.prototype.endSubscription = function () {
+        if (this.currentObservable.subscription) {
+            this.currentObservable.subscription.unsubscribe();
+            delete this.currentObservable.subscription;
+        }
+    };
+    return SubscriptionData;
+}(OperationData));
+
+function useSubscription(subscription, options) {
+    var context = Object(react__WEBPACK_IMPORTED_MODULE_2__["useContext"])(Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["getApolloContext"])());
+    var updatedOptions = options
+        ? Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options), { subscription: subscription }) : { subscription: subscription };
+    var _a = Object(react__WEBPACK_IMPORTED_MODULE_2__["useState"])({
+        loading: !updatedOptions.skip,
+        error: undefined,
+        data: undefined
+    }), result = _a[0], setResult = _a[1];
+    var subscriptionDataRef = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])();
+    function getSubscriptionDataRef() {
+        if (!subscriptionDataRef.current) {
+            subscriptionDataRef.current = new SubscriptionData({
+                options: updatedOptions,
+                context: context,
+                setResult: setResult
+            });
+        }
+        return subscriptionDataRef.current;
+    }
+    var subscriptionData = getSubscriptionDataRef();
+    subscriptionData.setOptions(updatedOptions, true);
+    subscriptionData.context = context;
+    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () { return subscriptionData.afterExecute(); });
+    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () { return subscriptionData.cleanup.bind(subscriptionData); }, []);
+    return subscriptionData.execute(result);
+}
+
+function useApolloClient() {
+    var client = react__WEBPACK_IMPORTED_MODULE_2___default.a.useContext(Object(_apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["getApolloContext"])()).client;
+     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_5__["invariant"])(client, 'No Apollo Client instance can be found. Please ensure that you ' +
+        'have called `ApolloProvider` higher up in your tree.');
+    return client;
+}
+
+function makeDefaultQueryInfo() {
+    return {
+        seen: false,
+        observable: null
+    };
+}
+var RenderPromises = (function () {
+    function RenderPromises() {
+        this.queryPromises = new Map();
+        this.queryInfoTrie = new Map();
+    }
+    RenderPromises.prototype.registerSSRObservable = function (observable, props) {
+        this.lookupQueryInfo(props).observable = observable;
+    };
+    RenderPromises.prototype.getSSRObservable = function (props) {
+        return this.lookupQueryInfo(props).observable;
+    };
+    RenderPromises.prototype.addQueryPromise = function (queryInstance, finish) {
+        var info = this.lookupQueryInfo(queryInstance.getOptions());
+        if (!info.seen) {
+            this.queryPromises.set(queryInstance.getOptions(), new Promise(function (resolve) {
+                resolve(queryInstance.fetchData());
+            }));
+            return null;
+        }
+        return finish();
+    };
+    RenderPromises.prototype.hasPromises = function () {
+        return this.queryPromises.size > 0;
+    };
+    RenderPromises.prototype.consumeAndAwaitPromises = function () {
+        var _this = this;
+        var promises = [];
+        this.queryPromises.forEach(function (promise, queryInstance) {
+            _this.lookupQueryInfo(queryInstance).seen = true;
+            promises.push(promise);
+        });
+        this.queryPromises.clear();
+        return Promise.all(promises);
+    };
+    RenderPromises.prototype.lookupQueryInfo = function (props) {
+        var queryInfoTrie = this.queryInfoTrie;
+        var query = props.query, variables = props.variables;
+        var varMap = queryInfoTrie.get(query) || new Map();
+        if (!queryInfoTrie.has(query))
+            queryInfoTrie.set(query, varMap);
+        var variablesString = JSON.stringify(variables);
+        var info = varMap.get(variablesString) || makeDefaultQueryInfo();
+        if (!varMap.has(variablesString))
+            varMap.set(variablesString, info);
+        return info;
+    };
+    return RenderPromises;
+}());
+
+
+//# sourceMappingURL=react-hooks.esm.js.map
 
 
 /***/ }),
@@ -13883,7 +14655,7 @@ module.exports = (__webpack_require__(/*! dll-reference dll_13346faca0e924a89b24
 
 
 
-var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/prop-types/node_modules/react-is/index.js");
+var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
 var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
 
 var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
@@ -14484,7 +15256,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
  */
 
 if (true) {
-  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/prop-types/node_modules/react-is/index.js");
+  var ReactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
 
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
@@ -14503,271 +15275,6 @@ if (true) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(/*! dll-reference dll_13346faca0e924a89b24 */ "dll-reference dll_13346faca0e924a89b24"))("./node_modules/prop-types/lib/ReactPropTypesSecret.js");
-
-/***/ }),
-
-/***/ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js":
-/*!***********************************************************************************!*\
-  !*** ./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/** @license React v16.10.2
- * react-is.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-
-
-
-
-if (true) {
-  (function() {
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
-// nor polyfill, then a plain number is used for performance.
-var hasSymbol = typeof Symbol === 'function' && Symbol.for;
-var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
-var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
-var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
-var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
-var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
-var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
-var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
-// (unstable) APIs that have been removed. Can we remove the symbols?
-
-var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
-var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
-var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
-var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
-var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
-var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
-var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
-var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
-var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
-var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
-
-function isValidElementType(type) {
-  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
-  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE);
-}
-
-/**
- * Forked from fbjs/warning:
- * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
- *
- * Only change is we use console.warn instead of console.error,
- * and do nothing when 'console' is not supported.
- * This really simplifies the code.
- * ---
- * Similar to invariant but only logs a warning if the condition is not met.
- * This can be used to log issues in development environments in critical
- * paths. Removing the logging code for production environments will keep the
- * same logic and follow the same code paths.
- */
-var lowPriorityWarningWithoutStack = function () {};
-
-{
-  var printWarning = function (format) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    var argIndex = 0;
-    var message = 'Warning: ' + format.replace(/%s/g, function () {
-      return args[argIndex++];
-    });
-
-    if (typeof console !== 'undefined') {
-      console.warn(message);
-    }
-
-    try {
-      // --- Welcome to debugging React ---
-      // This error was thrown as a convenience so that you can use this stack
-      // to find the callsite that caused this warning to fire.
-      throw new Error(message);
-    } catch (x) {}
-  };
-
-  lowPriorityWarningWithoutStack = function (condition, format) {
-    if (format === undefined) {
-      throw new Error('`lowPriorityWarningWithoutStack(condition, format, ...args)` requires a warning ' + 'message argument');
-    }
-
-    if (!condition) {
-      for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-        args[_key2 - 2] = arguments[_key2];
-      }
-
-      printWarning.apply(void 0, [format].concat(args));
-    }
-  };
-}
-
-var lowPriorityWarningWithoutStack$1 = lowPriorityWarningWithoutStack;
-
-function typeOf(object) {
-  if (typeof object === 'object' && object !== null) {
-    var $$typeof = object.$$typeof;
-
-    switch ($$typeof) {
-      case REACT_ELEMENT_TYPE:
-        var type = object.type;
-
-        switch (type) {
-          case REACT_ASYNC_MODE_TYPE:
-          case REACT_CONCURRENT_MODE_TYPE:
-          case REACT_FRAGMENT_TYPE:
-          case REACT_PROFILER_TYPE:
-          case REACT_STRICT_MODE_TYPE:
-          case REACT_SUSPENSE_TYPE:
-            return type;
-
-          default:
-            var $$typeofType = type && type.$$typeof;
-
-            switch ($$typeofType) {
-              case REACT_CONTEXT_TYPE:
-              case REACT_FORWARD_REF_TYPE:
-              case REACT_PROVIDER_TYPE:
-                return $$typeofType;
-
-              default:
-                return $$typeof;
-            }
-
-        }
-
-      case REACT_LAZY_TYPE:
-      case REACT_MEMO_TYPE:
-      case REACT_PORTAL_TYPE:
-        return $$typeof;
-    }
-  }
-
-  return undefined;
-} // AsyncMode is deprecated along with isAsyncMode
-
-var AsyncMode = REACT_ASYNC_MODE_TYPE;
-var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
-var ContextConsumer = REACT_CONTEXT_TYPE;
-var ContextProvider = REACT_PROVIDER_TYPE;
-var Element = REACT_ELEMENT_TYPE;
-var ForwardRef = REACT_FORWARD_REF_TYPE;
-var Fragment = REACT_FRAGMENT_TYPE;
-var Lazy = REACT_LAZY_TYPE;
-var Memo = REACT_MEMO_TYPE;
-var Portal = REACT_PORTAL_TYPE;
-var Profiler = REACT_PROFILER_TYPE;
-var StrictMode = REACT_STRICT_MODE_TYPE;
-var Suspense = REACT_SUSPENSE_TYPE;
-var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
-
-function isAsyncMode(object) {
-  {
-    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-      hasWarnedAboutDeprecatedIsAsyncMode = true;
-      lowPriorityWarningWithoutStack$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
-    }
-  }
-
-  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
-}
-function isConcurrentMode(object) {
-  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
-}
-function isContextConsumer(object) {
-  return typeOf(object) === REACT_CONTEXT_TYPE;
-}
-function isContextProvider(object) {
-  return typeOf(object) === REACT_PROVIDER_TYPE;
-}
-function isElement(object) {
-  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-}
-function isForwardRef(object) {
-  return typeOf(object) === REACT_FORWARD_REF_TYPE;
-}
-function isFragment(object) {
-  return typeOf(object) === REACT_FRAGMENT_TYPE;
-}
-function isLazy(object) {
-  return typeOf(object) === REACT_LAZY_TYPE;
-}
-function isMemo(object) {
-  return typeOf(object) === REACT_MEMO_TYPE;
-}
-function isPortal(object) {
-  return typeOf(object) === REACT_PORTAL_TYPE;
-}
-function isProfiler(object) {
-  return typeOf(object) === REACT_PROFILER_TYPE;
-}
-function isStrictMode(object) {
-  return typeOf(object) === REACT_STRICT_MODE_TYPE;
-}
-function isSuspense(object) {
-  return typeOf(object) === REACT_SUSPENSE_TYPE;
-}
-
-exports.typeOf = typeOf;
-exports.AsyncMode = AsyncMode;
-exports.ConcurrentMode = ConcurrentMode;
-exports.ContextConsumer = ContextConsumer;
-exports.ContextProvider = ContextProvider;
-exports.Element = Element;
-exports.ForwardRef = ForwardRef;
-exports.Fragment = Fragment;
-exports.Lazy = Lazy;
-exports.Memo = Memo;
-exports.Portal = Portal;
-exports.Profiler = Profiler;
-exports.StrictMode = StrictMode;
-exports.Suspense = Suspense;
-exports.isValidElementType = isValidElementType;
-exports.isAsyncMode = isAsyncMode;
-exports.isConcurrentMode = isConcurrentMode;
-exports.isContextConsumer = isContextConsumer;
-exports.isContextProvider = isContextProvider;
-exports.isElement = isElement;
-exports.isForwardRef = isForwardRef;
-exports.isFragment = isFragment;
-exports.isLazy = isLazy;
-exports.isMemo = isMemo;
-exports.isPortal = isPortal;
-exports.isProfiler = isProfiler;
-exports.isStrictMode = isStrictMode;
-exports.isSuspense = isSuspense;
-  })();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/prop-types/node_modules/react-is/index.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/prop-types/node_modules/react-is/index.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (false) {} else {
-  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/prop-types/node_modules/react-is/cjs/react-is.development.js");
-}
-
 
 /***/ }),
 
@@ -19365,6 +19872,271 @@ module.exports = server_browser;
 
 if (false) {} else {
   module.exports = __webpack_require__(/*! ./cjs/react-dom-server.browser.development.js */ "./node_modules/react-dom/cjs/react-dom-server.browser.development.js");
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-is/cjs/react-is.development.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/react-is/cjs/react-is.development.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/** @license React v16.11.0
+ * react-is.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+
+
+if (true) {
+  (function() {
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+// The Symbol used to tag the ReactElement-like types. If there is no native Symbol
+// nor polyfill, then a plain number is used for performance.
+var hasSymbol = typeof Symbol === 'function' && Symbol.for;
+var REACT_ELEMENT_TYPE = hasSymbol ? Symbol.for('react.element') : 0xeac7;
+var REACT_PORTAL_TYPE = hasSymbol ? Symbol.for('react.portal') : 0xeaca;
+var REACT_FRAGMENT_TYPE = hasSymbol ? Symbol.for('react.fragment') : 0xeacb;
+var REACT_STRICT_MODE_TYPE = hasSymbol ? Symbol.for('react.strict_mode') : 0xeacc;
+var REACT_PROFILER_TYPE = hasSymbol ? Symbol.for('react.profiler') : 0xead2;
+var REACT_PROVIDER_TYPE = hasSymbol ? Symbol.for('react.provider') : 0xeacd;
+var REACT_CONTEXT_TYPE = hasSymbol ? Symbol.for('react.context') : 0xeace; // TODO: We don't use AsyncMode or ConcurrentMode anymore. They were temporary
+// (unstable) APIs that have been removed. Can we remove the symbols?
+
+var REACT_ASYNC_MODE_TYPE = hasSymbol ? Symbol.for('react.async_mode') : 0xeacf;
+var REACT_CONCURRENT_MODE_TYPE = hasSymbol ? Symbol.for('react.concurrent_mode') : 0xeacf;
+var REACT_FORWARD_REF_TYPE = hasSymbol ? Symbol.for('react.forward_ref') : 0xead0;
+var REACT_SUSPENSE_TYPE = hasSymbol ? Symbol.for('react.suspense') : 0xead1;
+var REACT_SUSPENSE_LIST_TYPE = hasSymbol ? Symbol.for('react.suspense_list') : 0xead8;
+var REACT_MEMO_TYPE = hasSymbol ? Symbol.for('react.memo') : 0xead3;
+var REACT_LAZY_TYPE = hasSymbol ? Symbol.for('react.lazy') : 0xead4;
+var REACT_FUNDAMENTAL_TYPE = hasSymbol ? Symbol.for('react.fundamental') : 0xead5;
+var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for('react.responder') : 0xead6;
+var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for('react.scope') : 0xead7;
+
+function isValidElementType(type) {
+  return typeof type === 'string' || typeof type === 'function' || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+  type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === 'object' && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE);
+}
+
+/**
+ * Forked from fbjs/warning:
+ * https://github.com/facebook/fbjs/blob/e66ba20ad5be433eb54423f2b097d829324d9de6/packages/fbjs/src/__forks__/warning.js
+ *
+ * Only change is we use console.warn instead of console.error,
+ * and do nothing when 'console' is not supported.
+ * This really simplifies the code.
+ * ---
+ * Similar to invariant but only logs a warning if the condition is not met.
+ * This can be used to log issues in development environments in critical
+ * paths. Removing the logging code for production environments will keep the
+ * same logic and follow the same code paths.
+ */
+var lowPriorityWarningWithoutStack = function () {};
+
+{
+  var printWarning = function (format) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    var argIndex = 0;
+    var message = 'Warning: ' + format.replace(/%s/g, function () {
+      return args[argIndex++];
+    });
+
+    if (typeof console !== 'undefined') {
+      console.warn(message);
+    }
+
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+
+  lowPriorityWarningWithoutStack = function (condition, format) {
+    if (format === undefined) {
+      throw new Error('`lowPriorityWarningWithoutStack(condition, format, ...args)` requires a warning ' + 'message argument');
+    }
+
+    if (!condition) {
+      for (var _len2 = arguments.length, args = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        args[_key2 - 2] = arguments[_key2];
+      }
+
+      printWarning.apply(void 0, [format].concat(args));
+    }
+  };
+}
+
+var lowPriorityWarningWithoutStack$1 = lowPriorityWarningWithoutStack;
+
+function typeOf(object) {
+  if (typeof object === 'object' && object !== null) {
+    var $$typeof = object.$$typeof;
+
+    switch ($$typeof) {
+      case REACT_ELEMENT_TYPE:
+        var type = object.type;
+
+        switch (type) {
+          case REACT_ASYNC_MODE_TYPE:
+          case REACT_CONCURRENT_MODE_TYPE:
+          case REACT_FRAGMENT_TYPE:
+          case REACT_PROFILER_TYPE:
+          case REACT_STRICT_MODE_TYPE:
+          case REACT_SUSPENSE_TYPE:
+            return type;
+
+          default:
+            var $$typeofType = type && type.$$typeof;
+
+            switch ($$typeofType) {
+              case REACT_CONTEXT_TYPE:
+              case REACT_FORWARD_REF_TYPE:
+              case REACT_PROVIDER_TYPE:
+                return $$typeofType;
+
+              default:
+                return $$typeof;
+            }
+
+        }
+
+      case REACT_LAZY_TYPE:
+      case REACT_MEMO_TYPE:
+      case REACT_PORTAL_TYPE:
+        return $$typeof;
+    }
+  }
+
+  return undefined;
+} // AsyncMode is deprecated along with isAsyncMode
+
+var AsyncMode = REACT_ASYNC_MODE_TYPE;
+var ConcurrentMode = REACT_CONCURRENT_MODE_TYPE;
+var ContextConsumer = REACT_CONTEXT_TYPE;
+var ContextProvider = REACT_PROVIDER_TYPE;
+var Element = REACT_ELEMENT_TYPE;
+var ForwardRef = REACT_FORWARD_REF_TYPE;
+var Fragment = REACT_FRAGMENT_TYPE;
+var Lazy = REACT_LAZY_TYPE;
+var Memo = REACT_MEMO_TYPE;
+var Portal = REACT_PORTAL_TYPE;
+var Profiler = REACT_PROFILER_TYPE;
+var StrictMode = REACT_STRICT_MODE_TYPE;
+var Suspense = REACT_SUSPENSE_TYPE;
+var hasWarnedAboutDeprecatedIsAsyncMode = false; // AsyncMode should be deprecated
+
+function isAsyncMode(object) {
+  {
+    if (!hasWarnedAboutDeprecatedIsAsyncMode) {
+      hasWarnedAboutDeprecatedIsAsyncMode = true;
+      lowPriorityWarningWithoutStack$1(false, 'The ReactIs.isAsyncMode() alias has been deprecated, ' + 'and will be removed in React 17+. Update your code to use ' + 'ReactIs.isConcurrentMode() instead. It has the exact same API.');
+    }
+  }
+
+  return isConcurrentMode(object) || typeOf(object) === REACT_ASYNC_MODE_TYPE;
+}
+function isConcurrentMode(object) {
+  return typeOf(object) === REACT_CONCURRENT_MODE_TYPE;
+}
+function isContextConsumer(object) {
+  return typeOf(object) === REACT_CONTEXT_TYPE;
+}
+function isContextProvider(object) {
+  return typeOf(object) === REACT_PROVIDER_TYPE;
+}
+function isElement(object) {
+  return typeof object === 'object' && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
+}
+function isForwardRef(object) {
+  return typeOf(object) === REACT_FORWARD_REF_TYPE;
+}
+function isFragment(object) {
+  return typeOf(object) === REACT_FRAGMENT_TYPE;
+}
+function isLazy(object) {
+  return typeOf(object) === REACT_LAZY_TYPE;
+}
+function isMemo(object) {
+  return typeOf(object) === REACT_MEMO_TYPE;
+}
+function isPortal(object) {
+  return typeOf(object) === REACT_PORTAL_TYPE;
+}
+function isProfiler(object) {
+  return typeOf(object) === REACT_PROFILER_TYPE;
+}
+function isStrictMode(object) {
+  return typeOf(object) === REACT_STRICT_MODE_TYPE;
+}
+function isSuspense(object) {
+  return typeOf(object) === REACT_SUSPENSE_TYPE;
+}
+
+exports.typeOf = typeOf;
+exports.AsyncMode = AsyncMode;
+exports.ConcurrentMode = ConcurrentMode;
+exports.ContextConsumer = ContextConsumer;
+exports.ContextProvider = ContextProvider;
+exports.Element = Element;
+exports.ForwardRef = ForwardRef;
+exports.Fragment = Fragment;
+exports.Lazy = Lazy;
+exports.Memo = Memo;
+exports.Portal = Portal;
+exports.Profiler = Profiler;
+exports.StrictMode = StrictMode;
+exports.Suspense = Suspense;
+exports.isValidElementType = isValidElementType;
+exports.isAsyncMode = isAsyncMode;
+exports.isConcurrentMode = isConcurrentMode;
+exports.isContextConsumer = isContextConsumer;
+exports.isContextProvider = isContextProvider;
+exports.isElement = isElement;
+exports.isForwardRef = isForwardRef;
+exports.isFragment = isFragment;
+exports.isLazy = isLazy;
+exports.isMemo = isMemo;
+exports.isPortal = isPortal;
+exports.isProfiler = isProfiler;
+exports.isStrictMode = isStrictMode;
+exports.isSuspense = isSuspense;
+  })();
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/react-is/index.js":
+/*!****************************************!*\
+  !*** ./node_modules/react-is/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (false) {} else {
+  module.exports = __webpack_require__(/*! ./cjs/react-is.development.js */ "./node_modules/react-is/cjs/react-is.development.js");
 }
 
 
