@@ -1,14 +1,16 @@
-import { memo } from 'react'
 import App from '../components/App'
 import Header from '../components/Header'
 import { withApollo } from '../lib/apollo'
 import Products from '../components/Products'
 
-const IndexPage = memo(props => (
+const ClientOnlyPage = props => (
   <App>
     <Header />
     <Products />
   </App>
-))
+)
 
-export default withApollo(IndexPage)
+export default withApollo(ClientOnlyPage, {
+  // Disable apollo ssr fetching in favour of automatic static optimization
+  ssr: false
+})

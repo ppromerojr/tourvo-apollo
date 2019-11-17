@@ -1,35 +1,15 @@
-import React, { useEffect, memo, useState } from 'react'
-import Head from 'next/head'
-import { useQuery } from '@apollo/react-hooks'
+import App from '../../components/App'
+import Header from '../../components/Header'
+import { withApollo } from '../../lib/apollo'
 
-import Nav from '../../components/nav'
-import PRODUCT_QUERY from '../../graphql/product.query'
+import ProductPage from '../../components/Product'
 
-const Product = ({ router, slug }) => {
-  if (!slug) return <div />
-
-  const { data, loading, error } = useQuery(PRODUCT_QUERY, {
-    variables: { slug }
-  })
-
-  if (loading) {
-    return <p>Loading...</p>
-  }
-
-  if (error) {
-    return <p>Error: {JSON.stringify(error)}</p>
-  }
-
+const Product = ({ slug }) => {
   return (
-    <div>
-      <Head>
-        <title>Home</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <Nav />
-      <p>Slug: {slug}</p>
-      <p>Name: {data.productBy.name}</p>
-    </div>
+    <App>
+      <Header />
+      <ProductPage slug={slug} />
+    </App>
   )
 }
 
@@ -39,4 +19,4 @@ Product.getInitialProps = async ({ query }) => {
   }
 }
 
-export default Product
+export default withApollo(Product)

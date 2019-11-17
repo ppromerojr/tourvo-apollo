@@ -186,39 +186,6 @@ module.exports = _asyncToGenerator;
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _extends; });
-/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
-/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
-
-function _extends() {
-  _extends = _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default.a || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/extends.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/extends.js ***!
@@ -264,18 +231,6 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
-
-/***/ }),
-
-/***/ "./node_modules/next/app.js":
-/*!**********************************!*\
-  !*** ./node_modules/next/app.js ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./dist/pages/_app */ "./node_modules/next/dist/pages/_app.js")
-
 
 /***/ }),
 
@@ -560,176 +515,15 @@ function createUrl(router) {
 
 /***/ }),
 
-/***/ "./pages/_app.js":
-/*!***********************!*\
-  !*** ./pages/_app.js ***!
-  \***********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
-/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @apollo/react-hooks */ "@apollo/react-hooks");
-/* harmony import */ var _apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _util_apollo_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/apollo-client */ "./util/apollo-client.js");
-
-var _jsxFileName = "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/pages/_app.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
-
-
-
-
-class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
-  render() {
-    const {
-      Component,
-      pageProps,
-      apollo
-    } = this.props;
-    return __jsx(_apollo_react_hooks__WEBPACK_IMPORTED_MODULE_3__["ApolloProvider"], {
-      client: apollo,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 12
-      },
-      __self: this
-    }, __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 13
-      },
-      __self: this
-    })));
-  }
-
-} // Wraps all components in the tree with the data provider
-
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(_util_apollo_client__WEBPACK_IMPORTED_MODULE_4__["default"])(MyApp));
-
-/***/ }),
-
-/***/ "./tourvo.config.js":
-/*!**************************!*\
-  !*** ./tourvo.config.js ***!
-  \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-const config = {
-  graphqlUrl: 'http://tourvo.localhost/graphql/'
-};
-module.exports = config;
-
-/***/ }),
-
-/***/ "./util/apollo-client.js":
-/*!*******************************!*\
-  !*** ./util/apollo-client.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! apollo-client */ "apollo-client");
-/* harmony import */ var apollo_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(apollo_client__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-cache-inmemory */ "apollo-cache-inmemory");
-/* harmony import */ var apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_with_apollo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next-with-apollo */ "next-with-apollo");
-/* harmony import */ var next_with_apollo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_with_apollo__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! apollo-link-http */ "apollo-link-http");
-/* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(apollo_link_http__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _tourvo_config__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../tourvo.config */ "./tourvo.config.js");
-/* harmony import */ var _tourvo_config__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_tourvo_config__WEBPACK_IMPORTED_MODULE_5__);
-
-
-
-
-
- // Update the GraphQL endpoint to any instance of GraphQL that you like
-
-const GRAPHQL_URL = _tourvo_config__WEBPACK_IMPORTED_MODULE_5___default.a.graphqlUrl;
-const link = Object(apollo_link_http__WEBPACK_IMPORTED_MODULE_3__["createHttpLink"])({
-  fetch: (isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_4___default()),
-  // Switches between unfetch & node-fetch for client & server.
-  uri: GRAPHQL_URL
-}); // Export a HOC from next-with-apollo
-// Docs: https://www.npmjs.com/package/next-with-apollo
-
-/* harmony default export */ __webpack_exports__["default"] = (next_with_apollo__WEBPACK_IMPORTED_MODULE_2___default()( // You can get headers and ctx (context) from the callback params
-// e.g. ({ headers, ctx, initialState })
-({
-  initialState
-}) => new apollo_client__WEBPACK_IMPORTED_MODULE_0__["ApolloClient"]({
-  link: link,
-  cache: new apollo_cache_inmemory__WEBPACK_IMPORTED_MODULE_1__["InMemoryCache"]() //  rehydrate the cache using the initial data passed from the server:
-  .restore(initialState || {})
-})));
-
-/***/ }),
-
 /***/ 0:
-/*!****************************************!*\
-  !*** multi private-next-pages/_app.js ***!
-  \****************************************/
+/*!**********************************!*\
+  !*** multi next/dist/pages/_app ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
+module.exports = __webpack_require__(/*! next/dist/pages/_app */"./node_modules/next/dist/pages/_app.js");
 
-
-/***/ }),
-
-/***/ "@apollo/react-hooks":
-/*!**************************************!*\
-  !*** external "@apollo/react-hooks" ***!
-  \**************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@apollo/react-hooks");
-
-/***/ }),
-
-/***/ "apollo-cache-inmemory":
-/*!****************************************!*\
-  !*** external "apollo-cache-inmemory" ***!
-  \****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("apollo-cache-inmemory");
-
-/***/ }),
-
-/***/ "apollo-client":
-/*!********************************!*\
-  !*** external "apollo-client" ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("apollo-client");
-
-/***/ }),
-
-/***/ "apollo-link-http":
-/*!***********************************!*\
-  !*** external "apollo-link-http" ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("apollo-link-http");
 
 /***/ }),
 
@@ -774,28 +568,6 @@ module.exports = require("core-js/library/fn/object/keys");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/promise");
-
-/***/ }),
-
-/***/ "isomorphic-unfetch":
-/*!*************************************!*\
-  !*** external "isomorphic-unfetch" ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-unfetch");
-
-/***/ }),
-
-/***/ "next-with-apollo":
-/*!***********************************!*\
-  !*** external "next-with-apollo" ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next-with-apollo");
 
 /***/ }),
 

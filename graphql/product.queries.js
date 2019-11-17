@@ -1,11 +1,12 @@
 import gql from 'graphql-tag'
 
-const PRODUCT_QUERY = gql`
+const GET_PRODUCT = gql`
   query Product($slug: String!) {
     productBy(slug: $slug) {
       name
+      description
     }
   }
 `
 
-export default PRODUCT_QUERY
+export default GET_PRODUCT

@@ -1,13 +1,12 @@
 import gql from 'graphql-tag'
 
-const PRODUCTS_QUERY = gql`
+const GET_PRODUCTS = gql`
   query Products($first: Int, $after: String) {
     products(first: $first, after: $after) {
       pageInfo {
         hasNextPage
         startCursor
         endCursor
-        total
       }
       edges {
         cursor
@@ -23,4 +22,4 @@ const PRODUCTS_QUERY = gql`
   }
 `
 
-export default PRODUCTS_QUERY
+export default GET_PRODUCTS
