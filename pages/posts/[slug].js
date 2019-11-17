@@ -2,21 +2,21 @@ import App from '../../components/App'
 import Header from '../../components/Header'
 import { withApollo } from '../../lib/apollo'
 
-import ProductPage from '../../components/Product'
+import PostPage from '../../components/Post'
 
-const Product = ({ slug }) => {
+const Post = ({ slug }) => {
   return (
     <App>
       <Header />
-      <ProductPage slug={slug} />
+      <PostPage slug={slug} />
     </App>
   )
 }
 
-Product.getInitialProps = async ({ query }) => {
+Post.getInitialProps = async ({ query }) => {
   return {
     slug: query.slug
   }
 }
 
-export default withApollo(Product)
+export default withApollo(Post)

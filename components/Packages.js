@@ -20,26 +20,16 @@ export const productsQueryVars = {
   first: 10
 }
 
-function Products () {
+function Packages () {
   const { loading, error, data, fetchMore, networkStatus, client } = useQuery(
     GET_PRODUCTS,
     {
       variables: productsQueryVars,
-      // Setting this value to true will make the component rerender when
-      // the "networkStatus" changes, so we are able to know if it is fetching
-      // more data
       notifyOnNetworkStatusChange: true
     }
   )
   const { products } = data
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore
-
-  useEffect(
-    () => {
-      console.log('products', products)
-    },
-    [products]
-  )
 
   if (error) return <ErrorMessage message='Error loading posts.' />
   if (loading && !loadingMorePosts) return <div>Loading</div>
@@ -73,23 +63,25 @@ function Products () {
       <div>
         {products.edges.map(({ node }, id) => {
           return (
-            <div
-              style={style}
+            <Link
               key={id}
-              onMouseOver={() => {
-                console.log('hover')
-                client.query({
-                  query: GET_PRODUCT,
-                  variables: { slug: node.slug }
-                })
-              }}
+              href='/packages/[slug]'
+              as={`/packages/${node.slug}`}
             >
-              <Link href='/product/[slug]' as={`/product/${node.slug}`}>
-                <a>
+              <a>
+                <div
+                  style={style}
+                  onMouseOver={() => {
+                    client.query({
+                      query: GET_PRODUCT,
+                      variables: { slug: node.slug }
+                    })
+                  }}
+                >
                   {node.name} - {node.slug}
-                </a>
-              </Link>
-            </div>
+                </div>
+              </a>
+            </Link>
           )
         })}
       </div>
@@ -102,4 +94,4 @@ function Products () {
   )
 }
 
-export default memo(Products)
+export default memo(Packages)

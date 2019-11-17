@@ -7,9 +7,18 @@ const Header = ({ router: { pathname } }) => (
       <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
     </Link>
 
-    <Link href='/about'>
-      <a className={pathname === '/about' ? 'is-active' : ''}>About</a>
+    <Link href='/about-us'>
+      <a className={pathname === '/about-us' ? 'is-active' : ''}>About Us</a>
     </Link>
+
+    <Link href='/packages'>
+      <a className={pathname === '/packages' ? 'is-active' : ''}>Packages</a>
+    </Link>
+
+    <Link href='/blog'>
+      <a className={pathname === '/blog' ? 'is-active' : ''}>Blog</a>
+    </Link>
+
     <style jsx>{`
       header {
         margin-bottom: 25px;
