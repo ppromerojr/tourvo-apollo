@@ -1,7 +1,4 @@
-import App from '../../components/App'
-import Header from '../../components/Header'
 import createPage from '../../components/Page/decorator'
-
 import PackagePage from '../../components/Package'
 
 const Package = ({ slug }) => {

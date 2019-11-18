@@ -1,22 +1,17 @@
-import App from '../../components/App'
-import Header from '../../components/Header'
-import { withApollo } from '../../lib/apollo'
-
+import createPage from '../../components/Page/decorator'
 import PostPage from '../../components/Post'
 
 const Post = ({ slug }) => {
-  return (
-    <App>
-      <Header />
-      <PostPage slug={slug} />
-    </App>
-  )
+  return <PostPage slug={slug} />
 }
 
-Post.getInitialProps = async ({ query }) => {
+const getInitialProps = async ({ query }) => {
   return {
     slug: query.slug
   }
 }
 
-export default withApollo(Post)
+export default createPage({
+  head: false,
+  getInitialProps
+})(Post)
