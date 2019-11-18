@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import PackagesList from '../components/Packages'
 import createPage from '../components/Page/decorator'
 

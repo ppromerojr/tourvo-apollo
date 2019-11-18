@@ -51,21 +51,21 @@ function createPage (options, InnerComponent) {
       const { page, router } = this.props
       let metas = {}
 
-      if (options.head) {
-        metas = {
-          type: 'page',
-          title: page.title,
-          description: 'description',
-          image: page.featuredImage.mediaItemUrl,
-          imageWidth: page.featuredImage.width,
-          imageHeight: page.featuredImage.height,
-          url: router.route
-        }
-      }
+      //   if (options.head) {
+      //     metas = {
+      //       type: 'page',
+      //       title: page.title,
+      //       description: 'description',
+      //       image: page.featuredImage.mediaItemUrl,
+      //       imageWidth: page.featuredImage.width,
+      //       imageHeight: page.featuredImage.height,
+      //       url: router.route
+      //     }
+      //   }
 
       return (
         <React.Fragment>
-          {options.head && <Head {...metas} />}
+          {/* {options.head && <Head {...metas} />} */}
           <App>
             <Header />
             <InnerComponent {...this.props} />
