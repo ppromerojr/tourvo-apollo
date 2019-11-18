@@ -5131,7 +5131,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "/workspace/tourvo-apollo/.next");
       return error;
     }
   };
