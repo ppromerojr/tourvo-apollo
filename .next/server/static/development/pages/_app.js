@@ -545,28 +545,6 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_1___default.a {
-  // Only uncomment this method if you have blocking data requirements for
-  // every single page in your application. This disables the ability to
-  // perform automatic static optimization, causing every page in your app to
-  // be server-side rendered.
-  //
-  // static async getInitialProps(appContext) {
-  //   // calls page's `getInitialProps` and fills `appProps.pageProps`
-  //   const appProps = await App.getInitialProps(appContext);
-  //
-  //   return { ...appProps }
-  // }
-  componentDidMount() {
-    console.log("app mounted");
-    console.log("mounted");
-
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').then(function () {
-        console.log("Service Worker Registered");
-      });
-    }
-  }
-
   render() {
     const {
       Component,

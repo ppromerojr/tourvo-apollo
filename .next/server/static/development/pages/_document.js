@@ -1535,9 +1535,20 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
   }
 
   render() {
-    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Html"], null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null), __jsx("link", {
+    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Html"], {
+      lang: "en"
+    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null), __jsx("title", null, "Tourvo App"), __jsx("meta", {
+      name: "Description",
+      content: "Destinations within your reach, travel, packages"
+    }), __jsx("meta", {
+      name: "theme-color",
+      content: "#000000"
+    }), __jsx("link", {
       rel: "manifest",
-      href: "/manifest.json"
+      href: "/static/manifest.json"
+    }), __jsx("link", {
+      rel: "apple-touch-icon",
+      href: "/static/icons/apple-touch-icon.png"
     }), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
   }
 

@@ -1,21 +1,24 @@
-const { createServer } = require("http")
-const path = require("path")
-const next = require("next")
+const { createServer } = require('http')
+const path = require('path')
+const next = require('next')
 
-const dev = process.env.NODE_ENV !== "production"
-const app = next({ dev: process.env.NODE_ENV !== "production" })
+const app = next({ dev: process.env.NODE_ENV !== 'production' })
 const handleNextRequests = app.getRequestHandler()
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
+
+const staticFiles = ['sw.js', 'robots.txt', 'favicon.ico', 'manifest.json']
+
+const isStaticFile = name =>
+  staticFiles.includes(name) || isGoogleHTMLFile(name)
+const isGoogleHTMLFile = name => !!name.match(/^google(\w+)\.html$/)
 
 app.prepare().then(_ => {
   const server = createServer((req, res) => {
-    if (req.url === "/sw.js" || req.url === "/robots.txt") {
-      app.serveStatic(req, res, path.resolve("./public/static" + req.url))
-    } else if (req.url === "/favicon.ico") {
-      app.serveStatic(req, res, path.resolve("./public/static" + req.url))
-    } else if (req.url === "/manifest.json") {
-      app.serveStatic(req, res, path.resolve("./public/static" + req.url))
+    let requestPath = req.url.replace(/^\/+/, '')
+
+    if (isStaticFile(requestPath)) {
+      app.serveStatic(req, res, path.resolve(`./public/static/${requestPath}`))
     } else {
       handleNextRequests(req, res)
     }
@@ -23,6 +26,7 @@ app.prepare().then(_ => {
 
   server.listen(PORT, err => {
     if (err) throw err
-    console.log(`> App - running on port ${PORT}`)
+
+    // console.log(`> App running on port ${PORT}`);
   })
 })

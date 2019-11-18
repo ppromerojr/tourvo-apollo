@@ -6226,29 +6226,6 @@ function (_App) {
   }
 
   Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MyApp, [{
-    key: "componentDidMount",
-    // Only uncomment this method if you have blocking data requirements for
-    // every single page in your application. This disables the ability to
-    // perform automatic static optimization, causing every page in your app to
-    // be server-side rendered.
-    //
-    // static async getInitialProps(appContext) {
-    //   // calls page's `getInitialProps` and fills `appProps.pageProps`
-    //   const appProps = await App.getInitialProps(appContext);
-    //
-    //   return { ...appProps }
-    // }
-    value: function componentDidMount() {
-      console.log("app mounted");
-      console.log("mounted");
-
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').then(function () {
-          console.log("Service Worker Registered");
-        });
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
