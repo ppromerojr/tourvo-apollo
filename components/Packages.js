@@ -8,11 +8,20 @@ import ErrorMessage from './ErrorMessage'
 import GET_PRODUCTS from '../graphql/products.queries'
 import GET_PRODUCT from '../graphql/product.queries'
 
-const style = {
-  height: 30,
-  border: '1px solid green',
-  margin: 6,
-  padding: 8
+const style = { 
+  border: '1px solid green', 
+  padding: 0,
+  display: "flex",
+  marginBottom: 20,
+  alignItems: "center"
+}
+
+const imgStyle = {
+    display: "block"
+}
+
+const textStyle = {
+    padding: 10
 }
 
 export const productsQueryVars = {
@@ -69,6 +78,7 @@ function Packages () {
               as={`/packages/${node.slug}`}
             >
               <a>
+                  
                 <div
                   style={style}
                   onMouseOver={() => {
@@ -78,7 +88,10 @@ function Packages () {
                     })
                   }}
                 >
-                  {node.name} - {node.slug}
+                 {node.image && (
+                    <div><img style={imgStyle} src={node.image.sourceUrl} /></div>
+                 )}
+                 <div style={textStyle}>{node.name} - {node.slug}</div>
                 </div>
               </a>
             </Link>

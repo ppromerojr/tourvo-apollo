@@ -16,6 +16,9 @@ const GET_PRODUCTS = gql`
           id
           description
           date
+          image {
+            sourceUrl(size: THUMBNAIL)
+          }
         }
       }
     }
