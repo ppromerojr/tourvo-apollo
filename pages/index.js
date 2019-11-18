@@ -1,13 +1,16 @@
-import { memo } from 'react'
-import App from '../components/App'
-import Header from '../components/Header'
+import { useEffect } from 'react'
 import { withApollo } from '../lib/apollo'
+import createPage from '../components/Page/decorator'
+import { useQuery } from '@apollo/react-hooks'
+import GET_PAGE from '../graphql/page.queries'
+import ApolloClient from 'apollo-client'
 
-const IndexPage = memo(props => (
-  <App>
-    <Header />
-    <div>this is home</div>
-  </App>
-))
+function MainPage (props) {
+  return <div>this is home1</div>
+}
 
-export default withApollo(IndexPage)
+MainPage = createPage({
+  slug: 'homepage'
+})(MainPage)
+
+export default MainPage

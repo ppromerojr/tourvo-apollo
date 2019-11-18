@@ -1,11 +1,19 @@
 import gql from 'graphql-tag'
 
 const GET_PAGE = gql`
-  query Product($uri: String!) {
+  query Page($uri: String!) {
     pageBy(uri: $uri) {
+      id
       slug
-      content(format: RENDERED)
-      date
+      title
+      featuredImage {
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
+        title
+      }
     }
   }
 `

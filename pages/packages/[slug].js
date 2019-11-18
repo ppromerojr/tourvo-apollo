@@ -1,22 +1,17 @@
 import App from '../../components/App'
 import Header from '../../components/Header'
-import { withApollo } from '../../lib/apollo'
+import createPage from '../../components/Page/decorator'
 
 import PackagePage from '../../components/Package'
 
 const Package = ({ slug }) => {
-  return (
-    <App>
-      <Header />
-      <PackagePage slug={slug} />
-    </App>
-  )
+  return <PackagePage slug={slug} />
 }
 
-Package.getInitialProps = async ({ query }) => {
+const getInitialProps = async ({ query }) => {
   return {
     slug: query.slug
   }
 }
 
-export default withApollo(Package)
+export default createPage({ head: false, getInitialProps })(Package)

@@ -10,11 +10,7 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head />
-        <title>Tourvo App</title>
-        <meta
-          name='Description'
-          content='Destinations within your reach, travel, packages'
-        />
+
         <meta name='theme-color' content='#000000' />
         <link rel='manifest' href='/static/manifest.json' />
         <link

@@ -1,14 +1,7 @@
 import { memo } from 'react'
-import App from '../components/App'
-import Header from '../components/Header'
-import { withApollo } from '../lib/apollo'
 import PackagesList from '../components/Packages'
+import createPage from '../components/Page/decorator'
 
-const Packages = memo(props => (
-  <App>
-    <Header />
-    <PackagesList />
-  </App>
-))
+const Packages = props => <PackagesList />
 
-export default withApollo(Packages)
+export default createPage({ slug: 'shop' })(Packages)
