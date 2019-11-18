@@ -1,7 +1,8 @@
-require('dotenv').config()
-module.exports = {
-  env: {
-    // Reference a variable that was defined in the .env file and make it available at Build Time
+require('dotenv').config() 
+const nextConfig = { 
+ env: {
     GRAPHQL_URL: process.env.GRAPHQL_URL,
-  },
+  }
 }
+
+module.exports = nextConfig

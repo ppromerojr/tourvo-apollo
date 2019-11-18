@@ -8,10 +8,6 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/[slug]": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
@@ -24,11 +20,11 @@
       "static/runtime/polyfills.js",
       "static/runtime/polyfills.js.map"
     ],
-    "/index": [
+    "/blog": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/packages": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
