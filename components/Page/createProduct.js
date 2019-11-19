@@ -36,7 +36,9 @@ function renderMetaTags ({ data }, router) {
       description:
         'In addition to fetching and mutating data, Apollo analyzes your queries and their results to construct a client-side cache of your data, which is kept up to date as further queries and mutations are run, fetching more results from the server.',
       title: page.name,
-      image: page.image.sourceUrl.replace(/[\r\n]+/g, ''),
+      image: page.image.mediaItemUrl.replace(/[\r\n]+/g, ''),
+      imageWidth: page.image && page.image.mediaDetails.width,
+      imageHeight: page.image && page.image.mediaDetails.height,
       url: `/packages/${router.query.slug}`
     }
 

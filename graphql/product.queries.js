@@ -6,7 +6,11 @@ const GET_PRODUCT = gql`
       name
       description
       image {
-        sourceUrl(size: THUMBNAIL)
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
       }
     }
   }
