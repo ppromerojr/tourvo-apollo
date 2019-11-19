@@ -17,7 +17,6 @@ const Head = props => {
         property='og:description'
         content={description}
       />
-
       <meta key='og-image' property='og:image' content={image} />
       {imageWidth > 0 && (
         <meta property='og:image:width' content={imageWidth} />
@@ -25,9 +24,8 @@ const Head = props => {
       {imageHeight > 0 && (
         <meta property='og:image:height' content={imageHeight} />
       )}
-
       <meta key='og-url' property='og:url' content={baseURL + url} />
-
+      <meta property='fb:app_id' content='439438826762384' />
       <meta
         key='twitter-card'
         name='twitter:card'
