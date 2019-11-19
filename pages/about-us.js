@@ -4,7 +4,7 @@ import GET_PAGE from '../graphql/page.queries'
 import { useQuery } from '@apollo/react-hooks'
 import Head from '../components/Head'
 
-function AboutUs () {
+function AboutUs ({ router }) {
   let metas = {}
   const { data, loading, error } = useQuery(GET_PAGE, {
     variables: { uri: 'about-us' }
@@ -19,11 +19,12 @@ function AboutUs () {
     metas = {
       type: 'page',
       title: page.title,
-      description: 'description',
+      description:
+        'Apollo is a GraphQL client that allows you to easily query the exact data you need from a GraphQL server. In addition to fetching and mutating data, Apollo analyzes your queries and their results to construct a client-side cache of your data, which is kept up to date as further queries and mutations are run, fetching more results from the server.',
       image: page.featuredImage.mediaItemUrl,
       imageWidth: page.featuredImage.width,
-      imageHeight: page.featuredImage.height
-      //   url: router.route
+      imageHeight: page.featuredImage.height,
+      url: router.route
     }
   }
 

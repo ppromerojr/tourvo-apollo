@@ -4,20 +4,15 @@
     "static/development/dll/dll_7cf10ae8e2e0bf8792eb.js.map"
   ],
   "pages": {
-    "/": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
-    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
+      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
     ],
     "/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
+      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
     ],
     "/_polyfills": [
       "static/runtime/polyfills.js",
@@ -26,22 +21,12 @@
     "/about-us": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
+      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
     ],
     "/blog": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
-    ],
-    "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
-    ],
-    "/packages": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.64c9ae8ee2d0e98205b2.hot-update.js"
+      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
     ]
   }
 }
