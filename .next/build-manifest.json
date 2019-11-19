@@ -7,12 +7,12 @@
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
+      "static/webpack/static/runtime/main.js.aad94e52d42795edaa49.hot-update.js"
     ],
     "/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
+      "static/webpack/static/runtime/main.js.aad94e52d42795edaa49.hot-update.js"
     ],
     "/_polyfills": [
       "static/runtime/polyfills.js",
@@ -21,12 +21,12 @@
     "/about-us": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
+      "static/webpack/static/runtime/main.js.aad94e52d42795edaa49.hot-update.js"
     ],
     "/blog": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.e2718e37baa42c86786e.hot-update.js"
+      "static/webpack/static/runtime/main.js.aad94e52d42795edaa49.hot-update.js"
     ]
   }
 }
