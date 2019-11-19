@@ -5,6 +5,9 @@ const GET_PRODUCT = gql`
     productBy(slug: $slug) {
       name
       description
+      image {
+        sourceUrl(size: THUMBNAIL)
+      }
     }
   }
 `

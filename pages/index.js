@@ -1,12 +1,18 @@
-import { useEffect } from 'react'
-import { withApollo } from '../lib/apollo'
-import createPage from '../components/Page/decorator'
-import { useQuery } from '@apollo/react-hooks'
-import GET_PAGE from '../graphql/page.queries'
-import ApolloClient from 'apollo-client'
+import { Fragment } from 'react'
+import createPage from '../components/Page/createPage'
+import Body from '../components/Body'
 
-function MainPage (props) {
-  return <div>this is home1</div>
+function MainPage ({ data, loading, error }) {
+  if (error) {
+    return <div>error</div>
+  }
+
+  return (
+    <Fragment>
+      {loading && <div>Loading homepage...</div>}
+      {data.pageBy && <Body>{data.pageBy.content}</Body>}
+    </Fragment>
+  )
 }
 
 MainPage = createPage({

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add prop-types
+  /usr/local/bin/node /usr/local/bin/yarn add html-react-parser
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/Users/pabsromerojr/Documents/Projects/tourvo-apollo/node_modules/next/node_modules/react-is'
+  Error: EACCES: permission denied, mkdir '/Users/pabsromerojr/Documents/Projects/tourvo-apollo/node_modules/@types/domhandler'
 
 npm manifest: 
   {

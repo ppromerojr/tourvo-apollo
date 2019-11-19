@@ -1,8 +1,25 @@
-import { memo } from 'react'
+import { Fragment } from 'react'
+
+import Body from '../components/Body'
 import Posts from '../components/Posts'
+import createPage from '../components/Page/createPage'
 
-import createPage from '../components/Page/decorator'
+function Packages ({ data, loading, error }) {
+  if (error) {
+    return <div>error</div>
+  }
 
-const Blog = memo(props => <Posts />)
+  return (
+    <Fragment>
+      {loading && <div>Loading blog posts...</div>}
+      {data.pageBy && <Body>{data.pageBy.content}</Body>}
+      <Posts />
+    </Fragment>
+  )
+}
 
-export default createPage({ slug: 'shop' })(Blog)
+Packages = createPage({
+  slug: 'blog'
+})(Packages)
+
+export default Packages

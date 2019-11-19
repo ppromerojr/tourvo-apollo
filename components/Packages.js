@@ -41,7 +41,7 @@ function Packages () {
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore
 
   if (error) return <ErrorMessage message='Error loading posts.' />
-  if (loading && !loadingMorePosts) return <div>Loading...</div>
+  if (loading && !loadingMorePosts) return <div>Loading packages...</div>
 
   const fetchMoreData = () => {
     fetchMore({

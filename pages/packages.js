@@ -1,6 +1,24 @@
+import { Fragment } from 'react'
 import PackagesList from '../components/Packages'
-import createPage from '../components/Page/decorator'
+import Body from '../components/Body'
+import createPage from '../components/Page/createPage'
 
-const Packages = props => <PackagesList />
+function Packages ({ data, loading, error }) {
+  if (error) {
+    return <div>error</div>
+  }
 
-export default createPage({ slug: 'shop' })(Packages)
+  return (
+    <Fragment>
+      {loading && <div>Loading page content...</div>}
+      {data.pageBy && <Body>{data.pageBy.content}</Body>}
+      <PackagesList />
+    </Fragment>
+  )
+}
+
+Packages = createPage({
+  slug: 'packages'
+})(Packages)
+
+export default Packages
