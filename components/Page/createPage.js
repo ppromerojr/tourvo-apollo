@@ -31,7 +31,7 @@ export default options => {
 function renderMetaTags ({ data }, router) {
   if (data.pageBy) {
     const { pageBy: page } = data
-    let metas = {
+    const tags = {
       title: page.title,
       image: page.featuredImage.mediaItemUrl.replace(/[\r\n]+/g, ''),
       imageWidth: page.featuredImage.width,
@@ -42,10 +42,10 @@ function renderMetaTags ({ data }, router) {
       url: router.route
     }
 
-    return <Head {...metas} />
+    return <Head {...tags} />
   }
 
-  return null
+  return <Head title='Tourvo App' />
 }
 
 function createPage (options, InnerComponent) {

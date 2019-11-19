@@ -12,6 +12,7 @@ class MyDocument extends Document {
       <Html lang='en'>
         <Head />
 
+        <title>Tourvo App</title>
         <meta name='theme-color' content='#000000' />
         <link rel='manifest' href='/static/manifest.json' />
         <link
@@ -26,5 +27,5 @@ class MyDocument extends Document {
     )
   }
 }
-  
+
 export default MyDocument
