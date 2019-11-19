@@ -4,15 +4,20 @@
     "static/development/dll/dll_7cf10ae8e2e0bf8792eb.js.map"
   ],
   "pages": {
+    "/": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js",
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
+    ],
     "/_app": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
     ],
     "/_error": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
     ],
     "/_polyfills": [
       "static/runtime/polyfills.js",
@@ -21,27 +26,22 @@
     "/about-us": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
     ],
-    "/blog": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
     ],
     "/packages": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
     ],
     "/packages/[slug]": [
       "static/runtime/webpack.js",
       "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
-    ],
-    "/posts/[slug]": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js",
-      "static/webpack/static/runtime/main.js.b6fee16a1c2af5fe512f.hot-update.js"
+      "static/webpack/static/runtime/main.js.ff4961811034deca75a5.hot-update.js"
     ]
   }
 }

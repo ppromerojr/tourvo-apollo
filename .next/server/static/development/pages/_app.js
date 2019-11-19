@@ -544,15 +544,12 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_1___default.a {
-  render() {
-    const {
-      Component,
-      pageProps
-    } = this.props;
-    return __jsx(Component, pageProps);
-  }
-
+function MyApp(props) {
+  const {
+    Component,
+    pageProps
+  } = props;
+  return __jsx(Component, pageProps);
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MyApp);

@@ -5131,7 +5131,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "/workspace/tourvo-apollo/.next");
       return error;
     }
   };
@@ -12483,19 +12483,35 @@ if (false) {}
 /***/ }),
 
 /***/ 0:
-/*!*************************************************************************************************************************************************************************!*\
-  !*** multi ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./node_modules/next/dist/client/next-dev.js ***!
-  \*************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./utils/offline ./node_modules/next/dist/client/next-dev.js ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
-__webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
+__webpack_require__(/*! /workspace/tourvo-apollo/utils/offline */"./utils/offline.js");
 module.exports = __webpack_require__(/*! ./node_modules/next/dist/client/next-dev.js */"./node_modules/next/dist/client/next-dev.js");
 
 

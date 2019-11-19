@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { withApollo } from '../lib/apollo'
 
 class MyDocument extends Document {
   static async getInitialProps (ctx) {
@@ -25,5 +26,5 @@ class MyDocument extends Document {
     )
   }
 }
-
+  
 export default MyDocument

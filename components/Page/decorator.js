@@ -21,25 +21,25 @@ export default options => {
     let result = {}
     let extraProps = {}
 
-    if (_options.type === 'page') {
-      const { data, loading, error } = await apolloClient.query({
-        query: GET_PAGE,
-        variables: { uri: _options.slug }
-      })
+    // if (_options.type === 'page') {
+    //   const { data, loading, error } = await apolloClient.query({
+    //     query: GET_PAGE,
+    //     variables: { uri: _options.slug }
+    //   })
 
-      extraProps = {
-        page: data.pageBy
-      }
-    }
+    //   extraProps = {
+    //     page: data.pageBy
+    //   }
+    // }
 
-    if (_options.getInitialProps) {
-      result = await _options.getInitialProps(context, extraProps)
-    }
+    // if (_options.getInitialProps) {
+    //   result = await _options.getInitialProps(context, extraProps)
+    // }
 
-    return {
-      ...extraProps,
-      ...result
-    }
+    // return {
+    //   ...extraProps,
+    //   ...result
+    // }
   }
 
   return Component => createPage(options, Component)
@@ -50,7 +50,7 @@ function createPage (options, InnerComponent) {
     render () {
       const { page, router } = this.props
       let metas = {}
-
+ 
       //   if (options.head) {
       //     metas = {
       //       type: 'page',

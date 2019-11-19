@@ -2,9 +2,9 @@ import { useQuery } from '@apollo/react-hooks'
 
 import GET_PRODUCT from '../graphql/product.queries'
 
-const Package = ({ slug }) => {
+const Package = ({ router }) => {
   const { data, loading, error } = useQuery(GET_PRODUCT, {
-    variables: { slug }
+    variables: { slug: router.query.slug }
   })
 
   if (loading) {
