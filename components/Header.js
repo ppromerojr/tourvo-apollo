@@ -4,63 +4,22 @@ import { useQuery } from '@apollo/react-hooks'
 import GET_PAGE from '../graphql/page.queries'
 
 const Header = ({ router: { pathname } }) => {
-  const { client } = useQuery(GET_PAGE)
   return (
     <header>
       <Link href='/'>
-        <a
-          onMouseOver={() => {
-            client.query({
-              query: GET_PAGE,
-              variables: { uri: 'homepage' }
-            })
-          }}
-          className={pathname === '/' ? 'is-active' : ''}
-        >
-          Home
-        </a>
+        <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
       </Link>
 
       <Link href='/about-us'>
-        <a
-          onMouseOver={() => {
-            client.query({
-              query: GET_PAGE,
-              variables: { uri: 'about-us' }
-            })
-          }}
-          className={pathname === '/about-us' ? 'is-active' : ''}
-        >
-          About Us
-        </a>
+        <a className={pathname === '/about-us' ? 'is-active' : ''}>About Us</a>
       </Link>
 
       <Link href='/packages'>
-        <a
-          onMouseOver={() => {
-            client.query({
-              query: GET_PAGE,
-              variables: { uri: 'packages' }
-            })
-          }}
-          className={pathname === '/packages' ? 'is-active' : ''}
-        >
-          Packages
-        </a>
+        <a className={pathname === '/packages' ? 'is-active' : ''}>Packages</a>
       </Link>
 
       <Link href='/blog'>
-        <a
-          onMouseOver={() => {
-            client.query({
-              query: GET_PAGE,
-              variables: { uri: 'blog' }
-            })
-          }}
-          className={pathname === '/blog' ? 'is-active' : ''}
-        >
-          Blog
-        </a>
+        <a className={pathname === '/blog' ? 'is-active' : ''}>Blog</a>
       </Link>
 
       <style jsx>{`

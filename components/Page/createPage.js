@@ -45,7 +45,7 @@ function renderMetaTags ({ data }, router) {
     return <Head {...tags} />
   }
 
-  return <Head title='Tourvo App' />
+  return null
 }
 
 function createPage (options, InnerComponent) {
