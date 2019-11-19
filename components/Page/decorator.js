@@ -50,7 +50,7 @@ function createPage (options, InnerComponent) {
     render () {
       const { page, router } = this.props
       let metas = {}
- 
+
       //   if (options.head) {
       //     metas = {
       //       type: 'page',

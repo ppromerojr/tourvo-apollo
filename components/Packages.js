@@ -8,20 +8,20 @@ import ErrorMessage from './ErrorMessage'
 import GET_PRODUCTS from '../graphql/products.queries'
 import GET_PRODUCT from '../graphql/product.queries'
 
-const style = { 
-  border: '1px solid green', 
+const style = {
+  border: '1px solid green',
   padding: 0,
-  display: "flex",
+  display: 'flex',
   marginBottom: 20,
-  alignItems: "center"
+  alignItems: 'center'
 }
 
 const imgStyle = {
-    display: "block"
+  display: 'block'
 }
 
 const textStyle = {
-    padding: 10
+  padding: 10
 }
 
 export const productsQueryVars = {
@@ -41,7 +41,7 @@ function Packages () {
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore
 
   if (error) return <ErrorMessage message='Error loading posts.' />
-  if (loading && !loadingMorePosts) return <div>Loading</div>
+  if (loading && !loadingMorePosts) return <div>Loading...</div>
 
   const fetchMoreData = () => {
     fetchMore({
@@ -78,7 +78,6 @@ function Packages () {
               as={`/packages/${node.slug}`}
             >
               <a>
-                  
                 <div
                   style={style}
                   onMouseOver={() => {
@@ -88,10 +87,14 @@ function Packages () {
                     })
                   }}
                 >
-                 {node.image && (
-                    <div><img style={imgStyle} src={node.image.sourceUrl} /></div>
-                 )}
-                 <div style={textStyle}>{node.name} - {node.slug}</div>
+                  {node.image && (
+                    <div>
+                      <img style={imgStyle} src={node.image.sourceUrl} />
+                    </div>
+                  )}
+                  <div style={textStyle}>
+                    {node.name} - {node.slug}
+                  </div>
                 </div>
               </a>
             </Link>

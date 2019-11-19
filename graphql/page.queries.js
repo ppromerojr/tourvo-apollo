@@ -6,6 +6,7 @@ const GET_PAGE = gql`
       id
       slug
       title
+      content(format: RENDERED)
       featuredImage {
         mediaItemUrl
         mediaDetails {
