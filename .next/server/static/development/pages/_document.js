@@ -168,7 +168,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 let apolloClient = null; // Update the GraphQL endpoint to any instance of GraphQL that you like
 
-const GRAPHQL_URL = "http://tourvo.localhost/graphql/";
+const GRAPHQL_URL = "https://pwaxp.info/graphql";
 /**
  * Creates and provides the apolloContext
  * to a next.js PageTree. Use it by wrapping
@@ -1821,7 +1821,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
   render() {
     return __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Html"], {
       lang: "en"
-    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null), __jsx("title", null, "Tourvo App"), __jsx("meta", {
+    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null), __jsx("meta", {
       name: "theme-color",
       content: "#000000"
     }), __jsx("link", {
