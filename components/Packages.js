@@ -136,8 +136,8 @@ function Packages() {
                 onClick={node => {
                     console.log(router)
                     const href = `/packages`
-                    // const as = `/packages/categories/${node.slug}`
-                    // router.replace(href, as)
+                    const as = `/packages/categories/${node.slug}`
+                    router.push(href, as)
                     setSelectedCategory(node)
                     searchPosts({
                         string: keyword,
