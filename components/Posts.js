@@ -7,6 +7,7 @@ import ErrorMessage from './ErrorMessage'
 
 import GET_POSTS from '../graphql/posts.queries'
 import GET_POST from '../graphql/post.queries'
+import Body from './Body'
 
 const style = {
   height: 30,
@@ -64,21 +65,15 @@ function Posts () {
       <div>
         {posts.edges.map(({ node }, id) => {
           return (
-            <Link key={id} href='/posts/[slug]' as={`/posts/${node.slug}`}>
-              <a>
-                <div
-                  style={style}
-                  onMouseOver={() => {
-                    client.query({
-                      query: GET_POST,
-                      variables: { slug: node.slug }
-                    })
-                  }}
-                >
-                  {node.name} - {node.slug}
-                </div>
-              </a>
-            </Link>
+            <div key={node.id}>
+              <h1>{node.title}</h1>
+              <Body>{node.excerpt}</Body>
+              <hr />
+
+              <Link key={id} href='/posts/[slug]' as={`/posts/${node.slug}`}>
+                <a>Continue reading</a>
+              </Link>
+            </div>
           )
         })}
       </div>

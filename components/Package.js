@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks'
 
 import GET_PRODUCT from '../graphql/product.queries'
+import Body from './Body'
 
 const Package = ({ router }) => {
   const { data, loading, error } = useQuery(GET_PRODUCT, {
@@ -16,7 +17,7 @@ const Package = ({ router }) => {
   return (
     <div>
       <h1>{item.name}</h1>
-      <div dangerouslySetInnerHTML={{ __html: item.description }} />
+      <Body>{item.description}</Body>
     </div>
   )
 }

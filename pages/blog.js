@@ -12,7 +12,6 @@ function Packages ({ data, loading, error }) {
   return (
     <Fragment>
       {loading && <div>Loading blog posts...</div>}
-      {data.pageBy && <Body>{data.pageBy.content}</Body>}
       <Posts />
     </Fragment>
   )

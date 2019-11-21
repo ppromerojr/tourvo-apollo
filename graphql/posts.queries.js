@@ -14,6 +14,7 @@ const GET_POSTS = gql`
           title
           slug
           id
+          excerpt
         }
       }
     }

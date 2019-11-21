@@ -8,6 +8,7 @@ const GET_PRODUCTS = gql`
     $categoryId: Int
     $category: String
     $orderby: [ProductsOrderbyInput]
+    $onSale: Boolean
   ) {
     products(
       first: $first
@@ -17,6 +18,8 @@ const GET_PRODUCTS = gql`
         categoryId: $categoryId
         category: $category
         orderby: $orderby
+        status: "publish"
+        onSale: $onSale
       }
     ) {
       pageInfo {
@@ -28,12 +31,18 @@ const GET_PRODUCTS = gql`
         cursor
         node {
           name
+          sku
+          status
           slug
-          id
-          description
-          date
           image {
             sourceUrl(size: THUMBNAIL)
+          }
+          ... on SimpleProduct {
+            id
+            name
+            onSale
+            salePrice(format: FORMATTED)
+            regularPrice(format: FORMATTED)
           }
         }
       }

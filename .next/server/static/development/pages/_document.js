@@ -168,7 +168,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 let apolloClient = null; // Update the GraphQL endpoint to any instance of GraphQL that you like
 
-const GRAPHQL_URL = "https://pwaxp.info/graphql";
+const GRAPHQL_URL = "http://tourvo.localhost/graphql/";
 /**
  * Creates and provides the apolloContext
  * to a next.js PageTree. Use it by wrapping
@@ -1830,6 +1830,9 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
     }), __jsx("link", {
       rel: "apple-touch-icon",
       href: "/static/icons/apple-touch-icon.png"
+    }), __jsx("link", {
+      rel: "stylesheet",
+      href: "http://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3"
     }), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
   }
 

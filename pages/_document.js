@@ -11,12 +11,16 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head />
- 
+
         <meta name='theme-color' content='#000000' />
         <link rel='manifest' href='/static/manifest.json' />
         <link
           rel='apple-touch-icon'
           href='/static/icons/apple-touch-icon.png'
+        />
+        <link
+          rel='stylesheet'
+          href='http://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3'
         />
         <body>
           <Main />

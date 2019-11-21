@@ -1,7 +1,7 @@
 import React, { useEffect, memo } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import Link from 'next/link'
- 
+
 import ErrorMessage from './ErrorMessage'
 
 import GET_CATEGORIES from '../graphql/categories.queries'
@@ -19,18 +19,31 @@ export const postsQueryVars = {
   first: 10
 }
 
-function Categories ({ onClick }) {
+function Categories ({ onClick, selected }) {
   const { loading, error, data, client } = useQueryCategories()
 
   const renderCategory = ({ node }, index) => {
     return (
       <li key={node.id}>
-        <div
-          onClick={() => {
-            onClick(node)
-          }}
-        >
-          {node.name}
+        <div>
+          <button
+            onClick={() => {
+              onClick(node)
+            }}
+          >
+            {node.name}
+          </button>
+          <span>
+            {selected.productCategoryId === node.productCategoryId && (
+              <button
+                onClick={() => {
+                  onClick({})
+                }}
+              >
+                X
+              </button>
+            )}
+          </span>
         </div>
         {node.children && <ul>{node.children.edges.map(renderCategory)}</ul>}
       </li>
