@@ -168,7 +168,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 let apolloClient = null; // Update the GraphQL endpoint to any instance of GraphQL that you like
 
-const GRAPHQL_URL = "http://tourvo.localhost/graphql/";
+const GRAPHQL_URL = "https://pwaxp.info/graphql";
 /**
  * Creates and provides the apolloContext
  * to a next.js PageTree. Use it by wrapping

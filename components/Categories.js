@@ -1,7 +1,7 @@
 import React, { useEffect, memo } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import Link from 'next/link'
-
+ 
 import ErrorMessage from './ErrorMessage'
 
 import GET_CATEGORIES from '../graphql/categories.queries'

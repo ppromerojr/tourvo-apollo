@@ -3,7 +3,7 @@ import PackagesList from '../components/Packages'
 import Body from '../components/Body'
 import createPage from '../components/Page/createPage'
 
-function Packages ({ data, loading, error }) {
+function Packages ({ data, loading, error, ...rest }) {
   if (error) {
     return <div>error</div>
   }
@@ -12,7 +12,7 @@ function Packages ({ data, loading, error }) {
     <Fragment>
       {loading && <div>Loading page content...</div>}
       {data.pageBy && <Body>{data.pageBy.content}</Body>}
-      <PackagesList />
+      <PackagesList {...rest} />
     </Fragment>
   )
 }
