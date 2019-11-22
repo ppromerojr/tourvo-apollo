@@ -1,4 +1,4 @@
-import React, { useState, memo, useRef } from 'react'
+import React, { useState, memo, useRef, useEffect } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -38,6 +38,7 @@ function Packages() {
     const [isLoadingMore, setIsLoadingMore] = useState(false)
     const [filter, setFilter] = useState(defaultFilter)
     const [selectedCategory, setSelectedCategory] = useState({})
+    const [total, setTotal] = useState(0)
     const saleRef = useRef()
 
     const {
@@ -49,6 +50,10 @@ function Packages() {
         client
     } = useQueryProducts({ slug: router ? router.query.slug : '' })
     const { products } = data
+
+    useEffect(() => {
+        setTotal(products.pageInfo.total)
+    }, [])
 
     const isFetching = networkStatus === NetworkStatus.fetchMore
 
@@ -218,7 +223,7 @@ function Packages() {
             </div>
 
             <div>
-                <div style={{ height: 50 }}>{isSearchingPosts && 'Searching...'}</div>
+                <div style={{ height: 50 }}>{isSearchingPosts ? 'Searching...' : `${products.pageInfo.total} packages` }</div>
 
                 <div>
                     <div>{!products.edges.length && <div>No item found.</div>}</div>

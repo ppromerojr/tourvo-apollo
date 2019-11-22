@@ -26,6 +26,7 @@ const GET_PRODUCTS = gql`
         hasNextPage
         startCursor
         endCursor
+        total
       }
       edges {
         cursor
