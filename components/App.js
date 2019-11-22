@@ -27,8 +27,13 @@ export default ({ children }) => (
         border: 0;
         color: white;
         display: flex;
-        padding: 5px 7px;
+        border-radius: 17px;
+        padding: 10px 20px;
         transition: background-color 0.3s;
+      }
+      button.active {
+        background-color: #017790;
+        font-weight: bold;
       }
       button:active {
         background-color: #1b9db7;
