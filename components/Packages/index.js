@@ -9,12 +9,12 @@ import GET_PRODUCT from '../../graphql/product.queries'
 import useQueryProducts from '../../hooks/useQueryProducts'
 import Categories from '../Categories'
 import LazyImage from '../Image'
+import Body from '../Body'
 
 const style = {
   padding: 0,
   display: 'flex',
   marginBottom: 20,
-  alignItems: 'center',
   boxShadow: `1px 1px 11px 6px rgba(204, 204, 204, 0.48)`
 }
 
@@ -114,14 +114,30 @@ function Packages () {
   }
 
   const fetchMoreData = () => {
+    let variables = {
+      after: products.pageInfo.endCursor,
+      string: keyword,
+      categoryId: selectedCategory.categoryId
+    }
+
+    if (saleRef.current.checked) {
+      variables = {
+        ...variables,
+        onSale: true
+      }
+    }
+
+    if (filter.field) {
+      variables = {
+        ...variables,
+        orderby: [filter]
+      }
+    }
+
     setIsLoadingMore(true)
 
     fetchMore({
-      variables: {
-        after: products.pageInfo.endCursor,
-        string: keyword,
-        categoryId: selectedCategory.categoryId
-      },
+      variables,
       updateQuery: (previousResult, { fetchMoreResult }) => {
         setIsLoadingMore(false)
         if (!fetchMoreResult) return previousResult
@@ -231,11 +247,17 @@ function Packages () {
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <h2 style={{ margin: 0, padding: 0 }}>{selectedCategory.name}</h2>
-              <span style={{ marginLeft: 10, fontSize: 15 }}>
-                {isSearchingPosts ? 'Searching...' : ``}
-              </span>
+            <div>
+              {isSearchingPosts ? (
+                <div class='lds-ripple'>
+                  <div />
+                  <div />
+                </div>
+              ) : (
+                <h2 style={{ margin: 0, padding: 0 }}>
+                  {selectedCategory.name}
+                </h2>
+              )}
             </div>
           </div>
           <div>
@@ -288,43 +310,50 @@ function Packages () {
             )}
             {products.edges.map(({ node }, id) => {
               return (
-                <Link
-                  key={id}
-                  href='/packages/[slug]'
-                  as={`/packages/${node.slug}`}
+                <div
+                  style={style}
+                  onMouseOver={() => {
+                    client.query({
+                      query: GET_PRODUCT,
+                      variables: { slug: node.slug }
+                    })
+                  }}
                 >
-                  <a>
+                  {node.image && (
+                    <div>
+                      <LazyImage style={imgStyle} src={node.image.sourceUrl} />
+                    </div>
+                  )}
+                  <div style={{ ...textStyle, flexGrow: 1 }}>
+                    <h3>{node.name}</h3>
+                    {/* <Body>{node.shortDescription}</Body> */}
                     <div
-                      style={style}
-                      onMouseOver={() => {
-                        client.query({
-                          query: GET_PRODUCT,
-                          variables: { slug: node.slug }
-                        })
+                      style={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'space-between'
                       }}
                     >
-                      {node.image && (
+                      {node.onSale ? (
                         <div>
-                          <LazyImage
-                            style={imgStyle}
-                            src={node.image.sourceUrl}
-                          />
+                          <del>{node.regularPrice}</del>{' '}
+                          <strong>{node.salePrice}</strong>
                         </div>
+                      ) : (
+                        <div>{node.regularPrice}</div>
                       )}
-                      <div style={textStyle}>
-                        <h3>{node.name}</h3>
-                        {node.onSale ? (
-                          <div>
-                            <del>{node.regularPrice}</del>{' '}
-                            <strong>{node.salePrice}</strong>
-                          </div>
-                        ) : (
-                          <div>{node.regularPrice}</div>
-                        )}
+                      <div>
+                        <Link
+                          key={id}
+                          href='/packages/[slug]'
+                          as={`/packages/${node.slug}`}
+                        >
+                          <a>Read More</a>
+                        </Link>
                       </div>
                     </div>
-                  </a>
-                </Link>
+                  </div>
+                </div>
               )
             })}
             <div>
