@@ -222,7 +222,6 @@ function Packages () {
       )}
 
       <div>
-        <h1>{selectedCategory.name}</h1>
         <div
           style={{
             display: 'flex',
@@ -232,12 +231,17 @@ function Packages () {
           }}
         >
           <div>
-            {isSearchingPosts
-              ? 'Searching...'
-              : `${products.pageInfo.total} packages`}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <h2 style={{ margin: 0, padding: 0 }}>{selectedCategory.name}</h2>
+              <span style={{ marginLeft: 10, fontSize: 15 }}>
+                {isSearchingPosts ? 'Searching...' : ``}
+              </span>
+            </div>
           </div>
-          <div style={{ marginRight: 10 }}>
-            <div style={{ marginBottom: 2, fontSize: 12 }}>Sort By</div>
+          <div>
+            <div style={{ marginBottom: 2, fontSize: 12, textAlign: 'right' }}>
+              Sort by:
+            </div>
             <select
               onChange={event => {
                 const value = event.target.value
