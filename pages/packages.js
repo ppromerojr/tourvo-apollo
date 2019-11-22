@@ -10,6 +10,11 @@ function Packages ({ data, loading, error, ...rest }) {
 
   return (
     <Fragment>
+      {data.pageBy && (
+        <div>
+          <h1>{data.pageBy.title}</h1>
+        </div>
+      )}
       <PackagesList {...rest} />
     </Fragment>
   )

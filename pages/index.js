@@ -10,7 +10,13 @@ function MainPage ({ data, loading, error }) {
   return (
     <Fragment>
       {loading && <div>Loading homepage...</div>}
-      {data.pageBy && <Body>{data.pageBy.content}</Body>}
+
+      {data.pageBy && (
+        <div>
+          <h1>{data.pageBy.title}</h1>
+          <Body>{data.pageBy.content}</Body>
+        </div>
+      )}
     </Fragment>
   )
 }

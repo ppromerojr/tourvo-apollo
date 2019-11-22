@@ -38,6 +38,7 @@ function Packages () {
   const [isLoadingMore, setIsLoadingMore] = useState(false)
   const [filter, setFilter] = useState(defaultFilter)
   const [selectedCategory, setSelectedCategory] = useState({})
+  const [isModalOpen, setModal] = useState(false)
   const saleRef = useRef()
 
   const {
@@ -141,78 +142,110 @@ function Packages () {
 
   return (
     <div>
-      <div>
-        <Categories
-          selected={selectedCategory}
-          onClick={node => {
-            setSelectedCategory(node)
-            searchPosts({
-              string: keyword,
-              categoryId: node.productCategoryId,
-              filter
-            })
+      {isModalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+            zIndex: 9,
+            top: 0,
+            left: 0
           }}
-        />
-      </div>
-
-      <div>
-        <div>
-          Search:{' '}
-          <input
-            type='search'
-            placeholder='Search package'
-            defaultValue={keyword}
-            onBlur={event => {
-              setKeyword(event.target.value)
-              searchPosts({
-                string: event.target.value,
-                categoryId: selectedCategory.productCategoryId,
-                filter
-              })
-            }}
-          />
-          <select
-            onChange={event => {
-              const value = event.target.value
-              var optionElement =
-                event.target.childNodes[event.target.selectedIndex]
-              const order = optionElement.getAttribute('order')
-              const data = {
-                field: value,
-                order
-              }
-              setFilter(data)
-              searchPosts({
-                string: keyword,
-                categoryId: selectedCategory.productCategoryId,
-                filter: data
-              })
-            }}
+        >
+          <div
+            style={{ display: 'flex', height: '100%', alignItems: 'center' }}
           >
-            <option value='DATE' order='ASC'>
-              Newness
-            </option>
-            <option value='PRICE' order='ASC'>
-              Cheapest first
-            </option>
-            <option value='PRICE' order='DESC'>
-              Most expensive first
-            </option>
-          </select>
-          <label>
-            Sale
-            <input
-              type='checkbox'
-              ref={saleRef}
-              onClick={() => {
+            <Categories
+              onClose={setModal}
+              selected={selectedCategory}
+              onClick={node => {
+                setSelectedCategory(node)
                 searchPosts({
                   string: keyword,
+                  categoryId: node.productCategoryId,
+                  filter
+                })
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ marginRight: 10 }}>
+            Search:{' '}
+            <input
+              type='search'
+              placeholder='Search package'
+              defaultValue={keyword}
+              onBlur={event => {
+                setKeyword(event.target.value)
+                searchPosts({
+                  string: event.target.value,
                   categoryId: selectedCategory.productCategoryId,
                   filter
                 })
               }}
             />
-          </label>
+          </div>
+          <div style={{ marginRight: 10 }}>
+            <select
+              onChange={event => {
+                const value = event.target.value
+                var optionElement =
+                  event.target.childNodes[event.target.selectedIndex]
+                const order = optionElement.getAttribute('order')
+                const data = {
+                  field: value,
+                  order
+                }
+                setFilter(data)
+                searchPosts({
+                  string: keyword,
+                  categoryId: selectedCategory.productCategoryId,
+                  filter: data
+                })
+              }}
+            >
+              <option value='DATE' order='ASC'>
+                Date
+              </option>
+              <option value='PRICE' order='ASC'>
+                Cheapest first
+              </option>
+              <option value='PRICE' order='DESC'>
+                Most expensive first
+              </option>
+            </select>
+          </div>
+          <div style={{ marginRight: 10 }}>
+            <label>
+              Sale
+              <input
+                type='checkbox'
+                ref={saleRef}
+                onClick={() => {
+                  searchPosts({
+                    string: keyword,
+                    categoryId: selectedCategory.productCategoryId,
+                    filter
+                  })
+                }}
+              />
+            </label>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                setModal(!isModalOpen)
+              }}
+            >
+              Filter
+            </button>
+          </div>
         </div>
         <h1>{selectedCategory.name}</h1>
       </div>

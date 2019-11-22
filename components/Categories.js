@@ -5,44 +5,40 @@ import ErrorMessage from './ErrorMessage'
 import useQueryCategories from '../hooks/useQueryCategories'
 
 const Tags = styled('div')`
+  width: 80%;
+  margin: auto;
+
+  button {
+    margin: 5px;
+  }
+
   ul {
     margin: 0;
     padding: 0;
     list-style: none;
 
     & li {
-      margin: 5px 0;
+      display: inline-flex;
 
       & > ul {
-        margin-left: 20px;
         & li {
           display: inline-block;
-          margin-right: 5px;
         }
       }
     }
   }
 `
 
-const style = {
-  height: 30,
-  border: '1px solid green',
-  margin: 6,
-  padding: 8
-}
-
 export const postsQueryVars = {
   skip: 0,
   first: 10
 }
 
-function Categories ({ onClick, selected }) {
+function Categories ({ onClick, selected, onClose }) {
   const { loading, error, data, client } = useQueryCategories()
 
   const renderCategory = ({ node }, index) => {
     if (!node.children) return
-    // console.log(node.children)
-    // if (!node.children && !node.children.edges) return null
 
     return (
       <li key={node.id}>
@@ -78,6 +74,9 @@ function Categories ({ onClick, selected }) {
   return (
     <Tags>
       <ul>{productCategories.edges.map(renderCategory)}</ul>
+      <div style={{ marginTop: 50 }}>
+        <button onClick={() => onClose(false)}>Close</button>
+      </div>
     </Tags>
   )
 }
