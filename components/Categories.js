@@ -5,11 +5,8 @@ import ErrorMessage from './ErrorMessage'
 import useQueryCategories from '../hooks/useQueryCategories'
 
 const Tags = styled('div')`
-  width: 80%;
-  margin: auto;
-
   button {
-    margin: 5px;
+    margin: 3px;
   }
 
   ul {
@@ -74,9 +71,6 @@ function Categories ({ onClick, selected, onClose }) {
   return (
     <Tags>
       <ul>{productCategories.edges.map(renderCategory)}</ul>
-      <div style={{ marginTop: 50 }}>
-        <button onClick={() => onClose(false)}>Close</button>
-      </div>
     </Tags>
   )
 }

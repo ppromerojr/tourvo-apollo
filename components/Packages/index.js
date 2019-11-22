@@ -11,11 +11,11 @@ import Categories from '../Categories'
 import LazyImage from '../Image'
 
 const style = {
-  border: '1px solid green',
   padding: 0,
   display: 'flex',
   marginBottom: 20,
-  alignItems: 'center'
+  alignItems: 'center',
+  boxShadow: `1px 1px 11px 6px rgba(204, 204, 204, 0.48)`
 }
 
 const imgStyle = {
@@ -142,16 +142,64 @@ function Packages () {
 
   return (
     <div>
+      <div>
+        <div style={{ marginBottom: 10 }}>
+          Search:{' '}
+          <input
+            type='search'
+            style={{ padding: 10 }}
+            placeholder='Search package'
+            defaultValue={keyword}
+            onBlur={event => {
+              setKeyword(event.target.value)
+              searchPosts({
+                string: event.target.value,
+                categoryId: selectedCategory.productCategoryId,
+                filter
+              })
+            }}
+          />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+        >
+          <div style={{ marginRight: 10 }}>
+            <label>
+              Sale
+              <input
+                type='checkbox'
+                ref={saleRef}
+                onClick={() => {
+                  searchPosts({
+                    string: keyword,
+                    categoryId: selectedCategory.productCategoryId,
+                    filter
+                  })
+                }}
+              />
+            </label>
+          </div>
+          <div>
+            <button
+              onClick={() => {
+                setModal(!isModalOpen)
+              }}
+            >
+              {!isModalOpen ? 'Filter' : 'Close'}
+            </button>
+          </div>
+        </div>
+      </div>
+
       {isModalOpen && (
         <div
           style={{
-            position: 'fixed',
             width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            zIndex: 9,
-            top: 0,
-            left: 0
+            marginTop: 20
           }}
         >
           <div
@@ -174,24 +222,22 @@ function Packages () {
       )}
 
       <div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ marginRight: 10 }}>
-            Search:{' '}
-            <input
-              type='search'
-              placeholder='Search package'
-              defaultValue={keyword}
-              onBlur={event => {
-                setKeyword(event.target.value)
-                searchPosts({
-                  string: event.target.value,
-                  categoryId: selectedCategory.productCategoryId,
-                  filter
-                })
-              }}
-            />
+        <h1>{selectedCategory.name}</h1>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '20px 0'
+          }}
+        >
+          <div>
+            {isSearchingPosts
+              ? 'Searching...'
+              : `${products.pageInfo.total} packages`}
           </div>
           <div style={{ marginRight: 10 }}>
+            <div style={{ marginBottom: 2, fontSize: 12 }}>Sort By</div>
             <select
               onChange={event => {
                 const value = event.target.value
@@ -221,40 +267,6 @@ function Packages () {
               </option>
             </select>
           </div>
-          <div style={{ marginRight: 10 }}>
-            <label>
-              Sale
-              <input
-                type='checkbox'
-                ref={saleRef}
-                onClick={() => {
-                  searchPosts({
-                    string: keyword,
-                    categoryId: selectedCategory.productCategoryId,
-                    filter
-                  })
-                }}
-              />
-            </label>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                setModal(!isModalOpen)
-              }}
-            >
-              Filter
-            </button>
-          </div>
-        </div>
-        <h1>{selectedCategory.name}</h1>
-      </div>
-
-      <div>
-        <div style={{ height: 50 }}>
-          {isSearchingPosts
-            ? 'Searching...'
-            : `${products.pageInfo.total} packages`}
         </div>
 
         <div>
