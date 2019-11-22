@@ -33,7 +33,7 @@ function renderMetaTags({ data }, router) {
         const { postBy: page } = data
 
         let tags = {
-            title: page.title,
+           title: `${process.env.TITLE} - ${page.title}`,
             type: 'post',
             url: `/posts/${router.query.slug}`
         }

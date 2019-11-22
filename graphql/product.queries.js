@@ -5,9 +5,10 @@ const GET_PRODUCT = gql`
     productBy(slug: $slug) {
       name
       description
-       meta_description {
-          metaDescription
-        }
+      metaTags {
+        description
+        keywords
+    }
       image {
         mediaItemUrl
         mediaDetails {

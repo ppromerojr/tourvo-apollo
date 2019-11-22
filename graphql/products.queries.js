@@ -36,10 +36,7 @@ const GET_PRODUCTS = gql`
           slug
           image {
             sourceUrl(size: THUMBNAIL)
-          }
-           meta_description {
-          metaDescription
-        }
+          } 
           ... on SimpleProduct {
             id
             name
