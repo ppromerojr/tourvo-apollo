@@ -20,7 +20,7 @@ class MyDocument extends Document {
         />
         <link
           rel='stylesheet'
-          href='http://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3'
+          href='https://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3'
         />
         <body>
           <Main />

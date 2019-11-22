@@ -7,6 +7,9 @@ const GET_POST = gql`
       slug
       title
       content(format: RENDERED)
+       meta_description {
+          metaDescription
+        }
       featuredImage {
         mediaItemUrl
         mediaDetails {

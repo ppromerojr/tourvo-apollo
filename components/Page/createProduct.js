@@ -8,65 +8,64 @@ import Head from '../Head'
 import useQueryProduct from '../../hooks/useQueryProduct'
 
 export default options => {
-  let _options = options
+    let _options = options
 
-  options = {
-    ..._options
-  }
-
-  options.getInitialProps = async context => {
-    let result = {}
-    let extraProps = {}
-
-    if (_options.getInitialProps) {
-      result = await _options.getInitialProps(context, extraProps)
+    options = {
+        ..._options
     }
 
-    return result
-  }
+    options.getInitialProps = async context => {
+        let result = {}
+        let extraProps = {}
 
-  return Component => createProductPage(options, Component)
-}
+        if (_options.getInitialProps) {
+            result = await _options.getInitialProps(context, extraProps)
+        }
 
-function renderMetaTags ({ data }, router) {
-  if (data.productBy) {
-    const { productBy: page } = data
-    let tags = {
-      type: 'product',
-      description:
-        'In addition to fetching and mutating data, Apollo analyzes your queries and their results to construct a client-side cache of your data, which is kept up to date as further queries and mutations are run, fetching more results from the server.',
-      title: page.name,
-      image: page.image.mediaItemUrl.replace(/[\r\n]+/g, ''),
-      imageWidth: page.image && page.image.mediaDetails.width,
-      imageHeight: page.image && page.image.mediaDetails.height,
-      url: `/packages/${router.query.slug}`
+        return result
     }
 
-    return <Head {...tags} />
-  }
-
-  return null
+    return Component => createProductPage(options, Component)
 }
 
-function createProductPage (options, InnerComponent) {
-  let Page = props => {
-    const slug = props.router.query.slug
-    const response = useQueryProduct({ slug })
+function renderMetaTags({ data }, router) {
+    if (data.productBy) {
+        const { productBy: page } = data
+        let tags = {
+            type: 'product',
+            description: page.meta_description ? page.meta_description.metaDescription : "",
+            title: page.name,
+            image: page.image.mediaItemUrl.replace(/[\r\n]+/g, ''),
+            imageWidth: page.image && page.image.mediaDetails.width,
+            imageHeight: page.image && page.image.mediaDetails.height,
+            url: `/packages/${router.query.slug}`
+        }
 
-    return (
-      <React.Fragment>
-        {renderMetaTags(response, props.router)}
-        <App>
-          <Header />
-          <InnerComponent {...props} {...response} />
-        </App>
-      </React.Fragment>
-    )
-  }
+        return <Head {...tags} />
+    }
 
-  Page.getInitialProps = options.getInitialProps
+    return null
+}
 
-  Page = memo(Page)
+function createProductPage(options, InnerComponent) {
+    let Page = props => {
+        const slug = props.router.query.slug
+        const response = useQueryProduct({ slug })
 
-  return withRouter(withApollo(Page))
+        return (
+            <React.Fragment>
+                {renderMetaTags(response, props.router)}
+                <App>
+                    <Header />
+                    <InnerComponent {...props} {...response} />
+                </App>
+            </React.Fragment>
+        )
+    }
+
+    Page.getInitialProps = options.getInitialProps
+
+    Page = memo(Page)
+
+    return withRouter(withApollo(Page))
 }

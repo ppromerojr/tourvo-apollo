@@ -8,64 +8,63 @@ import useQueryPage from '../../hooks/useQueryPage'
 import Head from '../Head'
 
 export default options => {
-  let _options = options
+    let _options = options
 
-  options = {
-    ..._options
-  }
-
-  options.getInitialProps = async context => {
-    let result = {}
-    let extraProps = {}
-
-    if (_options.getInitialProps) {
-      result = await _options.getInitialProps(context, extraProps)
+    options = {
+        ..._options
     }
 
-    return result
-  }
+    options.getInitialProps = async context => {
+        let result = {}
+        let extraProps = {}
 
-  return Component => createPage(options, Component)
-}
+        if (_options.getInitialProps) {
+            result = await _options.getInitialProps(context, extraProps)
+        }
 
-function renderMetaTags ({ data }, router) {
-  if (data.pageBy) {
-    const { pageBy: page } = data
-    const tags = {
-      title: page.title,
-      image: page.featuredImage.mediaItemUrl.replace(/[\r\n]+/g, ''),
-      imageWidth: page.featuredImage.width,
-      imageHeight: page.featuredImage.height,
-      type: 'page',
-      description:
-        'In addition to fetching and mutating data, Apollo analyzes your queries and their results to construct a client-side cache of your data, which is kept up to date as further queries and mutations are run, fetching more results from the server.',
-      url: router.route
+        return result
     }
 
-    return <Head {...tags} />
-  }
-
-  return null
+    return Component => createPage(options, Component)
 }
 
-function createPage (options, InnerComponent) {
-  let Page = props => {
-    const response = useQueryPage({ slug: options.slug })
+function renderMetaTags({ data }, router) {
+    if (data.pageBy) {
+        const { pageBy: page } = data
+        let tags = {
+            title: page.title,
+            image: page.featuredImage.mediaItemUrl.replace(/[\r\n]+/g, ''),
+            imageWidth: page.featuredImage.width,
+            imageHeight: page.featuredImage.height,
+            type: 'page',
+            description: page.meta_description ? page.meta_description.metaDescription : "",
+            url: router.route
+        }
 
-    return (
-      <React.Fragment>
-        {renderMetaTags(response, props.router)}
-        <App>
-          <Header />
-          <InnerComponent {...props} {...response} />
-        </App>
-      </React.Fragment>
-    )
-  }
+        return <Head {...tags} />
+    }
 
-  Page.getInitialProps = options.getInitialProps
+    return null
+}
 
-  Page = memo(Page)
+function createPage(options, InnerComponent) {
+    let Page = props => {
+        const response = useQueryPage({ slug: options.slug })
 
-  return withRouter(withApollo(Page))
+        return (
+            <React.Fragment>
+                {renderMetaTags(response, props.router)}
+                <App>
+                    <Header />
+                    <InnerComponent {...props} {...response} />
+                </App>
+            </React.Fragment>
+        )
+    }
+
+    Page.getInitialProps = options.getInitialProps
+
+    Page = memo(Page)
+
+    return withRouter(withApollo(Page))
 }

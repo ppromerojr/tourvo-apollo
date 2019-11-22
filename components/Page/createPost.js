@@ -8,68 +8,68 @@ import Head from '../Head'
 import useQueryPost from '../../hooks/useQueryPost'
 
 export default options => {
-  let _options = options
+    let _options = options
 
-  options = {
-    ..._options
-  }
-
-  options.getInitialProps = async context => {
-    let result = {}
-    let extraProps = {}
-
-    if (_options.getInitialProps) {
-      result = await _options.getInitialProps(context, extraProps)
+    options = {
+        ..._options
     }
 
-    return result
-  }
+    options.getInitialProps = async context => {
+        let result = {}
+        let extraProps = {}
 
-  return Component => createPostPage(options, Component)
-}
+        if (_options.getInitialProps) {
+            result = await _options.getInitialProps(context, extraProps)
+        }
 
-function renderMetaTags ({ data }, router) {
-  if (data.postBy) {
-    const { postBy: page } = data
-
-    let tags = {
-      title: page.title,
-      image:
-        page.featuredImage &&
-        page.featuredImage.mediaItemUrl.replace(/[\r\n]+/g, ''),
-      imageWidth: page.featuredImage && page.featuredImage.width,
-      imageHeight: page.featuredImage && page.featuredImage.height,
-      type: 'post',
-      description:
-        'In addition to fetching and mutating data, Apollo analyzes your queries and their results to construct a client-side cache of your data, which is kept up to date as further queries and mutations are run, fetching more results from the server.',
-      url: `/posts/${router.query.slug}`
+        return result
     }
 
-    return <Head {...tags} />
-  }
-
-  return null
+    return Component => createPostPage(options, Component)
 }
 
-function createPostPage (options, InnerComponent) {
-  let Page = props => {
-    const slug = props.router.query.slug
-    const response = useQueryPost({ slug })
+function renderMetaTags({ data }, router) {
+    if (data.postBy) {
+        const { postBy: page } = data
+        console.log("data", data)
 
-    return (
-      <React.Fragment>
-        {renderMetaTags(response, props.router)}
-        <App>
-          <Header />
-          <InnerComponent {...props} {...response} />
-        </App>
-      </React.Fragment>
-    )
-  }
+        let tags = {
+            title: page.title,
+            image:
+                page.featuredImage &&
+                page.featuredImage.mediaItemUrl.replace(/[\r\n]+/g, ''),
+            imageWidth: page.featuredImage && page.featuredImage.width,
+            imageHeight: page.featuredImage && page.featuredImage.height,
+            type: 'post',
+            description: page.meta_description ? page.meta_description.metaDescription : "",
+            url: `/posts/${router.query.slug}`
+        }
 
-  Page.getInitialProps = options.getInitialProps
+        return <Head {...tags} />
+    }
 
-  Page = memo(Page)
+    return null
+}
 
-  return withRouter(withApollo(Page))
+function createPostPage(options, InnerComponent) {
+    let Page = props => {
+        const slug = props.router.query.slug
+        const response = useQueryPost({ slug })
+
+        return (
+            <React.Fragment>
+                {renderMetaTags(response, props.router)}
+                <App>
+                    <Header />
+                    <InnerComponent {...props} {...response} />
+                </App>
+            </React.Fragment>
+        )
+    }
+
+    Page.getInitialProps = options.getInitialProps
+
+    Page = memo(Page)
+
+    return withRouter(withApollo(Page))
 }

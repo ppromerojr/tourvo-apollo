@@ -37,6 +37,9 @@ const GET_PRODUCTS = gql`
           image {
             sourceUrl(size: THUMBNAIL)
           }
+           meta_description {
+          metaDescription
+        }
           ... on SimpleProduct {
             id
             name
