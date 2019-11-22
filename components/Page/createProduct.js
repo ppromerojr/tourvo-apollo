@@ -33,12 +33,28 @@ function renderMetaTags({ data }, router) {
         const { productBy: page } = data
         let tags = {
             type: 'product',
-            description: page.meta_description ? page.meta_description.metaDescription : "",
             title: page.name,
-            image: page.image.mediaItemUrl.replace(/[\r\n]+/g, ''),
-            imageWidth: page.image && page.image.mediaDetails.width,
-            imageHeight: page.image && page.image.mediaDetails.height,
             url: `/packages/${router.query.slug}`
+        }
+
+        if (page.image) {
+            const { mediaItemUrl, mediaDetails: { width, height } } = page.image
+
+            tags = {
+                ...tags,
+                image: mediaItemUrl.replace(/[\r\n]+/g, ''),
+                imageWidth: width,
+                imageHeight: height
+            }
+        }
+
+        if (page.metaTags) {
+            const { keywords, description } = page.metaTags
+            tags = {
+                ...tags,
+                description,
+                keywords,
+            }
         }
 
         return <Head {...tags} />

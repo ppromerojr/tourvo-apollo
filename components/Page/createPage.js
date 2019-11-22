@@ -31,14 +31,31 @@ export default options => {
 function renderMetaTags({ data }, router) {
     if (data.pageBy) {
         const { pageBy: page } = data
+
         let tags = {
             title: page.title,
-            image: page.featuredImage.mediaItemUrl.replace(/[\r\n]+/g, ''),
-            imageWidth: page.featuredImage.width,
-            imageHeight: page.featuredImage.height,
             type: 'page',
-            description: page.meta_description ? page.meta_description.metaDescription : "",
             url: router.route
+        }
+
+        if (page.featuredImage) {
+            const { mediaItemUrl, width, height } = page.featuredImage
+
+            tags = {
+                ...tags,
+                image: mediaItemUrl.replace(/[\r\n]+/g, ''),
+                imageWidth: width,
+                imageHeight: height
+            }
+        }
+
+        if (page.metaTags) {
+            const { keywords, description } = page.metaTags
+            tags = {
+                ...tags,
+                description,
+                keywords,
+            }
         }
 
         return <Head {...tags} />
