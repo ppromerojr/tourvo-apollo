@@ -1,25 +1,17 @@
 import { Fragment } from 'react'
-import Body from '../../components/Body'
 import createProduct from '../../components/Page/createProduct'
+import Package from '../../components/Packages/Package'
 
-const Package = ({ data, loading, error }) => {
+const PackagePage = ({ data, loading, error }) => {
   if (error) {
     return <div>error</div>
   }
 
-  return (
-    <Fragment>
-      {loading && <div>Loading package Name posts...</div>}
-      <div>
-        {data.productBy && (
-          <div>
-            <h1> {data.productBy.name}</h1>
-            <Body>{data.productBy.description}</Body>
-          </div>
-        )}
-      </div>
-    </Fragment>
-  )
+  if (loading) {
+    return <div>Loading package Name post...</div>
+  }
+
+  return <Package item={data.productBy} />
 }
 
-export default createProduct({})(Package)
+export default createProduct({})(PackagePage)

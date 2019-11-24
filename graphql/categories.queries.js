@@ -1,34 +1,23 @@
 import gql from 'graphql-tag'
 
 const GET_CATEGORIES = gql`
-  query Categories {
-    productCategories {
+  query Categories($string: String) {
+    productCategories(
+      where: {
+        nameLike: $string
+        shouldOutputInFlatList: true
+        hideEmpty: true
+        updateTermMetaCache: true
+        orderby: NAME
+      }
+    ) {
       edges {
         node {
           name
           slug
           id
           productCategoryId
-          children {
-            edges {
-              node {
-                name
-                slug
-                id
-                productCategoryId
-                children {
-                  edges {
-                    node {
-                      name
-                      slug
-                      id
-                      productCategoryId
-                    }
-                  }
-                }
-              }
-            }
-          }
+          count
         }
       }
     }

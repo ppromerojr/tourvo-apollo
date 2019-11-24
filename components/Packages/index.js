@@ -28,7 +28,7 @@ const textStyle = {
 
 const defaultFilter = {
   field: 'DATE',
-  order: 'ASC'
+  order: 'DESC'
 }
 
 function Packages () {
@@ -63,10 +63,6 @@ function Packages () {
 
   const searchPosts = ({ string, categoryId, filter }) => {
     let variables = {}
-    const sale = {
-      field: 'ON_SALE_TO',
-      order: 'ASC'
-    }
 
     if (categoryId) {
       variables = {
@@ -114,10 +110,17 @@ function Packages () {
   }
 
   const fetchMoreData = () => {
+    console.log(selectedCategory)
     let variables = {
       after: products.pageInfo.endCursor,
-      string: keyword,
-      categoryId: selectedCategory.categoryId
+      categoryId: selectedCategory.productCategoryId
+    }
+
+    if (keyword) {
+      variables = {
+        ...variables,
+        string: keyword
+      }
     }
 
     if (saleRef.current.checked) {
@@ -222,6 +225,7 @@ function Packages () {
             style={{ display: 'flex', height: '100%', alignItems: 'center' }}
           >
             <Categories
+              onSale={saleRef.current.checked}
               onClose={setModal}
               selected={selectedCategory}
               onClick={node => {
@@ -249,7 +253,7 @@ function Packages () {
           <div>
             <div>
               {isSearchingPosts ? (
-                <div class='lds-ripple'>
+                <div className='lds-ripple'>
                   <div />
                   <div />
                 </div>
@@ -282,7 +286,7 @@ function Packages () {
                 })
               }}
             >
-              <option value='DATE' order='ASC'>
+              <option value='DATE' order='DESC'>
                 Date
               </option>
               <option value='PRICE' order='ASC'>
@@ -311,13 +315,14 @@ function Packages () {
             {products.edges.map(({ node }, id) => {
               return (
                 <div
+                  key={id}
                   style={style}
-                  onMouseOver={() => {
-                    client.query({
-                      query: GET_PRODUCT,
-                      variables: { slug: node.slug }
-                    })
-                  }}
+                  //   onMouseOver={() => {
+                  //     client.query({
+                  //       query: GET_PRODUCT,
+                  //       variables: { slug: node.slug }
+                  //     })
+                  //   }}
                 >
                   {node.image && (
                     <div>
