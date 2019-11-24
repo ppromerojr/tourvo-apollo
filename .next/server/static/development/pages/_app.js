@@ -93,6 +93,104 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/Install.js":
+/*!*******************************!*\
+  !*** ./components/Install.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _hooks_useAddToHomescreenPrompt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks/useAddToHomescreenPrompt */ "./hooks/useAddToHomescreenPrompt.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+function PWA(props) {
+  const [prompt, promptToInstall] = Object(_hooks_useAddToHomescreenPrompt__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  const {
+    0: isVisible,
+    1: setVisibleState
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  const hide = () => setVisibleState(false);
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (prompt) {
+      setVisibleState(true);
+    }
+  }, [prompt]);
+
+  if (!isVisible) {
+    return __jsx("div", null);
+  }
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx("div", {
+    style: {
+      marginTop: 50,
+      display: 'flex',
+      justifyContent: 'flex-end'
+    }
+  }, __jsx("button", {
+    onClick: promptToInstall
+  }, "Install PWA")));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PWA);
+
+/***/ }),
+
+/***/ "./hooks/useAddToHomescreenPrompt.js":
+/*!*******************************************!*\
+  !*** ./hooks/useAddToHomescreenPrompt.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return useAddToHomescreenPrompt; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function useAddToHomescreenPrompt() {
+  const {
+    0: prompt,
+    1: setState
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null);
+
+  const promptToInstall = () => {
+    if (prompt) {
+      return prompt.prompt();
+    }
+
+    return _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default.a.reject(new Error('Tried installing before browser sent "beforeinstallprompt" event'));
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    const ready = e => {
+      console.log(e);
+      e.preventDefault();
+      setState(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', ready);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', ready);
+    };
+  }, []);
+  return [prompt, promptToInstall];
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js ***!
@@ -540,59 +638,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Install__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Install */ "./components/Install.js");
+
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-function MyApp(props) {
-  const {
-    Component,
-    pageProps
-  } = props;
-  let deferredPrompt;
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    window.addEventListener('beforeinstallprompt', installPrompt);
-    return window.removeEventListener('beforeinstallprompt', installPrompt);
-  });
 
-  function addToHomeScreen() {
-    var a2hsBtn = document.querySelector('.prompt'); // hide our user interface that shows our A2HS button
-
-    a2hsBtn.style.display = 'none'; // Show the prompt
-
-    deferredPrompt.prompt(); // Wait for the user to respond to the prompt
-
-    deferredPrompt.userChoice.then(function (choiceResult) {
-      if (choiceResult.outcome === 'accepted') {
-        console.log('User accepted the A2HS prompt');
-      } else {
-        console.log('User dismissed the A2HS prompt');
-      }
-
-      deferredPrompt = null;
-    });
+class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_1___default.a {
+  render() {
+    const {
+      Component,
+      pageProps
+    } = this.props;
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(Component, pageProps), __jsx(_components_Install__WEBPACK_IMPORTED_MODULE_2__["default"], null));
   }
 
-  function installPrompt(e) {
-    // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault(); // Stash the event so it can be triggered later.
-
-    deferredPrompt = e;
-    showAddToHomeScreen();
-  }
-
-  function showAddToHomeScreen() {
-    var a2hsBtn = document.querySelector('.prompt');
-    a2hsBtn.style.display = 'block';
-    a2hsBtn.addEventListener('click', addToHomeScreen);
-  }
-
-  return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(Component, pageProps), __jsx("div", {
-    style: {
-      marginTop: 20
-    },
-    className: "prompt"
-  }, "Install"));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MyApp);
