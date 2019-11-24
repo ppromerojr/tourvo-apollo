@@ -549,7 +549,50 @@ function MyApp(props) {
     Component,
     pageProps
   } = props;
-  return __jsx(Component, pageProps);
+  let deferredPrompt;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    window.addEventListener('beforeinstallprompt', installPrompt);
+    return window.removeEventListener('beforeinstallprompt', installPrompt);
+  });
+
+  function addToHomeScreen() {
+    var a2hsBtn = document.querySelector('.prompt'); // hide our user interface that shows our A2HS button
+
+    a2hsBtn.style.display = 'none'; // Show the prompt
+
+    deferredPrompt.prompt(); // Wait for the user to respond to the prompt
+
+    deferredPrompt.userChoice.then(function (choiceResult) {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+      } else {
+        console.log('User dismissed the A2HS prompt');
+      }
+
+      deferredPrompt = null;
+    });
+  }
+
+  function installPrompt(e) {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault(); // Stash the event so it can be triggered later.
+
+    deferredPrompt = e;
+    showAddToHomeScreen();
+  }
+
+  function showAddToHomeScreen() {
+    var a2hsBtn = document.querySelector('.prompt');
+    a2hsBtn.style.display = 'block';
+    a2hsBtn.addEventListener('click', addToHomeScreen);
+  }
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(Component, pageProps), __jsx("div", {
+    style: {
+      marginTop: 20
+    },
+    className: "prompt"
+  }, "Install"));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (MyApp);
