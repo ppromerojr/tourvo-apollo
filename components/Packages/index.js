@@ -1,4 +1,4 @@
-import React, { useState, memo, useRef } from 'react'
+import React, { Fragment, useState, memo, useRef } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -40,6 +40,7 @@ function Packages () {
   const [selectedCategory, setSelectedCategory] = useState({})
   const [isModalOpen, setModal] = useState(false)
   const saleRef = useRef()
+  const searchRef = useRef()
 
   const {
     loading,
@@ -162,23 +163,54 @@ function Packages () {
   return (
     <div>
       <div>
-        <div style={{ marginBottom: 10 }}>
-          Search:{' '}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 20
+          }}
+        >
           <input
-            type='search'
-            style={{ padding: 10 }}
+            type='text'
             placeholder='Search package'
             defaultValue={keyword}
-            onBlur={event => {
+            ref={searchRef}
+            onKeyUp={event => {
               setKeyword(event.target.value)
-              searchPosts({
-                string: event.target.value,
-                categoryId: selectedCategory.productCategoryId,
-                filter
-              })
             }}
           />
+
+          <Fragment>
+            <button
+              style={{ margin: 3 }}
+              onClick={() => {
+                searchPosts({
+                  string: keyword,
+                  categoryId: selectedCategory.productCategoryId,
+                  filter
+                })
+              }}
+            >
+              Search
+            </button>
+            <button
+              style={{ margin: 3 }}
+              onClick={() => {
+                setKeyword('')
+                searchRef.current.value = ''
+                searchPosts({
+                  string: '',
+                  categoryId: selectedCategory.productCategoryId,
+                  filter
+                })
+              }}
+            >
+              Clear
+            </button>
+          </Fragment>
         </div>
+
         <div
           style={{
             display: 'flex',

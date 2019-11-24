@@ -20,6 +20,13 @@ export default ({ children }) => (
         margin: 0 auto;
         max-width: 650px;
       }
+      input[type='text'] {
+        padding: 9px 15px;
+        border-radius: 20px;
+        border: 0;
+        border: 1px solid #ccc;
+        outline: none;
+      }
       button {
         align-items: center;
         background-color: #22bad9;

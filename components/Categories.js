@@ -1,4 +1,4 @@
-import React, { memo, useState, Fragment } from 'react'
+import React, { memo, useState, Fragment, useRef } from 'react'
 import styled from 'styled-components'
 import ErrorMessage from './ErrorMessage'
 
@@ -35,11 +35,9 @@ function Categories ({ onClick, selected, onSale }) {
   const { loading, error, data, client, fetchMore } = useQueryCategories()
   const [isSearching, setIsSearching] = useState(false)
   const [keyword, setKeyword] = useState('')
+  const searchRef = useRef()
 
   const searchPosts = ({ string }) => {
-    if (string.length <= 0) {
-      onClick({})
-    }
     let variables = {}
 
     if (string) {
@@ -96,20 +94,51 @@ function Categories ({ onClick, selected, onSale }) {
   if (loading) return <div>Loading categories</div>
 
   return (
-    <Tags>
-      <input
-        type='search'
-        placeholder='Search category'
-        onBlur={event => {
-          const value = event.target.value
-          setKeyword(value)
-          searchPosts({ string: value })
+    <Tags style={{ width: '100%' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginBottom: 20
         }}
-        defaultValue={keyword}
-      />
-      {isSearching && <div>Searching categories</div>}
+      >
+        <input
+          type='text'
+          placeholder='Search category'
+          ref={searchRef}
+          onKeyUp={event => {
+            const value = event.target.value
+            setKeyword(value)
+          }}
+        />
 
-      <ul>{productCategories.edges.map(renderCategory)}</ul>
+        <Fragment>
+          <button onClick={() => searchPosts({ string: keyword })}>
+            Search
+          </button>
+          <button
+            onClick={() => {
+              onClick({})
+              searchRef.current.value = ''
+              searchPosts({ string: '' })
+            }}
+          >
+            Clear
+          </button>
+        </Fragment>
+      </div>
+      {isSearching ? (
+        <div>Searching categories</div>
+      ) : (
+        <Fragment>
+          {productCategories.edges.length ? (
+            <ul>{productCategories.edges.map(renderCategory)}</ul>
+          ) : (
+            <div>Not found</div>
+          )}
+        </Fragment>
+      )}
     </Tags>
   )
 }
