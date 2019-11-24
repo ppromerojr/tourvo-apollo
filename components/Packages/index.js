@@ -249,8 +249,11 @@ function Packages () {
       {isModalOpen && (
         <div
           style={{
-            width: '100%',
-            marginTop: 20
+            width: 'auto',
+            padding: 20,
+            border: '1px solid #EEE',
+            borderRadius: 23,
+            margin: 20
           }}
         >
           <div

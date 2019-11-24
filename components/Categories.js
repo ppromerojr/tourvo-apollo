@@ -35,6 +35,7 @@ function Categories ({ onClick, selected, onSale }) {
   const { loading, error, data, client, fetchMore } = useQueryCategories()
   const [isSearching, setIsSearching] = useState(false)
   const [keyword, setKeyword] = useState('')
+  const [showFilter, setShowFilter] = useState(false)
   const searchRef = useRef()
 
   const searchPosts = ({ string }) => {
@@ -97,37 +98,56 @@ function Categories ({ onClick, selected, onSale }) {
     <Tags style={{ width: '100%' }}>
       <div
         style={{
+          marginBottom: 20,
           display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: 20
+          justifyContent: 'flex-end'
         }}
       >
-        <input
-          type='text'
-          placeholder='Search category'
-          ref={searchRef}
-          onKeyUp={event => {
-            const value = event.target.value
-            setKeyword(value)
+        <button
+          style={{ backgroundColor: '#000' }}
+          onClick={() => {
+            setShowFilter(!showFilter)
           }}
-        />
-
-        <Fragment>
-          <button onClick={() => searchPosts({ string: keyword })}>
-            Search
-          </button>
-          <button
-            onClick={() => {
-              onClick({})
-              searchRef.current.value = ''
-              searchPosts({ string: '' })
-            }}
-          >
-            Clear
-          </button>
-        </Fragment>
+        >
+          Show filter
+        </button>
       </div>
+      {showFilter && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 20
+          }}
+        >
+          <input
+            type='text'
+            placeholder='Search category'
+            ref={searchRef}
+            onKeyUp={event => {
+              const value = event.target.value
+              setKeyword(value)
+            }}
+          />
+
+          <Fragment>
+            <button onClick={() => searchPosts({ string: keyword })}>
+              Search
+            </button>
+            <button
+              onClick={() => {
+                onClick({})
+                searchRef.current.value = ''
+                searchPosts({ string: '' })
+              }}
+            >
+              Clear
+            </button>
+          </Fragment>
+        </div>
+      )}
+
       {isSearching ? (
         <div>Searching categories</div>
       ) : (
