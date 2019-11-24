@@ -15,7 +15,9 @@ const style = {
   padding: 0,
   display: 'flex',
   marginBottom: 20,
-  boxShadow: `1px 1px 11px 6px rgba(204, 204, 204, 0.48)`
+  borderRadius: 23,
+  border: '1px solid #EEE',
+  overflow: 'hidden'
 }
 
 const imgStyle = {
@@ -240,7 +242,7 @@ function Packages () {
                 setModal(!isModalOpen)
               }}
             >
-              {!isModalOpen ? 'Filter' : 'Close'}
+              {!isModalOpen ? 'Categories' : 'Close'}
             </button>
           </div>
         </div>
