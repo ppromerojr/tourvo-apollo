@@ -22,9 +22,10 @@ function renderPackage({ node }, index) {
 }
 
 const Package = ({ item, router }) => {
-    console.log("router", router)
+    console.log("item.description", item.description)
     const baseURL = process.env.BASE_URL
     const shareUrl = baseURL + router.asPath
+    
 
     return (
         <Fragment>
@@ -52,7 +53,7 @@ const Package = ({ item, router }) => {
                         size={32}
                         round />
                 </LinkedinShareButton>
-                <Body>{item.description}</Body>
+                {item.description && <Body>{item.description}</Body>}
             </div>
             <div>
                 <h2>Related Packages</h2>
