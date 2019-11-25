@@ -22,11 +22,9 @@ function renderPackage({ node }, index) {
 }
 
 const Package = ({ item, router }) => {
-    console.log("item.description", item.description)
     const baseURL = process.env.BASE_URL
     const shareUrl = baseURL + router.asPath
-    
-
+     
     return (
         <Fragment>
             <div>
