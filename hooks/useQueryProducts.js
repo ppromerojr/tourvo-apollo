@@ -7,7 +7,7 @@ const useQueryProducts = ({ slug }) => {
     {
       variables: {
         category: slug,
-        first: 3,
+        first: 10,
         orderby: [
           {
             field: 'DATE',

@@ -36,7 +36,16 @@ const GET_PRODUCTS = gql`
           status
           slug
           image {
-            sourceUrl(size: THUMBNAIL)
+            sourceUrl(size: LARGE)
+          }
+          tags {
+            edges {
+              node {
+                name
+                id
+                slug
+              }
+            }
           }
           shortDescription(format: RENDERED)
           ... on SimpleProduct {

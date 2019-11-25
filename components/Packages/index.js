@@ -2,6 +2,7 @@ import React, { Fragment, useState, memo, useRef } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import styled from "styled-components"
 
 import ErrorMessage from '../ErrorMessage'
 
@@ -11,11 +12,16 @@ import Categories from '../Categories'
 import LazyImage from '../Image'
 import Body from '../Body'
 
+const Description = styled("div")`
+ul {
+    margin: 0;
+}
+`
+
 const style = {
   padding: 0,
   display: 'flex',
   marginBottom: 20,
-  borderRadius: 23,
   border: '1px solid #EEE',
   overflow: 'hidden'
 }
@@ -354,21 +360,37 @@ function Packages () {
                 <div
                   key={id}
                   style={style}
-                  //   onMouseOver={() => {
-                  //     client.query({
-                  //       query: GET_PRODUCT,
-                  //       variables: { slug: node.slug }
-                  //     })
-                  //   }}
+                  onMouseOver={() => {
+                    client.query({
+                      query: GET_PRODUCT,
+                      variables: { slug: node.slug }
+                    })
+                  }}
                 >
                   {node.image && (
-                    <div>
-                      <LazyImage style={imgStyle} src={node.image.sourceUrl} />
+                    <div style={{ width: '40%' }}>
+                      <LazyImage
+                        width='100%'
+                        height='100%'
+                        alt={node.name}
+                        style={{ display: 'block', objectFit: 'cover' }}
+                        src={node.image.sourceUrl}
+                      />
                     </div>
                   )}
-                  <div style={{ ...textStyle, flexGrow: 1 }}>
+                  <div style={{ ...textStyle, width: '60%' }}>
                     <h3>{node.name}</h3>
-                    {/* <Body>{node.shortDescription}</Body> */}
+                    <div
+                      style={{
+                        height: 150,
+                        overflow: 'hidden',
+                        marginBottom: 20
+                      }}
+                    >
+                    <Description>
+                    <Body>{node.shortDescription}</Body>
+                    </Description>
+                    </div>
                     <div
                       style={{
                         width: '100%',

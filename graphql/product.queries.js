@@ -5,13 +5,13 @@ const GET_PRODUCT = gql`
     productBy(slug: $slug) {
       id
       onSale
-          image {
-     mediaItemUrl
-      mediaDetails {
-        height
-        width
+      image {
+        mediaItemUrl
+        mediaDetails {
+          height
+          width
+        }
       }
-    }
       ... on SimpleProduct {
         id
         name
@@ -23,6 +23,18 @@ const GET_PRODUCT = gql`
       shortDescription(format: RENDERED)
       catalogVisibility
       name
+      travel {
+        travelCode
+        travelValidity
+      }
+      package {
+        departureDates
+        optionalTour
+        otherHotels
+        packageItinerary
+        remarks
+        termsOfPayment
+      }
       related {
         edges {
           node {

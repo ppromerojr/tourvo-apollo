@@ -81,7 +81,7 @@ function Categories ({ onClick, selected, onSale }) {
                 onClick(node)
               }}
             >
-              {node.name} {!onSale && `(${node.count})`}
+              {node.name}
             </button>
           </div>
         </li>

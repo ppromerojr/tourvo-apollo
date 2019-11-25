@@ -3,6 +3,7 @@ import gql from 'graphql-tag'
 const GET_CATEGORIES = gql`
   query Categories($string: String) {
     productCategories(
+      first: 200
       where: {
         nameLike: $string
         shouldOutputInFlatList: true

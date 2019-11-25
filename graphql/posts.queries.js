@@ -15,9 +15,9 @@ const GET_POSTS = gql`
           slug
           id
           excerpt
-           featuredImage {
-          sourceUrl(size: THUMBNAIL)
-        }
+          featuredImage {
+            sourceUrl(size: LARGE)
+          }
         }
       }
     }
