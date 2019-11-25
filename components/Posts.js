@@ -81,7 +81,7 @@ function Posts() {
 
                             <hr />
 
-                            <Link key={id} href='/posts/[slug]' as={`/posts/${node.slug}`}>
+                            <Link key={id} href='/travel-tours/posts/[slug]' as={`/travel-tours/posts/${node.slug}`}>
                                 <a>Continue reading</a>
                             </Link>
                         </div>

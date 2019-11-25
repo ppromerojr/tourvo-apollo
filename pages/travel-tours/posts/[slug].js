@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
-import createPost from '../../components/Page/createPost'
-import Body from '../../components/Body'
+import createPost from '../../../components/Page/createPost'
+import Body from '../../../components/Body'
 
 const Post = ({ data, loading, error }) => {
   if (error) {
