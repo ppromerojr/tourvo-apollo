@@ -5,6 +5,13 @@ const GET_PRODUCT = gql`
     productBy(slug: $slug) {
       id
       onSale
+          image {
+     mediaItemUrl
+      mediaDetails {
+        height
+        width
+      }
+    }
       ... on SimpleProduct {
         id
         name

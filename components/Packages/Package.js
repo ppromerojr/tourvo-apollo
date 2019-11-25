@@ -3,7 +3,9 @@ import Link from 'next/link'
 import {
     FacebookShareButton,
     FacebookIcon,
-    FacebookShareCount
+    LinkedinIcon,
+    FacebookShareCount,
+    LinkedinShareButton
 } from 'react-share';
 
 import Body from '../Body'
@@ -25,7 +27,7 @@ const Package = ({ item, router }) => {
     const shareUrl = baseURL + router.asPath
 
     return (
-        <Fragment> 
+        <Fragment>
             <div>
                 <h1>{item.name}</h1>
                 <FacebookShareButton
@@ -36,11 +38,20 @@ const Package = ({ item, router }) => {
                         size={32}
                         round />
                 </FacebookShareButton>
-                  <FacebookShareCount
-            url={shareUrl}
-            className="Demo__some-network__share-count">
-            {count => count}
-          </FacebookShareCount>
+                <FacebookShareCount
+                    url={shareUrl}
+                    className="Demo__some-network__share-count">
+                    {count => count}
+                </FacebookShareCount>
+                <LinkedinShareButton
+                    url={shareUrl}
+                    windowWidth={750}
+                    windowHeight={600}
+                    className="Demo__some-network__share-button">
+                    <LinkedinIcon
+                        size={32}
+                        round />
+                </LinkedinShareButton>
                 <Body>{item.description}</Body>
             </div>
             <div>
