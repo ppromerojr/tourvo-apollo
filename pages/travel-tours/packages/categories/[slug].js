@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
-import PackagesList from '../../../components/Packages'
-import Body from '../../../components/Body'
-import createPage from '../../../components/Page/createPage'
+import PackagesList from '../../../../components/Packages'
+import Body from '../../../../components/Body'
+import createPage from '../../../../components/Page/createPage'
 
 function Packages({ data, loading, error }) {
     if (error) {
