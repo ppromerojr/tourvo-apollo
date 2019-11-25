@@ -35,7 +35,7 @@ function renderMetaTags ({ data }, router) {
     let tags = {
       title: `${process.env.TITLE} - ${page.title}`,
       type: 'post',
-      url: `/travel-tours/posts/${router.query.slug}`
+      url: router.asPath
     }
 
     if (page.featuredImage) {
