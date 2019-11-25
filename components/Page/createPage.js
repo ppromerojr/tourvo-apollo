@@ -67,6 +67,7 @@ function renderMetaTags ({ data }, router) {
 function createPage (options, InnerComponent) {
   let Page = props => {
     const response = useQueryPage({ slug: options.slug })
+    console.log('page', props.router)
 
     return (
       <React.Fragment>

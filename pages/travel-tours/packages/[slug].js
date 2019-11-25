@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
-import createProduct from '../../components/Page/createProduct'
-import Package from '../../components/Packages/Package'
+import createProduct from '../../../components/Page/createProduct'
+import Package from '../../../components/Packages/Package'
 
 const PackagePage = ({ data, loading, error, ...rest }) => {
     if (error) {

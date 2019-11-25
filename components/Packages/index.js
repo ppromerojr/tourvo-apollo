@@ -387,8 +387,8 @@ function Packages () {
                       <div>
                         <Link
                           key={id}
-                          href='/packages/[slug]'
-                          as={`/packages/${node.slug}`}
+                          href='/travel-tours/packages/[slug]'
+                          as={`/travel-tours/packages/${node.slug}`}
                         >
                           <a>Read More</a>
                         </Link>

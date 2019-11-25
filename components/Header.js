@@ -6,20 +6,20 @@ import GET_PAGE from '../graphql/page.queries'
 const Header = ({ router: { pathname } }) => {
   return (
     <header>
-      <Link href='/'>
-        <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
+      <Link href='/travel-tours'>
+        <a className={pathname === '/travel-tours' ? 'is-active' : ''}>Home</a>
       </Link>
 
-      <Link href='/about-us'>
-        <a className={pathname === '/about-us' ? 'is-active' : ''}>About Us</a>
+      <Link href='/travel-tours/about-us'>
+        <a className={pathname === '/travel-tours/about-us' ? 'is-active' : ''}>About Us</a>
       </Link>
 
-      <Link href='/packages'>
-        <a className={pathname === '/packages' ? 'is-active' : ''}>Packages</a>
+      <Link href='/travel-tours/packages'>
+        <a className={pathname === '/travel-tours/packages' ? 'is-active' : ''}>Packages</a>
       </Link>
 
-      <Link href='/blog'>
-        <a className={pathname === '/blog' ? 'is-active' : ''}>Blog</a>
+      <Link href='/travel-tours/blog'>
+        <a className={pathname === '/travel-tours/blog' ? 'is-active' : ''}>Blog</a>
       </Link>
 
       <style jsx>{`

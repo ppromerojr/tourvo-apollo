@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
-import createPage from '../components/Page/createPage'
-import Body from '../components/Body'
+import createPage from '../../components/Page/createPage'
+import Body from '../../components/Body'
 
 function AboutPage ({ data, loading, error }) {
   if (error) {
