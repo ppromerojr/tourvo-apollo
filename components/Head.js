@@ -14,7 +14,7 @@ const Head = props => {
     imageHeight,
     url
   } = props
-  const pageUrl = `/travel-tours${url}`
+  const pageUrl = url
 
   return (
     <NextHead>
