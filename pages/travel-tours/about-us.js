@@ -1,7 +1,6 @@
 import { Fragment } from 'react'
 import createPage from '../../components/Page/createPage'
 import Body from '../../components/Body'
-import Placeholder from '../../components/Placeholder'
 
 function AboutPage ({ data, loading, error }) {
   if (error) {
@@ -9,7 +8,7 @@ function AboutPage ({ data, loading, error }) {
   }
 
   if (loading) {
-    return <Placeholder />
+    return <div>loading...</div>
   }
 
   return (
