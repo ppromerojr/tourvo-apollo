@@ -210,6 +210,26 @@ function Packages () {
 
         <div
           style={{
+            width: '100%',
+            overflow: 'scroll'
+          }}
+        >
+          <Categories
+            onClose={setModal}
+            selected={selectedCategory}
+            onClick={node => {
+              setSelectedCategory(node)
+              searchPosts({
+                string: keyword,
+                categoryId: node.productCategoryId,
+                filter
+              })
+            }}
+          />
+        </div>
+
+        <div
+          style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between'
@@ -231,47 +251,8 @@ function Packages () {
               />
             </label>
           </div>
-          <div>
-            <button
-              onClick={() => {
-                setModal(!isModalOpen)
-              }}
-            >
-              {!isModalOpen ? 'Categories' : 'Close'}
-            </button>
-          </div>
         </div>
       </div>
-
-      {isModalOpen && (
-        <div
-          style={{
-            width: 'auto',
-            padding: 20,
-            border: '1px solid #EEE',
-            borderRadius: 23,
-            margin: 20
-          }}
-        >
-          <div
-            style={{ display: 'flex', height: '100%', alignItems: 'center' }}
-          >
-            <Categories
-              onSale={saleRef.current.checked}
-              onClose={setModal}
-              selected={selectedCategory}
-              onClick={node => {
-                setSelectedCategory(node)
-                searchPosts({
-                  string: keyword,
-                  categoryId: node.productCategoryId,
-                  filter
-                })
-              }}
-            />
-          </div>
-        </div>
-      )}
 
       <div>
         <div

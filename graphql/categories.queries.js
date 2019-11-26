@@ -19,6 +19,9 @@ const GET_CATEGORIES = gql`
           id
           productCategoryId
           count
+          image {
+            sourceUrl(size: THUMBNAIL)
+          }
         }
       }
     }

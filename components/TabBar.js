@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Home, Heart, Briefcase, List } from 'react-feather'
 
 const Nav = styled('div')`
+  border-top: 1px solid #ccc;
   ul {
     margin: 0;
     list-style: none;

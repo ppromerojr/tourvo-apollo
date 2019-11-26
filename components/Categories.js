@@ -13,9 +13,11 @@ const Tags = styled('div')`
     margin: 0;
     padding: 0;
     list-style: none;
+    display: inline-flex;
 
     & li {
       display: inline-flex;
+      margin-right: 10px;
 
       & > ul {
         & li {
@@ -24,6 +26,34 @@ const Tags = styled('div')`
       }
     }
   }
+`
+
+const CategoryImage = styled('div')`
+  width: 50px;
+  height: 50px;
+  background-color: #21bad9;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+  }
+`
+
+const Category = styled('div')`
+  text-align: center;
+  width: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export const postsQueryVars = {
@@ -67,8 +97,8 @@ function Categories ({ onClick, selected, onSale }) {
     return (
       <Fragment key={node.id}>
         <li>
-          <div>
-            <button
+          <Category>
+            <CategoryImage
               className={`${
                 selected.productCategoryId === node.productCategoryId
                   ? 'active'
@@ -81,9 +111,14 @@ function Categories ({ onClick, selected, onSale }) {
                 onClick(node)
               }}
             >
-              {node.name}
-            </button>
-          </div>
+              {node.image ? (
+                <img src={node.image.sourceUrl} />
+              ) : (
+                node.name.charAt(0)
+              )}
+            </CategoryImage>
+            <span>{node.name}</span>
+          </Category>
         </li>
       </Fragment>
     )
@@ -96,22 +131,6 @@ function Categories ({ onClick, selected, onSale }) {
 
   return (
     <Tags style={{ width: '100%' }}>
-      <div
-        style={{
-          marginBottom: 20,
-          display: 'flex',
-          justifyContent: 'flex-end'
-        }}
-      >
-        <button
-          style={{ backgroundColor: '#000' }}
-          onClick={() => {
-            setShowFilter(!showFilter)
-          }}
-        >
-          Show filter
-        </button>
-      </div>
       {showFilter && (
         <div
           style={{
