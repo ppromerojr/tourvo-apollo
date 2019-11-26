@@ -1,13 +1,16 @@
 export default ({ children }) => (
-  <main>
+  <main style={{ marginBottom: 50 }}>
     {children}
     <style jsx global>{`
-      @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+      @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,900&display=swap');
       * {
-        font-family: 'Roboto', sans-serif;
       }
       body {
         margin: 0;
+        font-family: 'Lato', sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        letter-spacing: -0.015em;
       }
       a {
         color: #22bad9;
@@ -22,7 +25,6 @@ export default ({ children }) => (
       }
       input[type='text'] {
         padding: 9px 15px;
-        border-radius: 20px;
         border: 0;
         border: 1px solid #ccc;
         outline: none;

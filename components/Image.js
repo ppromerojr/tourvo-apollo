@@ -1,11 +1,17 @@
 import React from 'react'
-import LazyLoad from 'react-lazyload';
-import Placeholder from './Placeholder';
+import LazyLoad from 'react-lazyload'
+import Placeholder from './Placeholder'
 
 const Lazy = ({ children, ...rest }) => (
-    <LazyLoad height={200} offset={400} placeholder={<Placeholder />} debounce={500}>
-        {children}
-    </LazyLoad>
+  <LazyLoad
+    once
+    height={300}
+    offset={600}
+    placeholder={<Placeholder />}
+    debounce={200}
+  >
+    {children}
+  </LazyLoad>
 )
 
 export default Lazy
