@@ -1,6 +1,8 @@
-import { Fragment } from 'react'
-import PackagesList from '../../../components/Packages'
 import createPage from '../../../components/Page/createPage'
+
+import dynamic from 'next/dynamic'
+
+const PackagesList = dynamic(import('../../../components/Packages'))
 
 function Packages ({ data, loading, error, ...rest }) {
   if (error) {

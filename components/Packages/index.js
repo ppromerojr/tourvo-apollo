@@ -4,12 +4,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { Input, Spin, Affix, Select } from 'antd'
+import dynamic from 'next/dynamic'
 
 import ErrorMessage from '../ErrorMessage'
 
 import GET_PRODUCT from '../../graphql/product.queries'
 import useQueryProducts from '../../hooks/useQueryProducts'
-import Categories from '../Categories'
 import Body from '../Body'
 import Lazy from '../Image'
 import Placeholder from '../Placeholder'
@@ -44,6 +44,8 @@ const defaultFilter = {
   field: 'DATE',
   order: 'DESC'
 }
+
+const Categories = dynamic(import('../Categories'))
 
 function Packages () {
   const router = useRouter()
