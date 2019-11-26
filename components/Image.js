@@ -1,8 +1,11 @@
 import React from 'react'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
+import LazyLoad from 'react-lazyload';
+import Placeholder from './Placeholder';
 
-const LazyImage = ({ alt, height, src, width, ...rest }) => (
-  <LazyLoadImage alt={alt} height={height} src={src} width={width} {...rest} />
+const Lazy = ({ children, ...rest }) => (
+    <LazyLoad height={200} offset={[-200, 0]} placeholder={<Placeholder />} debounce={500}>
+        {children}
+    </LazyLoad>
 )
 
-export default LazyImage
+export default Lazy

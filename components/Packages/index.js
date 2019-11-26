@@ -9,8 +9,8 @@ import ErrorMessage from '../ErrorMessage'
 import GET_PRODUCT from '../../graphql/product.queries'
 import useQueryProducts from '../../hooks/useQueryProducts'
 import Categories from '../Categories'
-import LazyImage from '../Image'
 import Body from '../Body'
+import Lazy from '../Image'
 
 const Description = styled("div")`
 ul {
@@ -344,10 +344,12 @@ function Packages() {
 
                 <div  >
                     <div>{!products.edges.length && <div>No item found.</div>}</div>
-                    <div style={{ position: 'relative',  display: 'flex',
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    width: ' 100%' }}>
+                    <div style={{
+                        position: 'relative', display: 'flex',
+                        flexDirection: 'row',
+                        flexWrap: 'wrap',
+                        width: ' 100%'
+                    }}>
                         {isSearchingPosts && (
                             <div
                                 style={{
@@ -372,20 +374,23 @@ function Packages() {
                                 >
                                     {node.image && (
                                         <div >
-                                            <LazyImage
-                                                width='100%'
-                                                height='100%'
-                                                alt={node.name}
-                                                style={{ display: 'block', objectFit: 'cover' }}
-                                                src={node.image.sourceUrl}
-                                            />
+                                            <Lazy>
+                                                <img
+                                                    loading="lazy"
+                                                    width='100%'
+                                                    height='200'
+                                                    alt={node.name}
+                                                    style={{ display: 'block', objectFit: 'cover' }}
+                                                    src={node.image.sourceUrl}
+                                                />
+                                            </Lazy> 
                                         </div>
                                     )}
                                     <div style={{ ...textStyle }}>
                                         <h3>{node.name}</h3>
                                         <div
                                             style={{
-                                                height: 150,
+                                                height: 50,
                                                 overflow: 'hidden',
                                                 marginBottom: 20
                                             }}
