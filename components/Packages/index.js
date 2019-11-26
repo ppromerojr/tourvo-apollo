@@ -1,9 +1,9 @@
-import React, { Fragment, useState, memo, useRef } from 'react'
+import React, { Fragment, useState, memo, useRef, useEffect } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import { Input } from 'antd'
+import { Input, Spin, Affix, Select } from 'antd'
 
 import ErrorMessage from '../ErrorMessage'
 
@@ -12,8 +12,10 @@ import useQueryProducts from '../../hooks/useQueryProducts'
 import Categories from '../Categories'
 import Body from '../Body'
 import Lazy from '../Image'
+import Placeholder from '../Placeholder'
 
 const { Search } = Input
+const { Option } = Select
 
 const Description = styled('div')`
   ul {
@@ -53,6 +55,9 @@ function Packages () {
   const [isModalOpen, setModal] = useState(false)
   const saleRef = useRef()
   const searchRef = useRef()
+
+  const [isSticky, setSticky] = useState(false)
+  const stickyRef = useRef(null)
 
   const {
     loading,
@@ -113,6 +118,7 @@ function Packages () {
       variables: variables,
       updateQuery: (previousResult, { fetchMoreResult }) => {
         setIsSearching(false)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         if (!fetchMoreResult) {
           return previousResult
         }
@@ -185,19 +191,21 @@ function Packages () {
             width: '100%'
           }}
         >
-          <Search
-            placeholder='Search for Hotel, City or Location'
-            onSearch={value => {
-              setKeyword(value)
-              searchPosts({
-                string: value,
-                categoryId: selectedCategory.productCategoryId,
-                filter
-              })
-            }}
-            size='large'
-            style={{ width: '100%' }}
-          />
+          <Affix style={{ width: '100%' }} offsetTop={0}>
+            <Search
+              placeholder='Search for Hotel, City or Location'
+              onSearch={value => {
+                setKeyword(value)
+                searchPosts({
+                  string: value,
+                  categoryId: selectedCategory.productCategoryId,
+                  filter
+                })
+              }}
+              size='large'
+              style={{ width: '100%' }}
+            />
+          </Affix>
         </div>
 
         <div
@@ -277,10 +285,7 @@ function Packages () {
           <div>
             <div>
               {isSearchingPosts ? (
-                <div className='lds-ripple'>
-                  <div />
-                  <div />
-                </div>
+                <Spin />
               ) : (
                 <h2 style={{ margin: 0, padding: 0 }}>
                   {selectedCategory.name}
@@ -360,7 +365,6 @@ function Packages () {
                     <div>
                       <Lazy>
                         <img
-                          loading='lazy'
                           width='100%'
                           height='300'
                           alt={node.name}

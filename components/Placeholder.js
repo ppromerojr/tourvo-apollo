@@ -1,5 +1,7 @@
-const Placeholder = () => {
-    return <div style={{ height: 200, display: "flex", justifyContent: "center", textAlign: "center", alignItems: "center", backgroundColor: "#CCC" }}>...LOADING...</div>
+import { Skeleton } from 'antd'
+
+const Placeholder = props => {
+  return <Skeleton {...props} />
 }
 
-export default Placeholder;
+export default Placeholder
