@@ -1,25 +1,22 @@
-import { Fragment } from 'react'
-import PackagesList from '../../../../components/Packages'
-import Body from '../../../../components/Body'
+import dynamic from 'next/dynamic'
 import createPage from '../../../../components/Page/createPage'
 
-function Packages({ data, loading, error }) {
-    if (error) {
-        return <div>error</div>
-    }
+const PackagesList = dynamic(import('../../../../components/Packages'))
 
-    return (
-        <Fragment>
-            <div>loading category page</div>
-            {loading && <div>Loading page content...</div>}
-            {data.pageBy && <Body>{data.pageBy.content}</Body>}
-            <PackagesList />
-        </Fragment>
-    )
+function Packages ({ data, loading, error, ...rest }) {
+  if (error) {
+    return <div>error</div>
+  }
+
+  return (
+    <div>
+      <PackagesList {...rest} />
+    </div>
+  )
 }
 
 Packages = createPage({
-    slug: 'packages'
+  slug: 'packages'
 })(Packages)
 
 export default Packages

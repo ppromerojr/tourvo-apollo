@@ -1619,7 +1619,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
       href: "/static/icons/apple-touch-icon.png"
     }), __jsx("link", {
       rel: "stylesheet",
-      href: "https://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3"
+      href: "/static/wp.min.css"
     }), this.props.styleTags), __jsx("body", null, __jsx(GlobalStyle, null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
   }
 

@@ -1,7 +1,9 @@
 import { Fragment } from 'react'
+import dynamic from 'next/dynamic'
 import createProduct from '../../../components/Page/createProduct'
-import Package from '../../../components/Packages/Package'
 import Placeholder from '../../../components/Placeholder'
+
+const Package = dynamic(import('../../../components/Packages/Package'))
 
 const PackagePage = ({ data, loading, error, ...rest }) => {
   if (error) {

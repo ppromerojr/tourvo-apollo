@@ -92,10 +92,7 @@ class MyDocument extends Document {
             rel='apple-touch-icon'
             href='/static/icons/apple-touch-icon.png'
           />
-          <link
-            rel='stylesheet'
-            href='https://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3'
-          />
+          <link rel='stylesheet' href='/static/wp.min.css' />
           {this.props.styleTags}
         </Head>
 
