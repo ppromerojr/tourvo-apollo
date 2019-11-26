@@ -1,6 +1,5 @@
-import createPage from '../../../components/Page/createPage'
-
 import dynamic from 'next/dynamic'
+import createPage from '../../../components/Page/createPage'
 
 const PackagesList = dynamic(import('../../../components/Packages'))
 

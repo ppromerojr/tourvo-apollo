@@ -6,7 +6,7 @@
   "display": "fullscreen",
   "start_url": "/",
   "short_name": "Tourvo PWA",
-  "theme_color": "#000",
+  "theme_color": "#21bad9",
   "description": "",
   "orientation": "any",
   "background_color": "#FFF",

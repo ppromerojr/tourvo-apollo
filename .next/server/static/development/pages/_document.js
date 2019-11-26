@@ -1530,6 +1530,58 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
+const GlobalStyle = styled_components__WEBPACK_IMPORTED_MODULE_9__["createGlobalStyle"]`
+body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
+          Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        letter-spacing: -0.015em;
+      }
+      a {
+        color: #22bad9;
+      }
+      p {
+        font-size: 14px;
+        line-height: 24px;
+      }
+      article {
+        margin: 0 auto;
+        max-width: 650px;
+      }
+      input[type='text'] {
+        padding: 9px 15px;
+        border: 0;
+        border: 1px solid #ccc;
+        outline: none;
+      }
+      button {
+        align-items: center;
+        background-color: #22bad9;
+        border: 0;
+        color: white;
+        display: flex;
+        border-radius: 17px;
+        padding: 10px 20px;
+        transition: background-color 0.3s;
+      }
+      button.active {
+        background-color: #017790;
+        font-weight: bold;
+      }
+      button:active {
+        background-color: #1b9db7;
+      }
+      button:disabled {
+        background-color: #b5bebf;
+      }
+      button:focus {
+        outline: none;
+      }
+`;
 
 class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
   static async getInitialProps(ctx) {
@@ -1553,19 +1605,22 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
   render() {
     return __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Html"], {
       lang: "en"
-    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null, __jsx("meta", {
-      name: "theme-color",
-      content: "#000000"
-    }), __jsx("link", {
+    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null, __jsx("link", {
       rel: "manifest",
       href: "/static/manifest.json"
+    }), __jsx("meta", {
+      name: "apple-mobile-web-app-status-bar-style",
+      content: "black"
+    }), __jsx("meta", {
+      name: "theme-color",
+      content: "#21bad9"
     }), __jsx("link", {
       rel: "apple-touch-icon",
       href: "/static/icons/apple-touch-icon.png"
     }), __jsx("link", {
       rel: "stylesheet",
       href: "https://pwaxp.info/wp-includes/css/dist/block-library/style.min.css?ver=5.3"
-    }), this.props.styleTags), __jsx("body", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
+    }), this.props.styleTags), __jsx("body", null, __jsx(GlobalStyle, null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
   }
 
 }

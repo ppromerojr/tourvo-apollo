@@ -1,19 +1,15 @@
-import { Fragment } from 'react'
+import dynamic from 'next/dynamic'
 
-import Body from '../../components/Body'
-import Posts from '../../components/Posts'
 import createPage from '../../components/Page/createPage'
+
+const Posts = dynamic(import('../../components/Posts'))
 
 function Packages ({ data, loading, error }) {
   if (error) {
     return <div>error</div>
   }
 
-  return (
-    <Fragment>
-      <Posts />
-    </Fragment>
-  )
+  return <Posts />
 }
 
 Packages = createPage({
