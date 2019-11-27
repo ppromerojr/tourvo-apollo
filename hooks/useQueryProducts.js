@@ -1,3 +1,4 @@
+import {useEffect } from "react"
 import { useQuery } from '@apollo/react-hooks'
 import GET_PRODUCTS from '../graphql/products.queries'
 
@@ -18,6 +19,10 @@ const useQueryProducts = ({ slug }) => {
       notifyOnNetworkStatusChange: true
     }
   )
+
+  useEffect(() => {
+      console.log("slug", slug)
+  }, [slug])
 
   return { loading, error, data, fetchMore, networkStatus, client }
 }

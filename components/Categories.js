@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ErrorMessage from './ErrorMessage'
 
 import useQueryCategories from '../hooks/useQueryCategories'
+import Link from 'next/link'
 
 const Tags = styled('div')`
   button {
@@ -57,129 +58,125 @@ const Category = styled('div')`
 `
 
 export const postsQueryVars = {
-  skip: 0,
-  first: 10
+    skip: 0,
+    first: 10
 }
 
-function Categories ({ onClick, selected, onSale }) {
-  const { loading, error, data, client, fetchMore } = useQueryCategories()
-  const [isSearching, setIsSearching] = useState(false)
-  const [keyword, setKeyword] = useState('')
-  const [showFilter, setShowFilter] = useState(false)
-  const searchRef = useRef()
+function Categories({ onClick, selected, onSale }) {
+    const { loading, error, data, client, fetchMore } = useQueryCategories()
+    const [isSearching, setIsSearching] = useState(false)
+    const [keyword, setKeyword] = useState('')
+    const [showFilter, setShowFilter] = useState(false)
+    const searchRef = useRef()
 
-  const searchPosts = ({ string }) => {
-    let variables = {}
+    const searchPosts = ({ string }) => {
+        let variables = {}
 
-    if (string) {
-      variables = {
-        ...variables,
-        string
-      }
-    }
-
-    setIsSearching(true)
-
-    fetchMore({
-      variables: variables,
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        setIsSearching(false)
-        if (!fetchMoreResult) {
-          return previousResult
+        if (string) {
+            variables = {
+                ...variables,
+                string
+            }
         }
 
-        return fetchMoreResult
-      }
-    })
-  }
+        setIsSearching(true)
 
-  const renderCategory = ({ node }, index) => {
-    return (
-      <Fragment key={node.id}>
-        <li>
-          <Category>
-            <CategoryImage
-              className={`${
-                selected.productCategoryId === node.productCategoryId
-                  ? 'active'
-                  : ''
-              }`}
-              onClick={() => {
-                if (node.productCategoryId === selected.productCategoryId) {
-                  node = {}
+        fetchMore({
+            variables: variables,
+            updateQuery: (previousResult, { fetchMoreResult }) => {
+                setIsSearching(false)
+                if (!fetchMoreResult) {
+                    return previousResult
                 }
-                onClick(node)
-              }}
-            >
-              {node.image ? (
-                <img src={node.image.sourceUrl} />
-              ) : (
-                node.name.charAt(0)
-              )}
-            </CategoryImage>
-            <span>{node.name}</span>
-          </Category>
-        </li>
-      </Fragment>
+
+                return fetchMoreResult
+            }
+        })
+    }
+
+    const renderCategory = ({ node }, index) => {
+        return (
+            <Fragment key={node.id}>
+                <li>
+                    <Link
+                        href='/travel-tours/packages/categories/[slug]'
+                        as={`/travel-tours/packages/categories/${node.slug}`}
+                        // params={{ title: node.name }}
+                    >
+                        <a>
+                            <Category>
+                                <CategoryImage   >
+                                    {node.image ? (
+                                        <img src={node.image.sourceUrl} />
+                                    ) : (
+                                            node.name.charAt(0)
+                                        )}
+                                </CategoryImage>
+                                <span>{node.name}</span>
+                            </Category>
+                        </a>
+                    </Link>
+                </li>
+            </Fragment>
+        )
+    }
+
+    const { productCategories } = data
+
+    if (error) return <ErrorMessage message='Error loading posts.' />
+    if (loading) return <div>Loading categories</div>
+
+    return (
+        <Tags style={{ width: '100%' }}>
+            {showFilter && (
+                <div
+                    style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        marginBottom: 20
+                    }}
+                >
+                    <input
+                        type='text'
+                        placeholder='Search category'
+                        ref={searchRef}
+                        onKeyUp={event => {
+                            const value = event.target.value
+                            setKeyword(value)
+                        }}
+                    />
+
+                    <Fragment>
+                        <button onClick={() => searchPosts({ string: keyword })}>
+                            Search
+            </button>
+                        <button
+                            onClick={() => {
+                                onClick({})
+                                searchRef.current.value = ''
+                                searchPosts({ string: '' })
+                            }}
+                        >
+                            Clear
+            </button>
+                    </Fragment>
+                </div>
+            )}
+
+            {isSearching ? (
+                <div>Searching categories</div>
+            ) : (
+                    <Fragment>
+                        {productCategories.edges.length ? (
+                            <ul>{productCategories.edges.map(renderCategory)}</ul>
+                        ) : (
+                                <div>Not found</div>
+                            )}
+                    </Fragment>
+                )}
+        </Tags>
     )
-  }
-
-  const { productCategories } = data
-
-  if (error) return <ErrorMessage message='Error loading posts.' />
-  if (loading) return <div>Loading categories</div>
-
-  return (
-    <Tags style={{ width: '100%' }}>
-      {showFilter && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 20
-          }}
-        >
-          <input
-            type='text'
-            placeholder='Search category'
-            ref={searchRef}
-            onKeyUp={event => {
-              const value = event.target.value
-              setKeyword(value)
-            }}
-          />
-
-          <Fragment>
-            <button onClick={() => searchPosts({ string: keyword })}>
-              Search
-            </button>
-            <button
-              onClick={() => {
-                onClick({})
-                searchRef.current.value = ''
-                searchPosts({ string: '' })
-              }}
-            >
-              Clear
-            </button>
-          </Fragment>
-        </div>
-      )}
-
-      {isSearching ? (
-        <div>Searching categories</div>
-      ) : (
-        <Fragment>
-          {productCategories.edges.length ? (
-            <ul>{productCategories.edges.map(renderCategory)}</ul>
-          ) : (
-            <div>Not found</div>
-          )}
-        </Fragment>
-      )}
-    </Tags>
-  )
 }
 
 export default memo(Categories)
