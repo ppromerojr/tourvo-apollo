@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 import createPage from '../../../components/Page/createPage' 
    
-const PackageTemplate = dynamic(import('./PackageTemplate'))
+const PackageTemplate = dynamic(import('../../../components/PackageTemplate'))
  
 function Packages({ data, loading, error, ...rest }) {
  
