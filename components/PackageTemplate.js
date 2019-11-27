@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic'
-import createPage from './Page/createPage'
 import { Affix, Input } from 'antd'
 import { useState, useCallback } from 'react'
 
