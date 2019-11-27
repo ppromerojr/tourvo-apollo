@@ -1,8 +1,5 @@
 require('dotenv').config()
 
-const withCSS = require('@zeit/next-css')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-
 const path = require('path')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 
@@ -49,11 +46,8 @@ const nextConfig = {
       )
     }
 
-    config.optimization.minimizer = []
-    config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}))
-
     return config
   }
 }
 
-module.exports = withCSS(nextConfig)
+module.exports = nextConfig
