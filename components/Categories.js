@@ -101,7 +101,6 @@ function Categories({ onClick }) {
                     <Link
                         href='/travel-tours/packages/categories/[slug]'
                         as={`/travel-tours/packages/categories/${node.slug}`}
-                        // params={{ title: node.name }}
                     >
                         <a>
                             <Category>
@@ -128,7 +127,7 @@ function Categories({ onClick }) {
 
     return (
         <Tags style={{ width: '100%' }}>
-            {showFilter && (
+            {/* {showFilter && (
                 <div
                     style={{
                         display: 'flex',
@@ -162,7 +161,7 @@ function Categories({ onClick }) {
             </button>
                     </Fragment>
                 </div>
-            )}
+            )} */}
 
             {isSearching ? (
                 <div>Searching categories</div>

@@ -1,15 +1,15 @@
 import React, { useState, memo, useEffect } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
-import { useRouter } from 'next/router' 
-import {  Spin    } from 'antd'
+import { useRouter } from 'next/router'
+import { Spin } from 'antd'
 
 import ErrorMessage from '../ErrorMessage'
 
 import GET_PRODUCT from '../../graphql/product.queries'
 import useQueryProducts from '../../hooks/useQueryProducts'
 import Lazy from '../Image'
- 
+
 
 const style = {
     display: 'flex',
@@ -19,18 +19,18 @@ const style = {
     flex: 1,
     marginBottom: 20
 }
- 
+
 
 const textStyle = {
     padding: 10
 }
- 
+
 
 function Packages({ keyword, onSale, filter }) {
     const router = useRouter()
     const [isSearching, setIsSearching] = useState(false)
-    const [isLoadingMore, setIsLoadingMore] = useState(false)   
-  
+    const [isLoadingMore, setIsLoadingMore] = useState(false)
+
     const {
         loading,
         error,
@@ -98,7 +98,7 @@ function Packages({ keyword, onSale, filter }) {
     }
 
     const fetchMoreData = () => {
-      
+
         let variables = {
             after: products.pageInfo.endCursor,
             onSale
@@ -109,8 +109,8 @@ function Packages({ keyword, onSale, filter }) {
                 ...variables,
                 string: keyword
             }
-        } 
-   
+        }
+
         if (filter && filter.field) {
             variables = {
                 ...variables,
@@ -118,7 +118,7 @@ function Packages({ keyword, onSale, filter }) {
             }
         }
 
-          console.log("fetch More", variables)
+        console.log("fetch More", variables)
 
         setIsLoadingMore(true)
 
@@ -155,13 +155,9 @@ function Packages({ keyword, onSale, filter }) {
                 >
                     <div>
                         <div>
-                            {isSearchingPosts ? (
+                            {isSearchingPosts && (
                                 <Spin />
-                            ) : (
-                                    <h2 style={{ margin: 0, padding: 0 }}>
-                                        {selectedCategory.name}
-                                    </h2>
-                                )}
+                            )}
                         </div>
                     </div>
 
