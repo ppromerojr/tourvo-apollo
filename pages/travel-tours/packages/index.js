@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic'
-import createPage from '../../../components/Page/createPage'
-import Categories from '../../../components/Categories'
+import createPage from '../../../components/Page/createPage' 
 import { Affix, Input } from 'antd'
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback } from 'react'
 
 const PackagesList = dynamic(import('../../../components/Packages'))
+const Categories = dynamic(import('../../../components/Categories'))
 
 const { Search } = Input
 

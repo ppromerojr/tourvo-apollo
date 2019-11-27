@@ -62,11 +62,11 @@ export const postsQueryVars = {
     first: 10
 }
 
-function Categories({ onClick, selected, onSale }) {
-    const { loading, error, data, client, fetchMore } = useQueryCategories()
+function Categories({ onClick }) {
+    const { loading, error, data,  fetchMore } = useQueryCategories()
     const [isSearching, setIsSearching] = useState(false)
     const [keyword, setKeyword] = useState('')
-    const [showFilter, setShowFilter] = useState(false)
+    // const [showFilter, setShowFilter] = useState(false)
     const searchRef = useRef()
 
     const searchPosts = ({ string }) => {
@@ -96,7 +96,7 @@ function Categories({ onClick, selected, onSale }) {
 
     const renderCategory = ({ node }, index) => {
         return (
-            <Fragment key={node.id}>
+            <Fragment key={node.id + "_" + index}>
                 <li>
                     <Link
                         href='/travel-tours/packages/categories/[slug]'

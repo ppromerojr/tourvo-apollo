@@ -1,27 +1,15 @@
-import React, { Fragment, useState, memo, useRef, useEffect } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import styled from 'styled-components'
-import { Input, Spin, Affix, Select } from 'antd'
-import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router' 
+import {  Spin    } from 'antd'
 
 import ErrorMessage from '../ErrorMessage'
 
 import GET_PRODUCT from '../../graphql/product.queries'
 import useQueryProducts from '../../hooks/useQueryProducts'
-import Body from '../Body'
 import Lazy from '../Image'
-import Placeholder from '../Placeholder'
-
-const { Search } = Input
-const { Option } = Select
-
-const Description = styled('div')`
-  ul {
-    margin: 0;
-  }
-`
+ 
 
 const style = {
     display: 'flex',
@@ -31,23 +19,17 @@ const style = {
     flex: 1,
     marginBottom: 20
 }
-
-const imgStyle = {
-    display: 'block'
-}
+ 
 
 const textStyle = {
     padding: 10
 }
  
-const Categories = dynamic(import('../Categories'))
 
 function Packages({ keyword, onSale, filter }) {
     const router = useRouter()
     const [isSearching, setIsSearching] = useState(false)
-    const [isLoadingMore, setIsLoadingMore] = useState(false) 
-    const [selectedCategory, setSelectedCategory] = useState({})
-    const [isModalOpen, setModal] = useState(false)
+    const [isLoadingMore, setIsLoadingMore] = useState(false)   
   
     const {
         loading,
