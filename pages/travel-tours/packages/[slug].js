@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import createProduct from '../../../components/Page/createProduct'
 
 const Package = dynamic(import('../../../components/Packages/Package'))
+const Placeholder = dynamic(import('../../../components/Placeholder'))
 
 const PackagePage = ({ data, loading, error, ...rest }) => {
   if (error) {
@@ -10,7 +11,7 @@ const PackagePage = ({ data, loading, error, ...rest }) => {
   }
 
   if (loading) {
-    return <div>loading...</div>
+    return <Placeholder />
   }
 
   return (

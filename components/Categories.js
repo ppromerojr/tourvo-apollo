@@ -4,6 +4,7 @@ import ErrorMessage from './ErrorMessage'
 
 import useQueryCategories from '../hooks/useQueryCategories'
 import Link from 'next/link'
+import Router from 'next/router'
 
 const Tags = styled('div')`
   button {
@@ -58,76 +59,79 @@ const Category = styled('div')`
 `
 
 export const postsQueryVars = {
-    skip: 0,
-    first: 10
+  skip: 0,
+  first: 10
 }
 
-function Categories({ onClick }) {
-    const { loading, error, data,  fetchMore } = useQueryCategories()
-    const [isSearching, setIsSearching] = useState(false)
-    const [keyword, setKeyword] = useState('')
-    // const [showFilter, setShowFilter] = useState(false)
-    const searchRef = useRef()
+function Categories ({ onClick }) {
+  const { loading, error, data, fetchMore } = useQueryCategories()
+  const [isSearching, setIsSearching] = useState(false)
+  const [keyword, setKeyword] = useState('')
+  // const [showFilter, setShowFilter] = useState(false)
+  const searchRef = useRef()
 
-    const searchPosts = ({ string }) => {
-        let variables = {}
+  const searchPosts = ({ string }) => {
+    let variables = {}
 
-        if (string) {
-            variables = {
-                ...variables,
-                string
-            }
+    if (string) {
+      variables = {
+        ...variables,
+        string
+      }
+    }
+
+    setIsSearching(true)
+
+    fetchMore({
+      variables: variables,
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        setIsSearching(false)
+        if (!fetchMoreResult) {
+          return previousResult
         }
 
-        setIsSearching(true)
+        return fetchMoreResult
+      }
+    })
+  }
 
-        fetchMore({
-            variables: variables,
-            updateQuery: (previousResult, { fetchMoreResult }) => {
-                setIsSearching(false)
-                if (!fetchMoreResult) {
-                    return previousResult
-                }
-
-                return fetchMoreResult
-            }
-        })
-    }
-
-    const renderCategory = ({ node }, index) => {
-        return (
-            <Fragment key={node.id + "_" + index}>
-                <li>
-                    <Link
-                        href='/travel-tours/packages/categories/[slug]'
-                        as={`/travel-tours/packages/categories/${node.slug}`}
-                    >
-                        <a>
-                            <Category>
-                                <CategoryImage   >
-                                    {node.image ? (
-                                        <img src={node.image.sourceUrl} />
-                                    ) : (
-                                            node.name.charAt(0)
-                                        )}
-                                </CategoryImage>
-                                <span>{node.name}</span>
-                            </Category>
-                        </a>
-                    </Link>
-                </li>
-            </Fragment>
-        )
-    }
-
-    const { productCategories } = data
-
-    if (error) return <ErrorMessage message='Error loading posts.' />
-    if (loading) return <div>Loading categories</div>
-
+  const renderCategory = ({ node }, index) => {
     return (
-        <Tags style={{ width: '100%' }}>
-            {/* {showFilter && (
+      <Fragment key={node.id + '_' + index}>
+        <li>
+          <a
+            onClick={() => {
+              onClick(node)
+              Router.replace(
+                { pathname: '/travel-tours/packages/categories/[slug]' },
+                `/travel-tours/packages/categories/${node.slug}`
+              )
+            }}
+          >
+            <Category>
+              <CategoryImage>
+                {node.image ? (
+                  <img src={node.image.sourceUrl} />
+                ) : (
+                  node.name.charAt(0)
+                )}
+              </CategoryImage>
+              <span>{node.name}</span>
+            </Category>
+          </a>
+        </li>
+      </Fragment>
+    )
+  }
+
+  const { productCategories } = data
+
+  if (error) return <ErrorMessage message='Error loading posts.' />
+  if (loading) return <div>Loading categories</div>
+
+  return (
+    <Tags style={{ width: '100%' }}>
+      {/* {showFilter && (
                 <div
                     style={{
                         display: 'flex',
@@ -163,19 +167,19 @@ function Categories({ onClick }) {
                 </div>
             )} */}
 
-            {isSearching ? (
-                <div>Searching categories</div>
-            ) : (
-                    <Fragment>
-                        {productCategories.edges.length ? (
-                            <ul>{productCategories.edges.map(renderCategory)}</ul>
-                        ) : (
-                                <div>Not found</div>
-                            )}
-                    </Fragment>
-                )}
-        </Tags>
-    )
+      {isSearching ? (
+        <div>Searching categories</div>
+      ) : (
+        <Fragment>
+          {productCategories.edges.length ? (
+            <ul>{productCategories.edges.map(renderCategory)}</ul>
+          ) : (
+            <div>Not found</div>
+          )}
+        </Fragment>
+      )}
+    </Tags>
+  )
 }
 
 export default memo(Categories)

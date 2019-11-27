@@ -1,7 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet, createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle` 
 body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -51,7 +51,7 @@ body {
       }
       button:focus {
         outline: none;
-      }
+      } 
 `
 
 class MyDocument extends Document {
@@ -93,6 +93,7 @@ class MyDocument extends Document {
             href='/static/icons/apple-touch-icon.png'
           />
           <link rel='stylesheet' href='/static/wp.min.css' />
+          <link rel='stylesheet' href='/static/antd.min.css' />
           {this.props.styleTags}
         </Head>
 

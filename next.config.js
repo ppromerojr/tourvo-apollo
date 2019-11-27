@@ -1,8 +1,10 @@
 require('dotenv').config()
 
+const withCSS = require('@zeit/next-css')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 const path = require('path')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const withCss = require('@zeit/next-css')
 
 const nextConfig = {
   env: {
@@ -10,28 +12,7 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL,
     TITLE: process.env.TITLE
   },
-  webpack: (config, { dev, isServer }) => {
-    if (isServer) {
-      const antStyles = /antd\/.*?\/style\/css.*?/
-      const origExternals = [...config.externals]
-      config.externals = [
-        (context, request, callback) => {
-          if (request.match(antStyles)) return callback()
-          if (typeof origExternals[0] === 'function') {
-            origExternals[0](context, request, callback)
-          } else {
-            callback()
-          }
-        },
-        ...(typeof origExternals[0] === 'function' ? [] : origExternals)
-      ]
-
-      config.module.rules.unshift({
-        test: antStyles,
-        use: 'null-loader'
-      })
-    }
-
+  webpack: (config, { dev }) => {
     const oldEntry = config.entry
 
     config.entry = () =>
@@ -68,14 +49,11 @@ const nextConfig = {
       )
     }
 
-    // config.resolve.alias['@ant-design/icons/lib/dist$'] = path.join(
-    //   __dirname,
-    //   'icons.js'
-    // )
-    // config.plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
+    config.optimization.minimizer = []
+    config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}))
 
     return config
   }
 }
 
-module.exports = withCss(nextConfig)
+module.exports = withCSS(nextConfig)

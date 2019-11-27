@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1530,7 +1530,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-const GlobalStyle = styled_components__WEBPACK_IMPORTED_MODULE_9__["createGlobalStyle"]`
+const GlobalStyle = styled_components__WEBPACK_IMPORTED_MODULE_9__["createGlobalStyle"]` 
 body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -1580,7 +1580,7 @@ body {
       }
       button:focus {
         outline: none;
-      }
+      } 
 `;
 
 class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
@@ -1620,6 +1620,9 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
     }), __jsx("link", {
       rel: "stylesheet",
       href: "/static/wp.min.css"
+    }), __jsx("link", {
+      rel: "stylesheet",
+      href: "/static/antd.min.css"
     }), this.props.styleTags), __jsx("body", null, __jsx(GlobalStyle, null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
   }
 
@@ -1629,7 +1632,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!*********************************************!*\
   !*** multi private-next-pages/_document.js ***!
   \*********************************************/
