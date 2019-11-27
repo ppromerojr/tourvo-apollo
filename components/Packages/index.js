@@ -41,13 +41,16 @@ function Packages({ keyword, onSale, filter }) {
     } = useQueryProducts({ slug: router ? router.query.slug : '' })
 
     useEffect(() => {
-        if (keyword || onSale != null || filter != null) {
-            searchPosts({
-                string: keyword,
-                filter,
-                onSale
-            })
+        if (!loading) {
+            if (keyword || onSale != null || filter != null) {
+                searchPosts({
+                    string: keyword,
+                    filter,
+                    onSale
+                })
+            }
         }
+
     }, [keyword, onSale, filter])
 
     const { products } = data
