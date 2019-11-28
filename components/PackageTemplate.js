@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Affix, Input } from 'antd'
+import { Affix, Input, Spin, Switch } from 'antd'
 import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 
@@ -37,11 +37,15 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
 
   return (
     <div>
-      <h1>
+      {/* page title */}
+      <h1 style={{ textAlign: 'center' }}>
         <Link href='/travel-tours/packages' as='/travel-tours/packages'>
           <a>Packages</a>
         </Link>
       </h1>
+      {/* end page title */}
+
+      {/* Search bar */}
       <div
         style={{
           display: 'flex',
@@ -60,6 +64,9 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
           />
         </Affix>
       </div>
+      {/* end search bar */}
+
+      {/* Categories */}
       <div
         style={{
           width: '100%',
@@ -68,17 +75,24 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
       >
         <Categories onClick={setCategory} />
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div>
-          <label>
-            Sale
-            <input
-              type='checkbox'
-              onClick={event => {
-                setOnSale(event.target.checked)
-              }}
-            />
-          </label>
+      {/* categories */}
+
+      {/* Start filter */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          marginTop: 20,
+          marginBottom: 20
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Switch
+            unCheckedChildren='Sale'
+            checkedChildren='Sale'
+            onChange={value => setOnSale(value)}
+          />
+          {/* <div>Sale</div> */}
         </div>
         <div>
           <div style={{ marginBottom: 2, fontSize: 12, textAlign: 'right' }}>
@@ -97,13 +111,17 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
           </select>
         </div>
       </div>
-      <div>
+      {/* end filter */}
+
+      {/* Title */}
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         {category && (
-          <h1 className='cat_name'>
+          <h2 style={{ marginRight: 10 }}>
             {isCategoryPageLoading ? selectedCategory.name : category.name}
-          </h1>
+          </h2>
         )}
       </div>
+      {/* end Title */}
 
       <PackagesList
         keyword={keyword}

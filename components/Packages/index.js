@@ -39,7 +39,11 @@ function Packages ({ keyword, onSale, filter }) {
     fetchMore,
     networkStatus,
     client
-  } = useQueryProducts({ slug: router ? router.query.slug : '' })
+  } = useQueryProducts({
+    slug: router ? router.query.slug : '',
+    onSale,
+    filter
+  })
 
   useEffect(
     () => {

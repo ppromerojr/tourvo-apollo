@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -583,85 +583,14 @@ var styles = {
 
 /***/ }),
 
-/***/ "./node_modules/next/error.js":
+/***/ 2:
 /*!************************************!*\
-  !*** ./node_modules/next/error.js ***!
+  !*** multi next/dist/pages/_error ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./dist/pages/_error */ "./node_modules/next/dist/pages/_error.js")
-
-
-/***/ }),
-
-/***/ "./pages/_error.js":
-/*!*************************!*\
-  !*** ./pages/_error.js ***!
-  \*************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/error */ "./node_modules/next/error.js");
-/* harmony import */ var next_error__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_error__WEBPACK_IMPORTED_MODULE_1__);
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-
-
-const Page = ({
-  errorCode,
-  stars
-}) => {
-  if (errorCode) {
-    return __jsx(next_error__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      statusCode: errorCode
-    });
-  }
-
-  return __jsx("div", null, "No error");
-};
-
-Page.getInitialProps = async ({
-  req,
-  res
-}) => {
-  const errorCode = res.statusCode > 200 ? res.statusCode : false;
-  /*
-    Handling ?= should be solved differently if you use dynamic routing,
-    this will only remove the 404 for those urls.
-  */
-
-  let urlParts = req.url.split('?');
-
-  if (urlParts[0].endsWith('/')) {
-    urlParts[0] = urlParts[0].substring(0, urlParts[0].length - 1);
-    res.writeHead(301, {
-      Location: urlParts.join('?')
-    });
-    res.end();
-  }
-
-  return {
-    errorCode
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Page);
-
-/***/ }),
-
-/***/ 3:
-/*!*******************************!*\
-  !*** multi ./pages/_error.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! /Users/pabsromerojr/Documents/Projects/tourvo-apollo/pages/_error.js */"./pages/_error.js");
+module.exports = __webpack_require__(/*! next/dist/pages/_error */"./node_modules/next/dist/pages/_error.js");
 
 
 /***/ }),
