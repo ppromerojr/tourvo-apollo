@@ -37,13 +37,27 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
 
   return (
     <div>
-      {/* page title */}
-      <h1 style={{ textAlign: 'center' }}>
-        <Link href='/travel-tours/packages' as='/travel-tours/packages'>
-          <a>Packages</a>
-        </Link>
-      </h1>
-      {/* end page title */}
+      {/* Title */}
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        {category ? (
+          <h1 style={{ marginRight: 10 }}>
+            {isCategoryPageLoading ? selectedCategory.name : category.name}
+          </h1>
+        ) : (
+          <h1>
+            <Link href='/travel-tours/packages' as='/travel-tours/packages'>
+              <a>Packages</a>
+            </Link>
+          </h1>
+        )}
+      </div>
+      {/* end Title */}
 
       {/* Search bar */}
       <div
@@ -57,7 +71,7 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
       >
         <Affix style={{ width: '100%' }} offsetTop={0}>
           <Search
-            placeholder='Search for Hotel, City or Location'
+            placeholder={`Search for Hotel, City or Location`}
             onSearch={onSearch}
             size='large'
             style={{ width: '100%' }}
@@ -112,16 +126,6 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
         </div>
       </div>
       {/* end filter */}
-
-      {/* Title */}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        {category && (
-          <h2 style={{ marginRight: 10 }}>
-            {isCategoryPageLoading ? selectedCategory.name : category.name}
-          </h2>
-        )}
-      </div>
-      {/* end Title */}
 
       <PackagesList
         keyword={keyword}

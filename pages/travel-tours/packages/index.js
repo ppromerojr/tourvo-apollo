@@ -8,11 +8,7 @@ function Packages ({ data, loading, error, ...rest }) {
     return <div>error</div>
   }
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
-
-  return <PackageTemplate {...rest} />
+  return <PackageTemplate title='Packages' {...rest} />
 }
 
 Packages = createPage({

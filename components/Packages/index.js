@@ -153,97 +153,92 @@ function Packages ({ keyword, onSale, filter }) {
 
   return (
     <div>
+      <div>{!products.edges.length && <div>No item found.</div>}</div>
+
       <div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {isSearchingPosts && <Spin />}
-        </div>
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            width: ' 100%'
+          }}
+        >
+          {isSearchingPosts && (
+            <div
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '100%',
+                background: ` rgba(255, 255, 255, 0.6)`
+              }}
+            />
+          )}
+          {products.edges.map(({ node }, id) => {
+            return (
+              <Link
+                key={id}
+                href='/travel-tours/packages/[slug]'
+                as={`/travel-tours/packages/${node.slug}`}
+              >
+                <a>
+                  <div
+                    style={style}
+                    onMouseOver={() => {
+                      client.query({
+                        query: GET_PRODUCT,
+                        variables: { slug: node.slug }
+                      })
+                    }}
+                  >
+                    {node.image && (
+                      <div>
+                        <Lazy>
+                          <img
+                            width='100%'
+                            height='300'
+                            alt={node.name}
+                            style={{ display: 'block', objectFit: 'cover' }}
+                            src={node.image.sourceUrl}
+                          />
+                        </Lazy>
+                      </div>
+                    )}
+                    <div style={{ ...textStyle }}>
+                      <h3 style={{ margin: 0, marginBottom: 10 }}>
+                        {node.name}
+                      </h3>
 
-        <div>
-          <div>{!products.edges.length && <div>No item found.</div>}</div>
-          <div
-            style={{
-              position: 'relative',
-              display: 'flex',
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              width: ' 100%'
-            }}
-          >
-            {isSearchingPosts && (
-              <div
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  background: ` rgba(255, 255, 255, 0.6)`
-                }}
-              />
-            )}
-            {products.edges.map(({ node }, id) => {
-              return (
-                <Link
-                  key={id}
-                  href='/travel-tours/packages/[slug]'
-                  as={`/travel-tours/packages/${node.slug}`}
-                >
-                  <a>
-                    <div
-                      style={style}
-                      onMouseOver={() => {
-                        client.query({
-                          query: GET_PRODUCT,
-                          variables: { slug: node.slug }
-                        })
-                      }}
-                    >
-                      {node.image && (
-                        <div>
-                          <Lazy>
-                            <img
-                              width='100%'
-                              height='300'
-                              alt={node.name}
-                              style={{ display: 'block', objectFit: 'cover' }}
-                              src={node.image.sourceUrl}
-                            />
-                          </Lazy>
-                        </div>
-                      )}
-                      <div style={{ ...textStyle }}>
-                        <h3 style={{ margin: 0, marginBottom: 10 }}>
-                          {node.name}
-                        </h3>
-
-                        <div
-                          style={{
-                            width: '100%',
-                            display: 'flex',
-                            justifyContent: 'space-between'
-                          }}
-                        >
-                          {node.onSale ? (
-                            <div>
-                              <del>{node.regularPrice}</del>{' '}
-                              <strong>{node.salePrice}</strong>
-                            </div>
-                          ) : (
-                            <div>{node.regularPrice}</div>
-                          )}
-                          <div />
-                        </div>
+                      <div
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          justifyContent: 'space-between'
+                        }}
+                      >
+                        {node.onSale ? (
+                          <div>
+                            <del>{node.regularPrice}</del>{' '}
+                            <strong>{node.salePrice}</strong>
+                          </div>
+                        ) : (
+                          <div>{node.regularPrice}</div>
+                        )}
+                        <div />
                       </div>
                     </div>
-                  </a>
-                </Link>
-              )
-            })}
-            <div>
-              {products.pageInfo.hasNextPage && (
-                <button onClick={fetchMoreData}>
-                  {isLoadingMorePosts ? 'Loading...' : 'Show More'}
-                </button>
-              )}
-            </div>
+                  </div>
+                </a>
+              </Link>
+            )
+          })}
+          <div>
+            {products.pageInfo.hasNextPage && (
+              <button onClick={fetchMoreData}>
+                {isLoadingMorePosts ? 'Loading...' : 'Show More'}
+              </button>
+            )}
           </div>
         </div>
       </div>
