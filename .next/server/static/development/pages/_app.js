@@ -88,10 +88,108 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./components/Install.js":
+/*!*******************************!*\
+  !*** ./components/Install.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _hooks_useAddToHomescreenPrompt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks/useAddToHomescreenPrompt */ "./hooks/useAddToHomescreenPrompt.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+function PWA(props) {
+  const [prompt, promptToInstall] = Object(_hooks_useAddToHomescreenPrompt__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  const {
+    0: isVisible,
+    1: setVisibleState
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+
+  const hide = () => setVisibleState(false);
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    if (prompt) {
+      setVisibleState(true);
+    }
+  }, [prompt]);
+
+  if (!isVisible) {
+    return __jsx("div", null);
+  }
+
+  return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx("div", {
+    style: {
+      marginTop: 50,
+      display: 'flex',
+      justifyContent: 'flex-end'
+    }
+  }, __jsx("button", {
+    onClick: promptToInstall
+  }, "Install PWA")));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (PWA);
+
+/***/ }),
+
+/***/ "./hooks/useAddToHomescreenPrompt.js":
+/*!*******************************************!*\
+  !*** ./hooks/useAddToHomescreenPrompt.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return useAddToHomescreenPrompt; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function useAddToHomescreenPrompt() {
+  const {
+    0: prompt,
+    1: setState
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null);
+
+  const promptToInstall = () => {
+    if (prompt) {
+      return prompt.prompt();
+    }
+
+    return _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default.a.reject(new Error('Tried installing before browser sent "beforeinstallprompt" event'));
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
+    const ready = e => {
+      console.log(e);
+      e.preventDefault();
+      setState(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', ready);
+    return () => {
+      window.removeEventListener('beforeinstallprompt', ready);
+    };
+  }, []);
+  return [prompt, promptToInstall];
+}
+
+/***/ }),
 
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js":
 /*!**********************************************************************!*\
@@ -231,6 +329,18 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
+
+/***/ }),
+
+/***/ "./node_modules/next/app.js":
+/*!**********************************!*\
+  !*** ./node_modules/next/app.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! ./dist/pages/_app */ "./node_modules/next/dist/pages/_app.js")
+
 
 /***/ }),
 
@@ -515,14 +625,49 @@ function createUrl(router) {
 
 /***/ }),
 
-/***/ 1:
-/*!**********************************!*\
-  !*** multi next/dist/pages/_app ***!
-  \**********************************/
+/***/ "./pages/_app.js":
+/*!***********************!*\
+  !*** ./pages/_app.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/app */ "./node_modules/next/app.js");
+/* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Install__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Install */ "./components/Install.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+
+class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_1___default.a {
+  render() {
+    const {
+      Component,
+      pageProps
+    } = this.props;
+    return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, __jsx(Component, pageProps), __jsx(_components_Install__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (MyApp);
+
+/***/ }),
+
+/***/ 0:
+/*!****************************************!*\
+  !*** multi private-next-pages/_app.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next/dist/pages/_app */"./node_modules/next/dist/pages/_app.js");
+module.exports = __webpack_require__(/*! private-next-pages/_app.js */"./pages/_app.js");
 
 
 /***/ }),

@@ -1,14 +1,15 @@
 import dynamic from 'next/dynamic'
 import { Affix, Input } from 'antd'
 import { useState, useCallback, useEffect } from 'react'
+import Link from 'next/link'
 
 const PackagesList = dynamic(import('./Packages'))
 const Categories = dynamic(import('./Categories'))
 
 const { Search } = Input
 
-function PackagePageTemplate (props) {
-  const [category, setCategory] = useState({})
+function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
+  let [selectedCategory, setCategory] = useState({})
   const [keyword, setKeyword] = useState()
   const [onSale, setOnSale] = useState(null)
   const [filter, setFilter] = useState(null)
@@ -30,9 +31,17 @@ function PackagePageTemplate (props) {
     }
   }, [])
 
+  if (category && category.edges) {
+    category = category.edges[0].node
+  }
+
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Packages</h1>
+      <h1>
+        <Link href='/travel-tours/packages' as='/travel-tours/packages'>
+          <a>Packages</a>
+        </Link>
+      </h1>
       <div
         style={{
           display: 'flex',
@@ -88,12 +97,19 @@ function PackagePageTemplate (props) {
           </select>
         </div>
       </div>
+      <div>
+        {category && (
+          <h1 className='cat_name'>
+            {isCategoryPageLoading ? selectedCategory.name : category.name}
+          </h1>
+        )}
+      </div>
+
       <PackagesList
-        category={category}
         keyword={keyword}
         onSale={onSale}
         filter={filter}
-        {...props}
+        {...rest}
       />
     </div>
   )

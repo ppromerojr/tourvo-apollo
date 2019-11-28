@@ -27,7 +27,7 @@ const textStyle = {
   padding: 10
 }
 
-function Packages ({ keyword, onSale, filter, category }) {
+function Packages ({ keyword, onSale, filter }) {
   const router = useRouter()
   const [isSearching, setIsSearching] = useState(false)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
@@ -151,9 +151,6 @@ function Packages ({ keyword, onSale, filter, category }) {
     <div>
       <div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          {category.name && (
-            <h1 style={{ marginRight: 10 }}>{category.name}</h1>
-          )}
           {isSearchingPosts && <Spin />}
         </div>
 

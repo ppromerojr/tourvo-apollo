@@ -64,7 +64,7 @@ export const postsQueryVars = {
 }
 
 function Categories ({ onClick }) {
-  const { loading, error, data, fetchMore } = useQueryCategories()
+  const { loading, error, data, fetchMore } = useQueryCategories({ first: 20 })
   const [isSearching, setIsSearching] = useState(false)
   const [keyword, setKeyword] = useState('')
   // const [showFilter, setShowFilter] = useState(false)
@@ -126,7 +126,9 @@ function Categories ({ onClick }) {
 
   const { productCategories } = data
 
-  if (error) return <ErrorMessage message='Error loading posts.' />
+  if (error) {
+    console.log(error)
+  }
   if (loading) return <div>Loading categories</div>
 
   return (
