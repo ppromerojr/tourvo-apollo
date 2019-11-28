@@ -17,7 +17,11 @@ const GET_CATEGORY = gql`
             keywords
           }
           image {
-            sourceUrl(size: THUMBNAIL)
+            mediaDetails {
+              height
+              width
+            }
+            mediaItemUrl
           }
         }
       }

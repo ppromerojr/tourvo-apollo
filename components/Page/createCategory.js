@@ -6,7 +6,7 @@ import TabBar from '../TabBar'
 import { withApollo } from '../../lib/apollo'
 import Head from '../Head'
 
-import useQueryCategories from '../../hooks/useQueryCategories'
+import useQueryCategory from '../../hooks/useQueryCategory'
 
 export default options => {
   let _options = options
@@ -40,11 +40,14 @@ function renderMetaTags ({ data }, router) {
     }
 
     if (page.image) {
-      const { sourceUrl, width, height } = page.image
+      const {
+        mediaItemUrl,
+        mediaDetails: { width, height }
+      } = page.image
 
       tags = {
         ...tags,
-        image: sourceUrl.replace(/[\r\n]+/g, ''),
+        image: mediaItemUrl.replace(/[\r\n]+/g, ''),
         imageWidth: width,
         imageHeight: height
       }
@@ -68,7 +71,7 @@ function renderMetaTags ({ data }, router) {
 function createCategoryPage (options, InnerComponent) {
   let Page = props => {
     const slug = props.router.query.slug
-    const response = useQueryCategories({ first: 1, slug })
+    const response = useQueryCategory({ first: 1, slug })
 
     return (
       <React.Fragment>
