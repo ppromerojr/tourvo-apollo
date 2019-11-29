@@ -315,6 +315,39 @@ function _defineProperty(obj, key, value) {
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _extends; });
+/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/object/assign */ "./node_modules/@babel/runtime-corejs2/core-js/object/assign.js");
+/* harmony import */ var _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_assign__WEBPACK_IMPORTED_MODULE_0__);
+
+function _extends() {
+  _extends = _core_js_object_assign__WEBPACK_IMPORTED_MODULE_0___default.a || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/extends.js":
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/extends.js ***!
@@ -1508,12 +1541,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/document */ "./node_modules/next/document.js");
-/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! next/document */ "./node_modules/next/document.js");
+/* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_10__);
 
 
 
@@ -1522,7 +1556,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+var _jsxFileName = "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/pages/_document.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1530,7 +1566,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-const GlobalStyle = styled_components__WEBPACK_IMPORTED_MODULE_9__["createGlobalStyle"]` 
+const GlobalStyle = styled_components__WEBPACK_IMPORTED_MODULE_10__["createGlobalStyle"]` 
 body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -1583,19 +1619,25 @@ body {
       } 
 `;
 
-class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
+class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
   static async getInitialProps(ctx) {
-    const sheet = new styled_components__WEBPACK_IMPORTED_MODULE_9__["ServerStyleSheet"]();
+    const sheet = new styled_components__WEBPACK_IMPORTED_MODULE_10__["ServerStyleSheet"]();
     const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () => originalRenderPage({
-        enhanceApp: App => props => sheet.collectStyles(__jsx(App, props))
+        enhanceApp: App => props => sheet.collectStyles(__jsx(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__["default"])({}, props, {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 65
+          },
+          __self: this
+        })))
       });
 
-      const initialProps = await next_document__WEBPACK_IMPORTED_MODULE_8___default.a.getInitialProps(ctx);
+      const initialProps = await next_document__WEBPACK_IMPORTED_MODULE_9___default.a.getInitialProps(ctx);
       return _objectSpread({}, initialProps, {
-        styles: __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, initialProps.styles, sheet.getStyleElement())
+        styles: __jsx(react__WEBPACK_IMPORTED_MODULE_8___default.a.Fragment, null, initialProps.styles, sheet.getStyleElement())
       });
     } finally {
       sheet.seal();
@@ -1603,27 +1645,92 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
   }
 
   render() {
-    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Html"], {
-      lang: "en"
-    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null, __jsx("link", {
+    return __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Html"], {
+      lang: "en",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 85
+      },
+      __self: this
+    }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Head"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 86
+      },
+      __self: this
+    }, __jsx("link", {
       rel: "manifest",
-      href: "/static/manifest.json"
+      href: "/static/manifest.json",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 87
+      },
+      __self: this
     }), __jsx("meta", {
       name: "apple-mobile-web-app-status-bar-style",
-      content: "black"
+      content: "black",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 88
+      },
+      __self: this
     }), __jsx("meta", {
       name: "theme-color",
-      content: "#21bad9"
+      content: "#21bad9",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 89
+      },
+      __self: this
     }), __jsx("link", {
       rel: "apple-touch-icon",
-      href: "/static/icons/apple-touch-icon.png"
+      href: "/static/icons/apple-touch-icon.png",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 91
+      },
+      __self: this
     }), __jsx("link", {
       rel: "stylesheet",
-      href: "/static/wp.min.css"
+      href: "/static/wp.min.css",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 95
+      },
+      __self: this
     }), __jsx("link", {
       rel: "stylesheet",
-      href: "/static/antd.min.css"
-    }), this.props.styleTags), __jsx("body", null, __jsx(GlobalStyle, null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Main"], null), __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["NextScript"], null)));
+      href: "/static/antd.min.css",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 96
+      },
+      __self: this
+    }), this.props.styleTags), __jsx("body", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 100
+      },
+      __self: this
+    }, __jsx(GlobalStyle, {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 101
+      },
+      __self: this
+    }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 102
+      },
+      __self: this
+    }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 103
+      },
+      __self: this
+    })));
   }
 
 }

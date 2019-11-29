@@ -7,7 +7,7 @@ const handleNextRequests = app.getRequestHandler()
 
 const PORT = process.env.PORT || 3000
 
-const staticFiles = ['sw.js', 'robots.txt', 'favicon.ico', 'manifest.json']
+const staticFiles = ['robots.txt', 'favicon.ico']
 
 const isStaticFile = name =>
   staticFiles.includes(name) || isGoogleHTMLFile(name)
