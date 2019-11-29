@@ -2,3 +2,4 @@
 tourvo.config.js
 .next/
 .env
+./next/*
