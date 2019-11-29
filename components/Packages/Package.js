@@ -37,16 +37,45 @@ const FeaturedImage = styled('div')({
   }
 })
 
+const RelatedPackages = styled('div')({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+  gridGap: '30px'
+})
+
 function renderPackage ({ node }, index) {
   return (
     <div key={index}>
-      {node.name}
-      <Link
-        href='/travel-tours/packages/[slug]'
-        as={`/travel-tours/packages/${node.slug}`}
-      >
-        <a>Read more</a>
-      </Link>
+      <FeaturedImage>
+        <img src={node.image.sourceUrl} />
+      </FeaturedImage>
+      <div> {node.name}</div>
+      <div style={{ marginBottom: 10 }}>
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            fontSize: 13
+          }}
+        >
+          {node.onSale ? (
+            <div>
+              <del>{node.regularPrice}</del> <strong>{node.salePrice}</strong>
+            </div>
+          ) : (
+            <strong>{node.regularPrice}</strong>
+          )}
+          <div />
+        </div>
+      </div>
+      <div>
+        <Link
+          href='/travel-tours/packages/[slug]'
+          as={`/travel-tours/packages/${node.slug}`}
+        >
+          <a>Read more</a>
+        </Link>
+      </div>
     </div>
   )
 }
@@ -161,9 +190,9 @@ const Package = ({ item, router }) => {
       </div>
       <div>
         <h2>Related Packages</h2>
-        <div>
+        <RelatedPackages>
           {item.related.edges.length && item.related.edges.map(renderPackage)}
-        </div>
+        </RelatedPackages>
       </div>
     </Fragment>
   )

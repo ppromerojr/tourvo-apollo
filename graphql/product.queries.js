@@ -47,7 +47,7 @@ const GET_PRODUCT = gql`
               regularPrice(format: FORMATTED)
               salePrice(format: FORMATTED)
               image {
-                sourceUrl(size: MEDIUM)
+                sourceUrl(size: LARGE)
               }
             }
           }
