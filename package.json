@@ -4,7 +4,10 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "update": "git pull origin master && yarn install && yarn build",
+    "server": "yarn install && yarn build && yarn reload",
+    "reload": "pm2 reload ecosystem.config.js --env production"
   },
   "dependencies": {
     "@apollo/react-hooks": "3.0.0",
