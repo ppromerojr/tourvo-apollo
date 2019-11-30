@@ -43,6 +43,18 @@ const RelatedPackages = styled('div')({
   gridGap: '30px'
 })
 
+const onWebShare = async item => {
+  if (navigator.share) {
+    const share = await navigator.share({
+      title: item.name,
+      text: item.name,
+      url: window.location.href
+    })
+
+    console.log('share', share)
+  }
+}
+
 function renderPackage ({ node }, index) {
   return (
     <div key={index}>
@@ -137,6 +149,9 @@ const Package = ({ item, router }) => {
           <TelegramShareButton url={shareUrl}>
             <TelegramIcon size={32} round />
           </TelegramShareButton>
+          <div>
+            <button onClick={() => onWebShare(item)}>Share</button>
+          </div>
         </SocialShare>
         {/* end social share */}
         {/* hashtags */}
