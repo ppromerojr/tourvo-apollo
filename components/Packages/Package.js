@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { Tabs } from 'antd'
@@ -17,6 +17,7 @@ import {
 } from 'react-share'
 
 import Body from '../Body'
+import { Share } from 'react-feather'
 const { TabPane } = Tabs
 
 const SocialShare = styled('div')({
@@ -95,10 +96,13 @@ function renderPackage ({ node }, index) {
 const Package = ({ item, router }) => {
   const baseURL = process.env.BASE_URL
   const shareUrl = baseURL + router.asPath
+  const [isShareEnabled, setWebShare] = useState(false)
   //   const tags = []
 
   useEffect(() => {
-    console.log(item)
+    if (navigator.share) {
+      setWebShare(true)
+    }
   }, [])
 
   return (
@@ -140,18 +144,33 @@ const Package = ({ item, router }) => {
           <TwitterShareButton url={shareUrl}>
             <TwitterIcon size={32} round />
           </TwitterShareButton>
-          <WhatsappShareButton url={shareUrl}>
-            <WhatsappIcon size={32} round />
-          </WhatsappShareButton>
-          <ViberShareButton url={shareUrl}>
-            <ViberIcon size={32} round />
-          </ViberShareButton>
-          <TelegramShareButton url={shareUrl}>
-            <TelegramIcon size={32} round />
-          </TelegramShareButton>
-          <div>
-            <button onClick={() => onWebShare(item)}>Share</button>
-          </div>
+
+          {isShareEnabled ? (
+            <div>
+              <button
+                onClick={() => onWebShare(item)}
+                style={{
+                  backgroundColor: '#007890',
+                  padding: 7,
+                  borderRadius: '100%'
+                }}
+              >
+                <Share size={20} color={'#FFF'} />
+              </button>
+            </div>
+          ) : (
+            <Fragment>
+              <WhatsappShareButton url={shareUrl}>
+                <WhatsappIcon size={32} round />
+              </WhatsappShareButton>
+              <ViberShareButton url={shareUrl}>
+                <ViberIcon size={32} round />
+              </ViberShareButton>
+              <TelegramShareButton url={shareUrl}>
+                <TelegramIcon size={32} round />
+              </TelegramShareButton>
+            </Fragment>
+          )}
         </SocialShare>
         {/* end social share */}
         {/* hashtags */}
