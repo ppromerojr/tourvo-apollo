@@ -9,6 +9,7 @@ const GET_PRODUCTS = gql`
     $category: String
     $orderby: [ProductsOrderbyInput]
     $onSale: Boolean
+    $tagIn: [String]
   ) {
     products(
       first: $first
@@ -20,6 +21,7 @@ const GET_PRODUCTS = gql`
         orderby: $orderby
         status: "publish"
         onSale: $onSale
+        tagIn: $tagIn
       }
     ) {
       pageInfo {

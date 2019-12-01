@@ -1,8 +1,8 @@
 import gql from 'graphql-tag'
 
-const GET_CATEGORY = gql`
+const GET_TAG = gql`
   query Categories($slug: [String]) {
-    productCategories(
+    productTags(
       first: 1
       where: { shouldOutputInFlatList: true, slug: $slug }
     ) {
@@ -11,7 +11,6 @@ const GET_CATEGORY = gql`
           name
           slug
           id
-          productCategoryId
           metaTags {
             description
             keywords
@@ -23,17 +22,10 @@ const GET_CATEGORY = gql`
               }
             }
           }
-          image {
-            mediaDetails {
-              height
-              width
-            }
-            mediaItemUrl
-          }
         }
       }
     }
   }
 `
 
-export default GET_CATEGORY
+export default GET_TAG

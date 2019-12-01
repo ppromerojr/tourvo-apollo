@@ -9,14 +9,15 @@ const defaultFilter = [
   }
 ]
 
-const useQueryProducts = ({ slug, onSale, filter }) => {
+const useQueryProducts = ({ slug, onSale, filter, tagSlug }) => {
   const { loading, error, data, fetchMore, networkStatus, client } = useQuery(
     GET_PRODUCTS,
     {
       variables: {
         onSale,
         category: slug,
-        first: 6,
+        tagIn: tagSlug || [],
+        first: 10,
         orderby: filter ? [filter] : defaultFilter
       },
       notifyOnNetworkStatusChange: true

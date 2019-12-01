@@ -63,6 +63,13 @@ const GET_PRODUCT = gql`
       metaTags {
         description
         keywords
+        image {
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
+          }
+        }
       }
     }
   }

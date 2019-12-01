@@ -40,6 +40,7 @@ function Packages ({ keyword, onSale, filter }) {
     client
   } = useQueryProducts({
     slug: router ? router.query.slug : '',
+    tagSlug: router ? router.query.tagSlug : '',
     onSale,
     filter
   })
