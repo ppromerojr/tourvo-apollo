@@ -56,39 +56,50 @@ const onWebShare = async item => {
   }
 }
 
+const updateViewCount = async tagId => {
+  return new Promise(async (resolve, reject) => {
+    const request = await fetch(`${process.env.API_URL}/countview/${tagId}`)
+    if (request.ok) {
+      resolve(true)
+    } else {
+      reject()
+    }
+  })
+}
+
 function renderPackage ({ node }, index) {
   return (
     <div key={index}>
-      <FeaturedImage>
-        <img src={node.image.sourceUrl} />
-      </FeaturedImage>
-      <div> {node.name}</div>
-      <div style={{ marginBottom: 10 }}>
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            fontSize: 13
-          }}
-        >
-          {node.onSale ? (
-            <div>
-              <del>{node.regularPrice}</del> <strong>{node.salePrice}</strong>
+      <Link
+        href='/travel-tours/packages/[slug]'
+        as={`/travel-tours/packages/${node.slug}`}
+      >
+        <a>
+          <FeaturedImage>
+            <img src={node.image.sourceUrl} />
+          </FeaturedImage>
+          <div> {node.name}</div>
+          <div style={{ marginBottom: 10 }}>
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                fontSize: 13
+              }}
+            >
+              {node.onSale ? (
+                <div>
+                  <del>{node.regularPrice}</del>{' '}
+                  <strong>{node.salePrice}</strong>
+                </div>
+              ) : (
+                <strong>{node.regularPrice}</strong>
+              )}
+              <div />
             </div>
-          ) : (
-            <strong>{node.regularPrice}</strong>
-          )}
-          <div />
-        </div>
-      </div>
-      <div>
-        <Link
-          href='/travel-tours/packages/[slug]'
-          as={`/travel-tours/packages/${node.slug}`}
-        >
-          <a>Read more</a>
-        </Link>
-      </div>
+          </div>
+        </a>
+      </Link>
     </div>
   )
 }
@@ -98,6 +109,16 @@ const Package = ({ item, router }) => {
   const shareUrl = baseURL + router.asPath
   const [isShareEnabled, setWebShare] = useState(false)
   //   const tags = []
+
+  useEffect(
+    () => {
+      console.log('item', item.tags)
+      item.tags.nodes.forEach((node, index) => {
+        updateViewCount(node.termTaxonomyId)
+      })
+    },
+    [item]
+  )
 
   useEffect(() => {
     if (navigator.share) {

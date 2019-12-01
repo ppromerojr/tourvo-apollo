@@ -12,6 +12,13 @@ const GET_PRODUCT = gql`
           width
         }
       }
+      tags {
+        nodes {
+          name
+          id
+          termTaxonomyId
+        }
+      }
       ... on SimpleProduct {
         id
         name

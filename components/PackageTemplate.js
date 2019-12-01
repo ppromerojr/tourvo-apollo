@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
-import { Affix, Input, Spin, Switch } from 'antd'
-import { useState, useCallback, useEffect } from 'react'
+import { Affix, Input, Switch } from 'antd'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 
 const PackagesList = dynamic(import('./Packages'))

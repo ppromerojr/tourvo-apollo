@@ -6,8 +6,10 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const nextConfig = {
   env: {
     GRAPHQL_URL: process.env.GRAPHQL_URL,
+    API_URL: process.env.API_URL,
     BASE_URL: process.env.BASE_URL,
-    TITLE: process.env.TITLE
+    TITLE: process.env.TITLE,
+    GA_TRACKING_CODE: process.env.GA_TRACKING_CODE
   },
   webpack: (config, { dev }) => {
     const oldEntry = config.entry

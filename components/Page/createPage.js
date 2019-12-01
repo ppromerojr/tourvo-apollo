@@ -15,12 +15,20 @@ export default options => {
     ..._options
   }
 
+  console.log('options', options)
+
   options.getInitialProps = async context => {
     let result = {}
     let extraProps = {}
 
-    if (_options.getInitialProps) {
-      result = await _options.getInitialProps(context, extraProps)
+    console.log(context)
+
+    if (options.getInitialProps) {
+      try {
+        result = await _options.getInitialProps(context, extraProps)
+      } catch (err) {
+        console.log(err)
+      }
     }
 
     return result
@@ -79,8 +87,6 @@ function createPage (options, InnerComponent) {
       </React.Fragment>
     )
   }
-
-  Page.getInitialProps = options.getInitialProps
 
   Page = memo(Page)
 
