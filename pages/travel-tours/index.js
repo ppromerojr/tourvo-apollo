@@ -1,29 +1,19 @@
-import { Fragment, useEffect, memo, useMemo } from 'react'
-import useSWR, { SWRConfig } from 'swr'
+import { Fragment, memo } from 'react'
+import useSWR from 'swr'
 
 import createPage from '../../components/Page/createPage'
 import Body from '../../components/Body'
 import Trending from '../../components/Trending'
-import { request } from 'graphql-request'
 
 const API = process.env.API_URL + '/trending-tags'
 
 const getTrendingTags = url => fetch(url).then(_ => _.json())
 
 function MainPage ({ data, loading, error, ...rest }) {
-  const { data: tags, error: tagsError } = useSWR(API, getTrendingTags, {
-    refreshInterval: 10
-  })
+  const { data: tags, error: tagsError } = useSWR(API, getTrendingTags)
   if (error) {
     return <div>error</div>
   }
-
-  useMemo(
-    () => {
-      console.log('tags', tags)
-    },
-    [tags]
-  )
 
   return (
     <Fragment>

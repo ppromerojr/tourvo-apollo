@@ -29,7 +29,14 @@ const Nav = styled('div')`
 const Header = ({ router: { pathname } }) => {
   return (
     <div
-      style={{ position: 'fixed', width: '100%', height: 'auto', bottom: 0 }}
+      style={{
+        position: 'fixed',
+        width: '100%',
+        height: 'auto',
+        bottom: 0,
+        zIndex: 9,
+        left: 0
+      }}
     >
       <Nav>
         <ul>

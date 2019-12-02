@@ -1,12 +1,6 @@
-import dynamic from 'next/dynamic'
 import createCategoryPage from '../../../../components/Page/createCategory'
-import { Fragment, useEffect } from 'react'
-import GET_PRODUCTS from '../../../../graphql/products.queries'
-import Router from 'next/router'
-
-const PackageTemplate = dynamic(
-  import('../../../../components/PackageTemplate')
-)
+import { Fragment } from 'react'
+import PackageTemplate from '../../../../components/PackageTemplate'
 
 function Packages ({ data, loading, error, client, ...rest }) {
   if (error) {
@@ -16,7 +10,7 @@ function Packages ({ data, loading, error, client, ...rest }) {
   return (
     <Fragment>
       <PackageTemplate
-        isCategoryPageLoading={loading}
+        loading={loading}
         category={data.productCategories}
         {...rest}
       />

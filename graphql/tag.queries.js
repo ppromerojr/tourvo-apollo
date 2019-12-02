@@ -11,6 +11,7 @@ const GET_TAG = gql`
           name
           slug
           id
+          termTaxonomyId
           metaTags {
             description
             keywords

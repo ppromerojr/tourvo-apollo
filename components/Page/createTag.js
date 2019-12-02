@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useEffect } from 'react'
 import { withRouter } from 'next/router'
 
 import App from '../App'
@@ -8,6 +8,7 @@ import Head from '../Head'
 
 import useQueryCategory from '../../hooks/useQueryCategory'
 import useQueryTag from '../../hooks/useQueryTag'
+import { Tags } from '../../utils/HttpClient'
 
 export default options => {
   let _options = options
@@ -31,7 +32,6 @@ export default options => {
 }
 
 function renderMetaTags ({ data }, router) {
-  console.log('data', data)
   if (data.productTags && data.productTags.edges) {
     const page = data.productTags.edges[0].node
 
@@ -74,6 +74,26 @@ function createTagPage (options, InnerComponent) {
   let Page = props => {
     const slug = props.router.query.tagSlug
     const response = useQueryTag({ first: 1, slug })
+    const { data } = response
+
+    useEffect(
+      () => {
+        if (data.productTags && data.productTags.edges) {
+          const tag = data.productTags.edges[0].node
+
+          const count = async () => {
+            const result = await countPageView(tag)
+          }
+
+          count()
+        }
+      },
+      [data]
+    )
+
+    const countPageView = async tag => {
+      return await Tags.countView(tag.termTaxonomyId)
+    }
 
     return (
       <React.Fragment>

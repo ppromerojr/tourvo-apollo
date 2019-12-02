@@ -1,3 +1,3 @@
 export default ({ children }) => (
-  <main style={{ marginBottom: 50 }}>{children}</main>
+  <main style={{ margin: 10, marginBottom: 50 }}>{children}</main>
 )

@@ -15,13 +15,9 @@ export default options => {
     ..._options
   }
 
-  console.log('options', options)
-
   options.getInitialProps = async context => {
     let result = {}
     let extraProps = {}
-
-    console.log(context)
 
     if (options.getInitialProps) {
       try {

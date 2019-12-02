@@ -768,11 +768,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_ga__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_ga__WEBPACK_IMPORTED_MODULE_0__);
 
 const initGA = () => {
-  console.log('GA init');
   react_ga__WEBPACK_IMPORTED_MODULE_0___default.a.initialize("UA-153648423-1");
 };
 const logPageView = () => {
-  console.log(`Logging pageview for ${window.location.pathname}`);
   react_ga__WEBPACK_IMPORTED_MODULE_0___default.a.set({
     page: window.location.pathname
   });

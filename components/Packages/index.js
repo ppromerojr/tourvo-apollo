@@ -3,6 +3,7 @@ import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
+import styled from 'styled-components'
 
 import ErrorMessage from '../ErrorMessage'
 
@@ -21,6 +22,12 @@ const style = {
   flex: 1,
   marginBottom: 20
 }
+
+const PackagesList = styled('div')({
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+  gridGap: '10px'
+})
 
 const textStyle = {
   padding: 10
@@ -159,9 +166,6 @@ function Packages ({ keyword, onSale, filter }) {
         <div
           style={{
             position: 'relative',
-            display: 'flex',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
             width: ' 100%'
           }}
         >
@@ -175,65 +179,69 @@ function Packages ({ keyword, onSale, filter }) {
               }}
             />
           )}
-          {products.edges.map(({ node }, id) => {
-            return (
-              <Link
-                key={id}
-                href='/travel-tours/packages/[slug]'
-                as={`/travel-tours/packages/${node.slug}`}
-              >
-                <a>
-                  <div
-                    style={style}
-                    onMouseOver={() => {
-                      client.query({
-                        query: GET_PRODUCT,
-                        variables: { slug: node.slug }
-                      })
-                    }}
-                  >
-                    {node.image && (
-                      <div>
-                        <Lazy>
-                          <img
-                            width='100%'
-                            height='300'
-                            alt={node.name}
-                            style={{ display: 'block', objectFit: 'cover' }}
-                            src={node.image.sourceUrl}
-                          />
-                        </Lazy>
-                      </div>
-                    )}
-                    <div style={{ ...textStyle }}>
-                      <h3 style={{ margin: 0, marginBottom: 10 }}>
-                        {node.name}
-                      </h3>
 
-                      <div
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        {node.onSale ? (
-                          <div>
-                            <del>{node.regularPrice}</del>{' '}
-                            <strong>{node.salePrice}</strong>
-                          </div>
-                        ) : (
-                          <div>{node.regularPrice}</div>
-                        )}
-                        <div />
+          <PackagesList>
+            {products.edges.map(({ node }, id) => {
+              return (
+                <Link
+                  key={id}
+                  href='/travel-tours/packages/[slug]'
+                  as={`/travel-tours/packages/${node.slug}`}
+                >
+                  <a>
+                    <div
+                      style={style}
+                      onMouseOver={() => {
+                        client.query({
+                          query: GET_PRODUCT,
+                          variables: { slug: node.slug }
+                        })
+                      }}
+                    >
+                      {node.image && (
+                        <div>
+                          <Lazy>
+                            <img
+                              width='100%'
+                              height='300'
+                              alt={node.name}
+                              style={{ display: 'block', objectFit: 'cover' }}
+                              src={node.image.sourceUrl}
+                            />
+                          </Lazy>
+                        </div>
+                      )}
+                      <div style={{ ...textStyle }}>
+                        <h3 style={{ margin: 0, marginBottom: 10 }}>
+                          {node.name}
+                        </h3>
+
+                        <div
+                          style={{
+                            width: '100%',
+                            display: 'flex',
+                            justifyContent: 'space-between'
+                          }}
+                        >
+                          {node.onSale ? (
+                            <div>
+                              <del>{node.regularPrice}</del>{' '}
+                              <strong>{node.salePrice}</strong>
+                            </div>
+                          ) : (
+                            <div>{node.regularPrice}</div>
+                          )}
+                          <div />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </a>
-              </Link>
-            )
-          })}
-          <div>
+                  </a>
+                </Link>
+              )
+            })}
+          </PackagesList>
+
+          <div style={{ width: '100%' }}>
             {products.pageInfo.hasNextPage && (
               <button onClick={fetchMoreData}>
                 {isLoadingMorePosts ? 'Loading...' : 'Show More'}

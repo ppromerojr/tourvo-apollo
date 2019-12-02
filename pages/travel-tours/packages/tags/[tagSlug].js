@@ -1,22 +1,12 @@
-import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
-import createCategory from '../../../../components/Page/createCategory'
+import PackageTemplate from '../../../../components/PackageTemplate'
 import createTag from '../../../../components/Page/createTag'
-
-const PackageTemplate = dynamic(
-  import('../../../../components/PackageTemplate')
-)
 
 function Tags ({ data, loading, error, ...rest }) {
   if (error) {
     return <div>error</div>
   }
 
-  useEffect(() => {
-    console.log('Rest', rest)
-  }, [])
-
-  return <PackageTemplate title='Packages' {...rest} />
+  return <PackageTemplate tag={data.productTags} loading={loading} {...rest} />
 }
 
 Tags = createTag({})(Tags)

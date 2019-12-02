@@ -3,6 +3,8 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import { Tabs } from 'antd'
 
+import { Tags } from '../../utils/HttpClient'
+
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -58,7 +60,9 @@ const onWebShare = async item => {
 
 const updateViewCount = async tagId => {
   return new Promise(async (resolve, reject) => {
-    const request = await fetch(`${process.env.API_URL}/countview/${tagId}`)
+    const request = await Tags.countView(tagId)
+    // console.log('request', request)
+
     if (request.ok) {
       resolve(true)
     } else {

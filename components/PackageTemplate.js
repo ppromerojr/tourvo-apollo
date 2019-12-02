@@ -8,7 +8,7 @@ const Categories = dynamic(import('./Categories'))
 
 const { Search } = Input
 
-function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
+function PackagePageTemplate ({ category, tag, loading, ...rest }) {
   let [selectedCategory, setCategory] = useState({})
   const [keyword, setKeyword] = useState()
   const [onSale, setOnSale] = useState(null)
@@ -31,8 +31,36 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
     }
   }, [])
 
-  if (category && category.edges) {
-    category = category.edges[0].node
+  const renderPageTitle = () => {
+    if (category && category.edges) {
+      category = category.edges[0].node
+    }
+
+    if (tag && tag.edges) {
+      tag = tag.edges[0].node
+    }
+
+    if (tag) {
+      return (
+        <h1 style={{ marginRight: 10 }}>{loading ? 'Tag' : `#${tag.name}`}</h1>
+      )
+    }
+
+    if (category) {
+      return (
+        <h1 style={{ marginRight: 10 }}>
+          {loading ? selectedCategory.name : category.name}
+        </h1>
+      )
+    }
+
+    return (
+      <h1>
+        <Link href='/travel-tours/packages' as='/travel-tours/packages'>
+          <a>Packages</a>
+        </Link>
+      </h1>
+    )
   }
 
   return (
@@ -45,17 +73,7 @@ function PackagePageTemplate ({ category, isCategoryPageLoading, ...rest }) {
           justifyContent: 'center'
         }}
       >
-        {category ? (
-          <h1 style={{ marginRight: 10 }}>
-            {isCategoryPageLoading ? selectedCategory.name : category.name}
-          </h1>
-        ) : (
-          <h1>
-            <Link href='/travel-tours/packages' as='/travel-tours/packages'>
-              <a>Packages</a>
-            </Link>
-          </h1>
-        )}
+        {renderPageTitle()}
       </div>
       {/* end Title */}
 
