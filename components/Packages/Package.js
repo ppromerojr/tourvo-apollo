@@ -20,6 +20,7 @@ import {
 
 import Body from '../Body'
 import { Share } from 'react-feather'
+import Lazy from '../Image'
 const { TabPane } = Tabs
 
 const SocialShare = styled('div')({
@@ -42,8 +43,8 @@ const FeaturedImage = styled('div')({
 
 const RelatedPackages = styled('div')({
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-  gridGap: '30px'
+  gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+  gridGap: '10px'
 })
 
 const onWebShare = async item => {
@@ -116,7 +117,6 @@ const Package = ({ item, router }) => {
 
   useEffect(
     () => {
-      console.log('item', item.tags)
       item.tags.nodes.forEach((node, index) => {
         updateViewCount(node.termTaxonomyId)
       })
@@ -136,7 +136,9 @@ const Package = ({ item, router }) => {
         <h1 style={{ textAlign: 'center', padding: 20 }}>{item.name}</h1>
         {/* featured image */}
         <FeaturedImage>
-          <img src={item.image.mediaItemUrl} />
+          <Lazy>
+            <img src={item.image.mediaItemUrl} />
+          </Lazy>
         </FeaturedImage>
         {/* end featured image */}
 

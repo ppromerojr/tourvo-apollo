@@ -4,6 +4,7 @@ import useSWR from 'swr'
 import createPage from '../../components/Page/createPage'
 import Body from '../../components/Body'
 import Trending from '../../components/Trending'
+import { Spin } from 'antd'
 
 const API = process.env.API_URL + '/trending-tags'
 
@@ -21,14 +22,13 @@ function MainPage ({ data, loading, error, ...rest }) {
 
       {data.pageBy && (
         <div>
-          <h1>{data.pageBy.title}</h1>
+          {!tags && <Spin />}
           {tags && tags.length && (
             <Fragment>
-              <h2>Trending tags</h2>
+              <h2>Popular Tags</h2>
               <Trending tags={tags} />
             </Fragment>
           )}
-          <Body>{data.pageBy.content}</Body>
         </div>
       )}
     </Fragment>

@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { Affix, Input, Switch } from 'antd'
+import { Affix, Input, Switch, Spin } from 'antd'
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 
@@ -8,7 +8,7 @@ const Categories = dynamic(import('./Categories'))
 
 const { Search } = Input
 
-function PackagePageTemplate ({ category, tag, loading, ...rest }) {
+function PackagePageTemplate ({ category, tag, type, loading, ...rest }) {
   let [selectedCategory, setCategory] = useState({})
   const [keyword, setKeyword] = useState()
   const [onSale, setOnSale] = useState(null)
@@ -31,22 +31,24 @@ function PackagePageTemplate ({ category, tag, loading, ...rest }) {
     }
   }, [])
 
+  if (category && category.edges) {
+    category = category.edges[0].node
+  }
+
+  if (tag && tag.edges) {
+    tag = tag.edges[0].node
+  }
+
   const renderPageTitle = () => {
-    if (category && category.edges) {
-      category = category.edges[0].node
-    }
-
-    if (tag && tag.edges) {
-      tag = tag.edges[0].node
-    }
-
-    if (tag) {
+    if (type === 'tag') {
       return (
-        <h1 style={{ marginRight: 10 }}>{loading ? 'Tag' : `#${tag.name}`}</h1>
+        <h1 style={{ marginRight: 10 }}>
+          {loading ? <Spin /> : `#${tag.name}`}
+        </h1>
       )
     }
 
-    if (category) {
+    if (type === 'category') {
       return (
         <h1 style={{ marginRight: 10 }}>
           {loading ? selectedCategory.name : category.name}
@@ -99,14 +101,16 @@ function PackagePageTemplate ({ category, tag, loading, ...rest }) {
       {/* end search bar */}
 
       {/* Categories */}
-      <div
-        style={{
-          width: '100%',
-          overflow: 'scroll'
-        }}
-      >
-        <Categories onClick={setCategory} />
-      </div>
+      {type != 'tag' && (
+        <div
+          style={{
+            width: '100%',
+            overflow: 'scroll'
+          }}
+        >
+          <Categories onClick={setCategory} />
+        </div>
+      )}
       {/* categories */}
 
       {/* Start filter */}

@@ -6,7 +6,14 @@ function Tags ({ data, loading, error, ...rest }) {
     return <div>error</div>
   }
 
-  return <PackageTemplate tag={data.productTags} loading={loading} {...rest} />
+  return (
+    <PackageTemplate
+      type='tag'
+      tag={data.productTags}
+      loading={loading}
+      {...rest}
+    />
+  )
 }
 
 Tags = createTag({})(Tags)

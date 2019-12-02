@@ -1,8 +1,19 @@
 import { Fragment } from 'react'
 import Link from 'next/link'
+import styled from 'styled-components'
 
 import createPage from '../components/Page/createPage'
-import Body from '../components/Body'
+
+const Grid = styled('div')({
+  display: 'flex',
+  justifyContent: 'space-between'
+})
+
+const Row = styled('div')({
+  flexGrow: 1,
+  textAlign: 'center',
+  padding: 20
+})
 
 function MainPage ({ data, loading, error }) {
   if (error) {
@@ -14,14 +25,18 @@ function MainPage ({ data, loading, error }) {
       {loading && <div>Loading homepage...</div>}
 
       {data.pageBy && (
-        <div>
-          <div>Consultancy</div>
-          <div>
+        <Grid>
+          <Row>
+            <h1>Consultancy</h1>
+          </Row>
+          <Row>
             <Link href='/travel-tours' as='/travel-tours'>
-              <a> Travel & Tours</a>
+              <a>
+                <h1>Travel & Tours</h1>
+              </a>
             </Link>
-          </div>
-        </div>
+          </Row>
+        </Grid>
       )}
     </Fragment>
   )

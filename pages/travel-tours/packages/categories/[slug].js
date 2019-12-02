@@ -10,6 +10,7 @@ function Packages ({ data, loading, error, client, ...rest }) {
   return (
     <Fragment>
       <PackageTemplate
+        type='category'
         loading={loading}
         category={data.productCategories}
         {...rest}

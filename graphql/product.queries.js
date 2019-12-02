@@ -42,7 +42,7 @@ const GET_PRODUCT = gql`
         remarks
         termsOfPayment
       }
-      related {
+      related(first: 4) {
         edges {
           node {
             name
