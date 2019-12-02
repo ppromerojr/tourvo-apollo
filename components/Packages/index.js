@@ -206,7 +206,7 @@ function Packages ({ keyword, onSale, filter }) {
                               height='300'
                               alt={node.name}
                               style={{ display: 'block', objectFit: 'cover' }}
-                              src={node.image.sourceUrl}
+                              src={node.image.sourceUrl + '?webp'}
                             />
                           </Lazy>
                         </div>
