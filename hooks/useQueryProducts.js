@@ -17,7 +17,7 @@ const useQueryProducts = ({ slug, onSale, filter, tagSlug }) => {
         onSale,
         category: slug,
         tagIn: tagSlug || [],
-        first: 8,
+        first: 4,
         orderby: filter ? [filter] : defaultFilter
       },
       notifyOnNetworkStatusChange: true

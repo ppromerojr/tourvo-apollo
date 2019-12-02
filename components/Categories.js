@@ -64,7 +64,7 @@ export const postsQueryVars = {
 }
 
 function Categories ({ onClick }) {
-  const { loading, error, data, fetchMore } = useQueryCategories({ first: 50 })
+  const { loading, error, data, fetchMore } = useQueryCategories({ first: 25 })
   const [isSearching, setIsSearching] = useState(false)
   const [keyword, setKeyword] = useState('')
   // const [showFilter, setShowFilter] = useState(false)

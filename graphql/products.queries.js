@@ -38,7 +38,7 @@ const GET_PRODUCTS = gql`
           status
           slug
           image {
-            sourceUrl(size: WOOCOMMERCE_SINGLE)
+            sourceUrl(size: SHOP_THUMBNAIL)
           }
           tags {
             edges {
