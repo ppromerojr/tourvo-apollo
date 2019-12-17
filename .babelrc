@@ -2,19 +2,12 @@
   "presets": ["next/babel"],
   "plugins": [
     ["graphql-tag"],
+    ["emotion"],
     [
       "import",
       {
         "libraryName": "antd",
         "style": "css"
-      }
-    ],
-    [
-      "styled-components",
-      {
-        "ssr": true,
-        "displayName": true,
-        "preprocess": false
       }
     ]
   ]

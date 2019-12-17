@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import moment from 'moment'
 
 import ErrorMessage from './ErrorMessage'

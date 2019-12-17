@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { Tabs } from 'antd'
 
 import { Tags } from '../../utils/HttpClient'

@@ -2,7 +2,7 @@ import React, { useState, memo, useEffect } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import ErrorMessage from '../ErrorMessage'
 

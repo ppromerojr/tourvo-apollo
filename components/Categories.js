@@ -1,6 +1,6 @@
 import React, { memo, useState, Fragment, useRef } from 'react'
-import styled from 'styled-components'
 import Router from 'next/router'
+import styled from '@emotion/styled'
 
 import useQueryCategories from '../hooks/useQueryCategories'
 

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { withRouter } from 'next/router'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { Home, Heart, Briefcase, List } from 'react-feather'
 
 const Nav = styled('div')`
