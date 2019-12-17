@@ -81,7 +81,7 @@ function renderPackage ({ node }, index) {
       >
         <a>
           <FeaturedImage>
-            <img src={node.image.sourceUrl} />
+            <img async src={node.image.sourceUrl} />
           </FeaturedImage>
           <div> {node.name}</div>
           <div style={{ marginBottom: 10 }}>

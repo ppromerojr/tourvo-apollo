@@ -1,8 +1,9 @@
 import { Fragment } from 'react'
-import Link from 'next/link'
 import styled from 'styled-components'
 
 import createPage from '../components/Page/createPage'
+
+import Link from '../components/Link'
 
 const Grid = styled('div')({
   display: 'flex',
@@ -30,10 +31,8 @@ function MainPage ({ data, loading, error }) {
             <h1>Consultancy</h1>
           </Row>
           <Row>
-            <Link href='/travel-tours' as='/travel-tours'>
-              <a>
-                <h1>Travel & Tours</h1>
-              </a>
+            <Link href='/travel-tours/'>
+              <h1>Travel & Tours</h1>
             </Link>
           </Row>
         </Grid>

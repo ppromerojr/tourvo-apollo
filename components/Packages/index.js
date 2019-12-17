@@ -2,7 +2,6 @@ import React, { useState, memo, useEffect } from 'react'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import dynamic from 'next/dynamic'
 import styled from 'styled-components'
 
 import ErrorMessage from '../ErrorMessage'
@@ -10,9 +9,7 @@ import ErrorMessage from '../ErrorMessage'
 import GET_PRODUCT from '../../graphql/product.queries'
 import useQueryProducts from '../../hooks/useQueryProducts'
 import Lazy from '../Image'
-// import Placeholder from '../Placeholder'
-
-const Placeholder = dynamic(import('../Placeholder'))
+import Placeholder from '../Placeholder'
 
 const style = {
   display: 'flex',
@@ -202,6 +199,7 @@ function Packages ({ keyword, onSale, filter }) {
                         <div>
                           <Lazy>
                             <img
+                              async
                               width='100%'
                               height='300'
                               alt={node.name}

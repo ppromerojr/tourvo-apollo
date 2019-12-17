@@ -1,8 +1,5 @@
-import dynamic from 'next/dynamic'
-
 import createPage from '../../components/Page/createPage'
-
-const Posts = dynamic(import('../../components/Posts'))
+import Posts from '../../components/Posts'
 
 function Packages ({ data, loading, error }) {
   if (error) {

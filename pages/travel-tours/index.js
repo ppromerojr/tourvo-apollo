@@ -1,12 +1,8 @@
 import { Fragment, memo } from 'react'
 import useSWR from 'swr'
-import dynamic from 'next/dynamic'
-import { Spin } from 'antd' 
 
 import createPage from '../../components/Page/createPage'
-import Body from '../../components/Body'
-
-const Trending = dynamic(import('../../components/Trending'))
+import Trending from '../../components/Trending'
 
 const API = process.env.API_URL + '/trending-tags'
 
@@ -24,7 +20,6 @@ function MainPage ({ data, loading, error, ...rest }) {
 
       {data.pageBy && (
         <div>
-          {!tags && <Spin />}
           {tags && tags.length && (
             <Fragment>
               <h2>Popular Tags</h2>

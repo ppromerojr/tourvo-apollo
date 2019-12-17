@@ -714,10 +714,7 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
     Object(_utils_analytics__WEBPACK_IMPORTED_MODULE_4__["initGA"])();
     Object(_utils_analytics__WEBPACK_IMPORTED_MODULE_4__["logPageView"])();
     next_router__WEBPACK_IMPORTED_MODULE_5___default.a.router.events.on('routeChangeComplete', _utils_analytics__WEBPACK_IMPORTED_MODULE_4__["logPageView"]);
-  } //   componentWillUnmount () {
-  //     Router.router.events.off('routeChangeComplete', logPageView)
-  //   }
-
+  }
 
   render() {
     const {
@@ -727,19 +724,19 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_2___default.a {
     return __jsx(react__WEBPACK_IMPORTED_MODULE_1__["Fragment"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 21
+        lineNumber: 17
       },
       __self: this
     }, __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 22
+        lineNumber: 18
       },
       __self: this
     })), __jsx(_components_Install__WEBPACK_IMPORTED_MODULE_3__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 23
+        lineNumber: 19
       },
       __self: this
     }));

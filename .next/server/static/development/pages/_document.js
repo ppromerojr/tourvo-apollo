@@ -1629,7 +1629,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
         enhanceApp: App => props => sheet.collectStyles(__jsx(App, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_7__["default"])({}, props, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 65
+            lineNumber: 64
           },
           __self: this
         })))
@@ -1649,13 +1649,13 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
       lang: "en",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 85
+        lineNumber: 84
       },
       __self: this
     }, __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Head"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 86
+        lineNumber: 85
       },
       __self: this
     }, __jsx("link", {
@@ -1663,15 +1663,15 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
       href: "/static/manifest.json",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 87
+        lineNumber: 86
       },
       __self: this
     }), __jsx("meta", {
       name: "apple-mobile-web-app-status-bar-style",
-      content: "black",
+      content: "black-translucent",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 88
+        lineNumber: 87
       },
       __self: this
     }), __jsx("meta", {
@@ -1679,7 +1679,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
       content: "#21bad9",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 88
       },
       __self: this
     }), __jsx("link", {
@@ -1687,7 +1687,7 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
       href: "/static/icons/apple-touch-icon.png",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 90
       },
       __self: this
     }), __jsx("link", {
@@ -1695,39 +1695,31 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_9___default.a {
       href: "/static/wp.min.css",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 95
-      },
-      __self: this
-    }), __jsx("link", {
-      rel: "stylesheet",
-      href: "/static/antd.min.css",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 96
+        lineNumber: 94
       },
       __self: this
     }), this.props.styleTags), __jsx("body", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 100
+        lineNumber: 98
       },
       __self: this
     }, __jsx(GlobalStyle, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 101
+        lineNumber: 99
       },
       __self: this
     }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["Main"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 102
+        lineNumber: 100
       },
       __self: this
     }), __jsx(next_document__WEBPACK_IMPORTED_MODULE_9__["NextScript"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 103
+        lineNumber: 101
       },
       __self: this
     })));

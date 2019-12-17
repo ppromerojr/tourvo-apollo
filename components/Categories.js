@@ -1,10 +1,8 @@
 import React, { memo, useState, Fragment, useRef } from 'react'
 import styled from 'styled-components'
-import ErrorMessage from './ErrorMessage'
+import Router from 'next/router'
 
 import useQueryCategories from '../hooks/useQueryCategories'
-import Link from 'next/link'
-import Router from 'next/router'
 
 const Tags = styled('div')`
   button {

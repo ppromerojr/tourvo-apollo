@@ -1,14 +1,21 @@
 {
-    "presets": [
-        "next/babel"
+  "presets": ["next/babel"],
+  "plugins": [
+    ["graphql-tag"],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "css"
+      }
     ],
-    "plugins": [
-        [
-            "import",
-            {
-                "libraryName": "antd",
-                "style": "css"
-            }
-        ]
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false
+      }
     ]
+  ]
 }
