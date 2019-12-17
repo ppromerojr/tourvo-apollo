@@ -1,10 +1,12 @@
 import { Fragment, memo } from 'react'
 import useSWR from 'swr'
+import dynamic from 'next/dynamic'
+import { Spin } from 'antd' 
 
 import createPage from '../../components/Page/createPage'
 import Body from '../../components/Body'
-import Trending from '../../components/Trending'
-import { Spin } from 'antd' 
+
+const Trending = dynamic(import('../../components/Trending'))
 
 const API = process.env.API_URL + '/trending-tags'
 

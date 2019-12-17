@@ -11,10 +11,6 @@ class MyApp extends App {
     Router.router.events.on('routeChangeComplete', logPageView)
   }
 
-  //   componentWillUnmount () {
-  //     Router.router.events.off('routeChangeComplete', logPageView)
-  //   }
-
   render () {
     const { Component, pageProps } = this.props
     return (

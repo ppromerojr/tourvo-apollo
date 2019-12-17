@@ -1,5 +1,8 @@
-import PackageTemplate from '../../../../components/PackageTemplate'
+import dynamic from 'next/dynamic'
+ 
 import createTag from '../../../../components/Page/createTag'
+
+const PackageTemplate = dynamic(import('../../../../components/PackageTemplate'))
 
 function Tags ({ data, loading, error, ...rest }) {
   if (error) {

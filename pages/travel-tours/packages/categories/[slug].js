@@ -1,6 +1,9 @@
-import createCategoryPage from '../../../../components/Page/createCategory'
 import { Fragment } from 'react'
-import PackageTemplate from '../../../../components/PackageTemplate'
+import dynamic from 'next/dynamic'
+
+import createCategoryPage from '../../../../components/Page/createCategory'
+
+const PackageTemplate = dynamic(import('../../../../components/PackageTemplate'))
 
 function Packages ({ data, loading, error, client, ...rest }) {
   if (error) {

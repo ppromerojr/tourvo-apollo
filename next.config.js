@@ -3,6 +3,7 @@ require('dotenv').config();
 const path = require('path');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const withCss = require('@zeit/next-css');
+const webpack = require('webpack')
 
 const nextConfig = {
     env: {
@@ -14,6 +15,7 @@ const nextConfig = {
     },
     webpack: (config, { dev, isServer }) => {
         const oldEntry = config.entry
+        config.plugins = config.plugins || []
 
         config.entry = () =>
             oldEntry().then(entry => {
@@ -69,6 +71,8 @@ const nextConfig = {
                 })
             )
         }
+        
+        config.plugins.push(new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en/));
 
         return config
     }
