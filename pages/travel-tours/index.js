@@ -4,7 +4,7 @@ import useSWR from 'swr'
 import createPage from '../../components/Page/createPage'
 import Body from '../../components/Body'
 import Trending from '../../components/Trending'
-import { Spin } from 'antd'
+import { Spin } from 'antd' 
 
 const API = process.env.API_URL + '/trending-tags'
 

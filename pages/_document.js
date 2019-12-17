@@ -55,56 +55,54 @@ body {
 `
 
 class MyDocument extends Document {
-  static async getInitialProps (ctx) {
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
+    static async getInitialProps(ctx) {
+        const sheet = new ServerStyleSheet();
+        const originalRenderPage = ctx.renderPage;
+        try {
+            ctx.renderPage = () =>
+                originalRenderPage({
+                    enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
+                });
+            const initialProps = await Document.getInitialProps(ctx);
 
-    try {
-      ctx.renderPage = () =>
-        originalRenderPage({
-          enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
-        })
-
-      const initialProps = await Document.getInitialProps(ctx)
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        )
-      }
-    } finally {
-      sheet.seal()
+            return {
+                ...initialProps,
+                styles: (
+                    <>
+                        {initialProps.styles}
+                        {sheet.getStyleElement()}
+                    </>
+                )
+            };
+        } finally {
+            sheet.seal();
+        }
     }
-  }
 
-  render () {
-    return (
-      <Html lang='en'>
-        <Head>
-          <link rel='manifest' href='/static/manifest.json' />
-          <meta name='apple-mobile-web-app-status-bar-style' content='black' />
-          <meta name='theme-color' content='#21bad9' />
+    render() {
+        return (
+            <Html lang='en'>
+                <Head>
+                    <link rel='manifest' href='/static/manifest.json' />
+                    <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent' />
+                    <meta name='theme-color' content='#21bad9' />
 
-          <link
-            rel='apple-touch-icon'
-            href='/static/icons/apple-touch-icon.png'
-          />
-          <link rel='stylesheet' href='/static/wp.min.css' />
-          <link rel='stylesheet' href='/static/antd.min.css' />
-          {this.props.styleTags}
-        </Head>
+                    <link
+                        rel='apple-touch-icon'
+                        href='/static/icons/apple-touch-icon.png'
+                    />
+                    <link rel='stylesheet' href='/static/wp.min.css' />
+                    {this.props.styleTags}
+                </Head>
 
-        <body>
-          <GlobalStyle />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
+                <body>
+                    <GlobalStyle />
+                    <Main />
+                    <NextScript />
+                </body>
+            </Html>
+        )
+    }
 }
 
 export default MyDocument

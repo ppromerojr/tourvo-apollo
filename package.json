@@ -16,7 +16,7 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
-    "antd": "^3.25.3",
+    "antd": "^3.26.3",
     "apisauce": "^1.1.1",
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
