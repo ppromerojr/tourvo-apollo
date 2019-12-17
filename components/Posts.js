@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from 'react'
+import React, { memo } from 'react'
 import { useQuery } from '@apollo/react-hooks'
 import { NetworkStatus } from 'apollo-client'
 import Link from 'next/link'
@@ -8,16 +8,8 @@ import moment from 'moment'
 import ErrorMessage from './ErrorMessage'
 
 import GET_POSTS from '../graphql/posts.queries'
-import GET_POST from '../graphql/post.queries'
 import Body from './Body'
 import Lazy from './Image'
-
-const style = {
-  height: 30,
-  border: '1px solid green',
-  margin: 6,
-  padding: 8
-}
 
 export const postsQueryVars = {
   skip: 0,
