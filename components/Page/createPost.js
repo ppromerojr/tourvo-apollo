@@ -2,8 +2,7 @@ import { memo } from 'react'
 import { withRouter } from 'next/router'
 
 import App from '../App'
-import TabBar from '../TabBar'
-import { withApollo } from '../../lib/apollo'
+import TabBar from '../TabBar' 
 import Head from '../Head'
 import useQueryPost from '../../hooks/useQueryPost'
 
@@ -29,7 +28,7 @@ export default options => {
 }
 
 function renderMetaTags ({ data }, router) {
-  if (data.postBy) {
+  if (data && data.postBy) {
     const { postBy: page } = data
 
     let tags = {
@@ -84,5 +83,5 @@ function createPostPage (options, InnerComponent) {
 
   Page = memo(Page)
 
-  return withRouter(withApollo(Page))
+  return withRouter(Page)
 }

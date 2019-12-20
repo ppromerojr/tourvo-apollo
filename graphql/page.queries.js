@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-const GET_PAGE = gql`
+const GET_PAGE = `
   query Page($uri: String!) {
     pageBy(uri: $uri) {
       id

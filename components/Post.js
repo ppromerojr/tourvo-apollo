@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from 'graphql-hooks'
 
 import GET_POST from '../graphql/post.queries'
 

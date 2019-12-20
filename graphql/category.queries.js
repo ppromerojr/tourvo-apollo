@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-const GET_CATEGORY = gql`
+const GET_CATEGORY = `
   query Categories($slug: [String]) {
     productCategories(
       first: 1

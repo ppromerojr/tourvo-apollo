@@ -192,6 +192,28 @@ module.exports = __webpack_require__(/*! core-js/library/fn/set */ "core-js/libr
 
 /***/ }),
 
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/symbol.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/symbol.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/symbol */ "core-js/library/fn/symbol");
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! core-js/library/fn/symbol/iterator */ "core-js/library/fn/symbol/iterator");
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime-corejs2/core-js/weak-map.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/core-js/weak-map.js ***!
@@ -311,6 +333,8 @@ var _Object$getOwnPropertyDescriptor = __webpack_require__(/*! ../core-js/object
 
 var _Object$defineProperty = __webpack_require__(/*! ../core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
 
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime-corejs2/helpers/typeof.js");
+
 var _WeakMap = __webpack_require__(/*! ../core-js/weak-map */ "./node_modules/@babel/runtime-corejs2/core-js/weak-map.js");
 
 function _getRequireWildcardCache() {
@@ -329,6 +353,12 @@ function _interopRequireWildcard(obj) {
     return obj;
   }
 
+  if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") {
+    return {
+      "default": obj
+    };
+  }
+
   var cache = _getRequireWildcardCache();
 
   if (cache && cache.has(obj)) {
@@ -336,19 +366,16 @@ function _interopRequireWildcard(obj) {
   }
 
   var newObj = {};
+  var hasPropertyDescriptor = _Object$defineProperty && _Object$getOwnPropertyDescriptor;
 
-  if (obj != null) {
-    var hasPropertyDescriptor = _Object$defineProperty && _Object$getOwnPropertyDescriptor;
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      var desc = hasPropertyDescriptor ? _Object$getOwnPropertyDescriptor(obj, key) : null;
 
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        var desc = hasPropertyDescriptor ? _Object$getOwnPropertyDescriptor(obj, key) : null;
-
-        if (desc && (desc.get || desc.set)) {
-          _Object$defineProperty(newObj, key, desc);
-        } else {
-          newObj[key] = obj[key];
-        }
+      if (desc && (desc.get || desc.set)) {
+        _Object$defineProperty(newObj, key, desc);
+      } else {
+        newObj[key] = obj[key];
       }
     }
   }
@@ -366,98 +393,34 @@ module.exports = _interopRequireWildcard;
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-body-tags-server!./":
-/*!*****************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-body-tags-server ***!
-  \*****************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./node_modules/@babel/runtime-corejs2/helpers/typeof.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime-corejs2/helpers/typeof.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
+var _Symbol$iterator = __webpack_require__(/*! ../core-js/symbol/iterator */ "./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js");
 
-    
+var _Symbol = __webpack_require__(/*! ../core-js/symbol */ "./node_modules/@babel/runtime-corejs2/core-js/symbol.js");
 
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
+function _typeof2(obj) { if (typeof _Symbol === "function" && typeof _Symbol$iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof _Symbol === "function" && obj.constructor === _Symbol && obj !== _Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
-/***/ }),
+function _typeof(obj) {
+  if (typeof _Symbol === "function" && _typeof2(_Symbol$iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof _Symbol === "function" && obj.constructor === _Symbol && obj !== _Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-head-tags-server!./":
-/*!*****************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-head-tags-server ***!
-  \*****************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+  return _typeof(obj);
+}
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-    
-
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
-
-/***/ }),
-
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-html-props-server!./":
-/*!******************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-html-props-server ***!
-  \******************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-    
-
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
-
-/***/ }),
-
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=unstable-enhance-app-server!./":
-/*!*******************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=unstable-enhance-app-server ***!
-  \*******************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-    
-
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
-
-/***/ }),
-
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=unstable-get-styles-server!./":
-/*!******************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=unstable-get-styles-server ***!
-  \******************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-
-    
-
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
+module.exports = _typeof;
 
 /***/ }),
 
@@ -483,7 +446,10 @@ exports.PHASE_PRODUCTION_SERVER = 'phase-production-server';
 exports.PHASE_DEVELOPMENT_SERVER = 'phase-development-server';
 exports.PAGES_MANIFEST = 'pages-manifest.json';
 exports.BUILD_MANIFEST = 'build-manifest.json';
+exports.EXPORT_MARKER = 'export-marker.json';
+exports.EXPORT_DETAIL = 'export-detail.json';
 exports.PRERENDER_MANIFEST = 'prerender-manifest.json';
+exports.ROUTES_MANIFEST = 'routes-manifest.json';
 exports.REACT_LOADABLE_MANIFEST = 'react-loadable-manifest.json';
 exports.SERVER_DIRECTORY = 'server';
 exports.SERVERLESS_DIRECTORY = 'serverless';
@@ -493,6 +459,7 @@ exports.BLOCKED_PAGES = ['/_document', '/_app'];
 exports.CLIENT_PUBLIC_FILES_PATH = 'public';
 exports.CLIENT_STATIC_FILES_PATH = 'static';
 exports.CLIENT_STATIC_FILES_RUNTIME = 'runtime';
+exports.AMP_RENDER_TARGET = '__NEXT_AMP_RENDER_TARGET__';
 exports.CLIENT_STATIC_FILES_RUNTIME_PATH = `${exports.CLIENT_STATIC_FILES_PATH}/${exports.CLIENT_STATIC_FILES_RUNTIME}`; // static/runtime/main.js
 
 exports.CLIENT_STATIC_FILES_RUNTIME_MAIN = `${exports.CLIENT_STATIC_FILES_RUNTIME_PATH}/main.js`; // static/runtime/amp.js
@@ -507,6 +474,7 @@ exports.IS_BUNDLED_PAGE_REGEX = /^static[/\\][^/\\]+[/\\]pages.*\.js$/; // match
 
 exports.ROUTE_NAME_REGEX = /^static[/\\][^/\\]+[/\\]pages[/\\](.*)\.js$/;
 exports.SERVERLESS_ROUTE_NAME_REGEX = /^pages[/\\](.*)\.js$/;
+exports.DEFAULT_REDIRECT_STATUS = 307;
 
 /***/ }),
 
@@ -688,26 +656,16 @@ exports.SUPPORTS_PERFORMANCE_USER_TIMING = exports.SUPPORTS_PERFORMANCE && typeo
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const constants_1 = __webpack_require__(/*! ../lib/constants */ "./node_modules/next/dist/next-server/lib/constants.js");
-const internalPrefixes = [/^\/_next\//, /^\/static\//];
-function isInternalUrl(url) {
-    for (const prefix of internalPrefixes) {
-        if (prefix.test(url)) {
-            return true;
-        }
-    }
-    return false;
-}
-exports.isInternalUrl = isInternalUrl;
 function isBlockedPage(pathname) {
     return constants_1.BLOCKED_PAGES.indexOf(pathname) !== -1;
 }
 exports.isBlockedPage = isBlockedPage;
 function cleanAmpPath(pathname) {
     if (pathname.match(/\?amp=(y|yes|true|1)/)) {
-        pathname = pathname.replace(/\?amp=(y|yes|true|1)/, '?');
+        pathname = pathname.replace(/\?amp=(y|yes|true|1)&?/, '?');
     }
     if (pathname.match(/&amp=(y|yes|true|1)/)) {
-        pathname = pathname.replace(/\?amp=(y|yes|true|1)/, '');
+        pathname = pathname.replace(/&amp=(y|yes|true|1)/, '');
     }
     pathname = pathname.replace(/\?$/, '');
     return pathname;
@@ -727,7 +685,7 @@ exports.cleanAmpPath = cleanAmpPath;
 "use strict";
 
 
-var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireWildcard.js");
+var _interopRequireWildcard3 = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireWildcard.js");
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
 
@@ -745,23 +703,17 @@ var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-co
 
 var _now = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/date/now */ "./node_modules/@babel/runtime-corejs2/core-js/date/now.js"));
 
+var _promise = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js"));
+
+var _interopRequireWildcard2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireWildcard.js"));
+
 var _set = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/core-js/set */ "./node_modules/@babel/runtime-corejs2/core-js/set.js"));
 
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js"));
 
 var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "prop-types"));
 
-var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "react"));
-
-var _utils = __webpack_require__(/*! ../next-server/server/utils */ "./node_modules/next/dist/next-server/server/utils.js");
-
-var _utils2 = __webpack_require__(/*! ../next-server/lib/utils */ "./node_modules/next/dist/next-server/lib/utils.js");
-
-exports.DocumentContext = _utils2.DocumentContext;
-exports.DocumentInitialProps = _utils2.DocumentInitialProps;
-exports.DocumentProps = _utils2.DocumentProps;
-
-var _htmlescape = __webpack_require__(/*! ../server/htmlescape */ "./node_modules/next/dist/server/htmlescape.js");
+var _react = _interopRequireWildcard3(__webpack_require__(/*! react */ "react"));
 
 var _server = _interopRequireDefault(__webpack_require__(/*! styled-jsx/server */ "styled-jsx/server"));
 
@@ -769,21 +721,15 @@ var _constants = __webpack_require__(/*! ../next-server/lib/constants */ "./node
 
 var _documentContext = __webpack_require__(/*! ../next-server/lib/document-context */ "./node_modules/next/dist/next-server/lib/document-context.js");
 
-var _nextPluginLoaderMiddlewareDocumentHeadTagsServer = _interopRequireDefault(__webpack_require__(/*! next-plugin-loader?middleware=document-head-tags-server */ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-head-tags-server!./"));
+var _utils = __webpack_require__(/*! ../next-server/lib/utils */ "./node_modules/next/dist/next-server/lib/utils.js");
 
-var _nextPluginLoaderMiddlewareDocumentBodyTagsServer = _interopRequireDefault(__webpack_require__(/*! next-plugin-loader?middleware=document-body-tags-server */ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-body-tags-server!./"));
+exports.DocumentContext = _utils.DocumentContext;
+exports.DocumentInitialProps = _utils.DocumentInitialProps;
+exports.DocumentProps = _utils.DocumentProps;
 
-var _nextPluginLoaderMiddlewareDocumentHtmlPropsServer = _interopRequireDefault(__webpack_require__(/*! next-plugin-loader?middleware=document-html-props-server */ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=document-html-props-server!./"));
+var _utils2 = __webpack_require__(/*! ../next-server/server/utils */ "./node_modules/next/dist/next-server/server/utils.js");
 
-var _nextPluginLoaderMiddlewareUnstableEnhanceAppServer = _interopRequireDefault(__webpack_require__(/*! next-plugin-loader?middleware=unstable-enhance-app-server */ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=unstable-enhance-app-server!./"));
-
-var _nextPluginLoaderMiddlewareUnstableGetStylesServer = _interopRequireDefault(__webpack_require__(/*! next-plugin-loader?middleware=unstable-get-styles-server */ "./node_modules/next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=unstable-get-styles-server!./"));
-/* eslint-disable */
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
-
+var _htmlescape = __webpack_require__(/*! ../server/htmlescape */ "./node_modules/next/dist/server/htmlescape.js");
 
 function middleware(_x) {
   return _middleware.apply(this, arguments);
@@ -817,6 +763,10 @@ function getOptionalModernScriptVariant(path) {
 
   return path;
 }
+
+function isLowPriority(file) {
+  return file.includes('_buildManifest');
+}
 /**
 * `Document` component handles the initial `document` markup and renders only on the server side.
 * Commonly used for implementing server side rendering for `css-in-js` libraries.
@@ -830,7 +780,7 @@ class Document extends _react.Component {
   */
   static getInitialProps(ctx) {
     return (0, _asyncToGenerator2.default)(function* () {
-      var enhancers = yield (0, _nextPluginLoaderMiddlewareUnstableEnhanceAppServer.default)(ctx);
+      var enhancers =  false ? undefined : [];
 
       var enhanceApp = App => {
         for (var enhancer of enhancers) {
@@ -847,7 +797,7 @@ class Document extends _react.Component {
       } = yield ctx.renderPage({
         enhanceApp
       });
-      var styles = [...(0, _server.default)(), ...(yield (0, _nextPluginLoaderMiddlewareUnstableGetStylesServer.default)(ctx))];
+      var styles = [...(0, _server.default)(), ...( false ? undefined : [])];
       return {
         html,
         head,
@@ -864,7 +814,7 @@ class Document extends _react.Component {
         // In dev we invalidate the cache by appending a timestamp to the resource URL.
         // This is a workaround to fix https://github.com/zeit/next.js/issues/5860
         // TODO: remove this workaround when https://bugs.webkit.org/show_bug.cgi?id=187726 is fixed.
-        _devOnlyInvalidateCacheQueryString:  true ? '?ts=' + (0, _now.default)() : undefined
+        _devOnlyInvalidateCacheQueryString: true ? '?ts=' + (0, _now.default)() : undefined
       }
     }, _react.default.createElement(Document, props));
   }
@@ -876,9 +826,9 @@ class Document extends _react.Component {
 }
 
 exports.default = Document;
-Document.headTagsMiddleware = _nextPluginLoaderMiddlewareDocumentHeadTagsServer.default;
-Document.bodyTagsMiddleware = _nextPluginLoaderMiddlewareDocumentBodyTagsServer.default;
-Document.htmlPropsMiddleware = _nextPluginLoaderMiddlewareDocumentHtmlPropsServer.default;
+Document.headTagsMiddleware =  false ? undefined : () => [];
+Document.bodyTagsMiddleware =  false ? undefined : () => [];
+Document.htmlPropsMiddleware =  false ? undefined : () => [];
 
 class Html extends _react.Component {
   constructor() {
@@ -893,7 +843,7 @@ class Html extends _react.Component {
     } = this.context._documentProps;
     return _react.default.createElement("html", (0, _extends2.default)({}, htmlProps, this.props, {
       amp: inAmpMode ? '' : undefined,
-      "data-ampdevmode": inAmpMode && "development" !== 'production' ? '' : undefined
+      "data-ampdevmode": inAmpMode && true ? '' : undefined
     }));
   }
 
@@ -920,7 +870,7 @@ class Head extends _react.Component {
     var cssLinkElements = [];
     cssFiles.forEach(file => {
       cssLinkElements.push(_react.default.createElement("link", {
-        key: "${file}-preload",
+        key: file + "-preload",
         nonce: this.props.nonce,
         rel: "preload",
         href: assetPrefix + "/_next/" + encodeURI(file),
@@ -978,9 +928,9 @@ class Head extends _react.Component {
       // the feature is enabled. This clause will filter down to the
       // modern variants only.
       //
-      // Also filter out _buildManifest because it should not be
+      // Also filter out low priority files because they should not be
       // preloaded for performance reasons.
-      return file.endsWith(getOptionalModernScriptVariant('.js')) && !file.includes('_buildManifest');
+      return file.endsWith(getOptionalModernScriptVariant('.js')) && !isLowPriority(file);
     }) : [];
     return preloadFiles.length === 0 ? null : preloadFiles.map(file => {
       return _react.default.createElement("link", {
@@ -1084,7 +1034,7 @@ class Head extends _react.Component {
       var hasStyles = el => el && el.props && el.props.dangerouslySetInnerHTML && el.props.dangerouslySetInnerHTML.__html; // @ts-ignore Property 'props' does not exist on type ReactElement
 
 
-      styles.props.children.map(child => {
+      styles.props.children.forEach(child => {
         if ((0, _isArray.default)(child)) {
           child.map(el => hasStyles(el) && curStyles.push(el));
         } else if (hasStyles(child)) {
@@ -1112,7 +1062,7 @@ class Head extends _react.Component {
       content: "width=device-width,minimum-scale=1,initial-scale=1"
     }), !hasCanonicalRel && _react.default.createElement("link", {
       rel: "canonical",
-      href: canonicalBase + (0, _utils.cleanAmpPath)(dangerousAsPath)
+      href: canonicalBase + (0, _utils2.cleanAmpPath)(dangerousAsPath)
     }), _react.default.createElement("link", {
       rel: "preload",
       as: "script",
@@ -1138,7 +1088,7 @@ class Head extends _react.Component {
     })), !inAmpMode && _react.default.createElement(_react.default.Fragment, null, !hasAmphtmlRel && hybridAmp && _react.default.createElement("link", {
       rel: "amphtml",
       href: canonicalBase + getAmpPath(ampPath, dangerousAsPath)
-    }), page !== '/_error' && _react.default.createElement("link", {
+    }), this.getCssLinks(), page !== '/_error' && _react.default.createElement("link", {
       rel: "preload",
       href: assetPrefix + getOptionalModernScriptVariant(encodeURI("/_next/static/" + buildId + "/pages" + getPageFile(page))) + _devOnlyInvalidateCacheQueryString,
       as: "script",
@@ -1155,7 +1105,7 @@ class Head extends _react.Component {
     // (by default, style-loader injects at the bottom of <head />)
     _react.default.createElement("noscript", {
       id: "__next_css__DO_NOT_USE__"
-    }), this.getCssLinks(), styles || null), _react.default.createElement(_react.default.Fragment, {}, ...(headTags || [])));
+    }), styles || null), _react.default.createElement(_react.default.Fragment, {}, ...(headTags || [])));
   }
 
 }
@@ -1178,7 +1128,7 @@ class Main extends _react.Component {
       inAmpMode,
       html
     } = this.context._documentProps;
-    if (inAmpMode) return '__NEXT_AMP_RENDER_TARGET__';
+    if (inAmpMode) return _constants.AMP_RENDER_TARGET;
     return _react.default.createElement("div", {
       id: "__next",
       dangerouslySetInnerHTML: {
@@ -1237,12 +1187,9 @@ class NextScript extends _react.Component {
     var {
       _devOnlyInvalidateCacheQueryString
     } = this.context;
-    return files.map(file => {
-      // Only render .js files here
-      if (!/\.js$/.test(file)) {
-        return null;
-      }
-
+    var normalScripts = files.filter(file => file.endsWith('.js') && !isLowPriority(file));
+    var lowPriorityScripts = files.filter(file => file.endsWith('.js') && isLowPriority(file));
+    return [...normalScripts, ...lowPriorityScripts].map(file => {
       var modernProps = {};
 
       if (false) {}
@@ -1268,7 +1215,7 @@ class NextScript extends _react.Component {
     var {
       _devOnlyInvalidateCacheQueryString
     } = this.context;
-    return polyfillFiles.filter(polyfill => !/\.module\.js$/.test(polyfill)).map(polyfill => _react.default.createElement("script", {
+    return polyfillFiles.filter(polyfill => polyfill.endsWith('.js') && !/\.module\.js$/.test(polyfill)).map(polyfill => _react.default.createElement("script", {
       key: polyfill,
       nonce: this.props.nonce,
       crossOrigin: this.props.crossOrigin || undefined,
@@ -1438,7 +1385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_document__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_document__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/core */ "@emotion/core");
 /* harmony import */ var _emotion_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_emotion_core__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/pages/_document.js";
+var _jsxFileName = "/workspace/tourvo-apollo/pages/_document.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -1446,10 +1393,10 @@ function _EMOTION_STRINGIFIED_CSS_ERROR__() { return "You have tried to stringif
 
 
 
-const globalStyles =  false ? undefined : {
+const globalStyles = false ? undefined : {
   name: "1l1y9uv-globalStyles",
   styles: "body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;letter-spacing:-0.015em;}a{color:#22bad9;}p{font-size:14px;line-height:24px;}article{margin:0 auto;max-width:650px;}input[type='text']{padding:9px 15px;border:0;border:1px solid #ccc;outline:none;}button{align-items:center;background-color:#22bad9;border:0;color:white;display:flex;border-radius:17px;padding:10px 20px;transition:background-color 0.3s;}button.active{background-color:#017790;font-weight:bold;}button:active{background-color:#1b9db7;}button:disabled{background-color:#b5bebf;}button:focus{outline:none;};label:globalStyles;",
-  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9wYWJzcm9tZXJvanIvRG9jdW1lbnRzL1Byb2plY3RzL3RvdXJ2by1hcG9sbG8vcGFnZXMvX2RvY3VtZW50LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUd3QiIsImZpbGUiOiIvVXNlcnMvcGFic3JvbWVyb2pyL0RvY3VtZW50cy9Qcm9qZWN0cy90b3Vydm8tYXBvbGxvL3BhZ2VzL19kb2N1bWVudC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBEb2N1bWVudCwgeyBIdG1sLCBIZWFkLCBNYWluLCBOZXh0U2NyaXB0IH0gZnJvbSAnbmV4dC9kb2N1bWVudCdcbmltcG9ydCB7IGNzcywgR2xvYmFsIH0gZnJvbSAnQGVtb3Rpb24vY29yZSdcblxuY29uc3QgZ2xvYmFsU3R5bGVzID0gY3NzYFxuICBib2R5IHtcbiAgICBtYXJnaW46IDA7XG4gICAgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgJ1NlZ29lIFVJJywgJ1BpbmdGYW5nIFNDJyxcbiAgICAgICdIaXJhZ2lubyBTYW5zIEdCJywgJ01pY3Jvc29mdCBZYUhlaScsICdIZWx2ZXRpY2EgTmV1ZScsIEhlbHZldGljYSwgQXJpYWwsXG4gICAgICBzYW5zLXNlcmlmLCAnQXBwbGUgQ29sb3IgRW1vamknLCAnU2Vnb2UgVUkgRW1vamknLCAnU2Vnb2UgVUkgU3ltYm9sJztcbiAgICB0ZXh0LXJlbmRlcmluZzogb3B0aW1pemVMZWdpYmlsaXR5O1xuICAgIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xuICAgIGxldHRlci1zcGFjaW5nOiAtMC4wMTVlbTtcbiAgfVxuICBhIHtcbiAgICBjb2xvcjogIzIyYmFkOTtcbiAgfVxuICBwIHtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgbGluZS1oZWlnaHQ6IDI0cHg7XG4gIH1cbiAgYXJ0aWNsZSB7XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgbWF4LXdpZHRoOiA2NTBweDtcbiAgfVxuICBpbnB1dFt0eXBlPSd0ZXh0J10ge1xuICAgIHBhZGRpbmc6IDlweCAxNXB4O1xuICAgIGJvcmRlcjogMDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICAgIG91dGxpbmU6IG5vbmU7XG4gIH1cbiAgYnV0dG9uIHtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMyMmJhZDk7XG4gICAgYm9yZGVyOiAwO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE3cHg7XG4gICAgcGFkZGluZzogMTBweCAyMHB4O1xuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcztcbiAgfVxuICBidXR0b24uYWN0aXZlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDE3NzkwO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICB9XG4gIGJ1dHRvbjphY3RpdmUge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMxYjlkYjc7XG4gIH1cbiAgYnV0dG9uOmRpc2FibGVkIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjYjViZWJmO1xuICB9XG4gIGJ1dHRvbjpmb2N1cyB7XG4gICAgb3V0bGluZTogbm9uZTtcbiAgfVxuYFxuXG5jbGFzcyBNeURvY3VtZW50IGV4dGVuZHMgRG9jdW1lbnQge1xuICByZW5kZXIgKCkge1xuICAgIHJldHVybiAoXG4gICAgICA8SHRtbCBsYW5nPSdlbic+XG4gICAgICAgIDxHbG9iYWwgc3R5bGVzPXtnbG9iYWxTdHlsZXN9IC8+XG4gICAgICAgIDxIZWFkPlxuICAgICAgICAgIDxsaW5rIHJlbD0nbWFuaWZlc3QnIGhyZWY9Jy9zdGF0aWMvbWFuaWZlc3QuanNvbicgLz5cbiAgICAgICAgICA8bWV0YVxuICAgICAgICAgICAgbmFtZT0nYXBwbGUtbW9iaWxlLXdlYi1hcHAtc3RhdHVzLWJhci1zdHlsZSdcbiAgICAgICAgICAgIGNvbnRlbnQ9J2JsYWNrLXRyYW5zbHVjZW50J1xuICAgICAgICAgIC8+XG4gICAgICAgICAgPG1ldGEgbmFtZT0ndGhlbWUtY29sb3InIGNvbnRlbnQ9JyMyMWJhZDknIC8+XG5cbiAgICAgICAgICA8bGlua1xuICAgICAgICAgICAgcmVsPSdhcHBsZS10b3VjaC1pY29uJ1xuICAgICAgICAgICAgaHJlZj0nL3N0YXRpYy9pY29ucy9hcHBsZS10b3VjaC1pY29uLnBuZydcbiAgICAgICAgICAvPlxuICAgICAgICAgIDxsaW5rIHJlbD0nc3R5bGVzaGVldCcgaHJlZj0nL3N0YXRpYy93cC5taW4uY3NzJyAvPlxuXG4gICAgICAgICAge3RoaXMucHJvcHMuc3R5bGVUYWdzfVxuICAgICAgICA8L0hlYWQ+XG5cbiAgICAgICAgPGJvZHk+XG4gICAgICAgICAgPE1haW4gLz5cbiAgICAgICAgICA8TmV4dFNjcmlwdCAvPlxuICAgICAgICA8L2JvZHk+XG4gICAgICA8L0h0bWw+XG4gICAgKVxuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IE15RG9jdW1lbnRcbiJdfQ== */",
+  map: "/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi93b3Jrc3BhY2UvdG91cnZvLWFwb2xsby9wYWdlcy9fZG9jdW1lbnQuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR3dCIiwiZmlsZSI6Ii93b3Jrc3BhY2UvdG91cnZvLWFwb2xsby9wYWdlcy9fZG9jdW1lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgRG9jdW1lbnQsIHsgSHRtbCwgSGVhZCwgTWFpbiwgTmV4dFNjcmlwdCB9IGZyb20gJ25leHQvZG9jdW1lbnQnXG5pbXBvcnQgeyBjc3MsIEdsb2JhbCB9IGZyb20gJ0BlbW90aW9uL2NvcmUnXG5cbmNvbnN0IGdsb2JhbFN0eWxlcyA9IGNzc2BcbiAgYm9keSB7XG4gICAgbWFyZ2luOiAwO1xuICAgIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsICdQaW5nRmFuZyBTQycsXG4gICAgICAnSGlyYWdpbm8gU2FucyBHQicsICdNaWNyb3NvZnQgWWFIZWknLCAnSGVsdmV0aWNhIE5ldWUnLCBIZWx2ZXRpY2EsIEFyaWFsLFxuICAgICAgc2Fucy1zZXJpZiwgJ0FwcGxlIENvbG9yIEVtb2ppJywgJ1NlZ29lIFVJIEVtb2ppJywgJ1NlZ29lIFVJIFN5bWJvbCc7XG4gICAgdGV4dC1yZW5kZXJpbmc6IG9wdGltaXplTGVnaWJpbGl0eTtcbiAgICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgICBsZXR0ZXItc3BhY2luZzogLTAuMDE1ZW07XG4gIH1cbiAgYSB7XG4gICAgY29sb3I6ICMyMmJhZDk7XG4gIH1cbiAgcCB7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIGxpbmUtaGVpZ2h0OiAyNHB4O1xuICB9XG4gIGFydGljbGUge1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIG1heC13aWR0aDogNjUwcHg7XG4gIH1cbiAgaW5wdXRbdHlwZT0ndGV4dCddIHtcbiAgICBwYWRkaW5nOiA5cHggMTVweDtcbiAgICBib3JkZXI6IDA7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgICBvdXRsaW5lOiBub25lO1xuICB9XG4gIGJ1dHRvbiB7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjJiYWQ5O1xuICAgIGJvcmRlcjogMDtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBib3JkZXItcmFkaXVzOiAxN3B4O1xuICAgIHBhZGRpbmc6IDEwcHggMjBweDtcbiAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3M7XG4gIH1cbiAgYnV0dG9uLmFjdGl2ZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAxNzc5MDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgfVxuICBidXR0b246YWN0aXZlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMWI5ZGI3O1xuICB9XG4gIGJ1dHRvbjpkaXNhYmxlZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2I1YmViZjtcbiAgfVxuICBidXR0b246Zm9jdXMge1xuICAgIG91dGxpbmU6IG5vbmU7XG4gIH1cbmBcblxuY2xhc3MgTXlEb2N1bWVudCBleHRlbmRzIERvY3VtZW50IHtcbiAgcmVuZGVyICgpIHtcbiAgICByZXR1cm4gKFxuICAgICAgPEh0bWwgbGFuZz0nZW4nPlxuICAgICAgICA8R2xvYmFsIHN0eWxlcz17Z2xvYmFsU3R5bGVzfSAvPlxuICAgICAgICA8SGVhZD5cbiAgICAgICAgICA8bGluayByZWw9J21hbmlmZXN0JyBocmVmPScvc3RhdGljL21hbmlmZXN0Lmpzb24nIC8+XG4gICAgICAgICAgPG1ldGFcbiAgICAgICAgICAgIG5hbWU9J2FwcGxlLW1vYmlsZS13ZWItYXBwLXN0YXR1cy1iYXItc3R5bGUnXG4gICAgICAgICAgICBjb250ZW50PSdibGFjay10cmFuc2x1Y2VudCdcbiAgICAgICAgICAvPlxuICAgICAgICAgIDxtZXRhIG5hbWU9J3RoZW1lLWNvbG9yJyBjb250ZW50PScjMjFiYWQ5JyAvPlxuXG4gICAgICAgICAgPGxpbmtcbiAgICAgICAgICAgIHJlbD0nYXBwbGUtdG91Y2gtaWNvbidcbiAgICAgICAgICAgIGhyZWY9Jy9zdGF0aWMvaWNvbnMvYXBwbGUtdG91Y2gtaWNvbi5wbmcnXG4gICAgICAgICAgLz5cbiAgICAgICAgICA8bGluayByZWw9J3N0eWxlc2hlZXQnIGhyZWY9Jy9zdGF0aWMvd3AubWluLmNzcycgLz5cblxuICAgICAgICAgIHt0aGlzLnByb3BzLnN0eWxlVGFnc31cbiAgICAgICAgPC9IZWFkPlxuXG4gICAgICAgIDxib2R5PlxuICAgICAgICAgIDxNYWluIC8+XG4gICAgICAgICAgPE5leHRTY3JpcHQgLz5cbiAgICAgICAgPC9ib2R5PlxuICAgICAgPC9IdG1sPlxuICAgIClcbiAgfVxufVxuXG5leHBvcnQgZGVmYXVsdCBNeURvY3VtZW50XG4iXX0= */",
   toString: _EMOTION_STRINGIFIED_CSS_ERROR__
 };
 
@@ -1661,6 +1608,28 @@ module.exports = require("core-js/library/fn/promise");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/set");
+
+/***/ }),
+
+/***/ "core-js/library/fn/symbol":
+/*!********************************************!*\
+  !*** external "core-js/library/fn/symbol" ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/symbol");
+
+/***/ }),
+
+/***/ "core-js/library/fn/symbol/iterator":
+/*!*****************************************************!*\
+  !*** external "core-js/library/fn/symbol/iterator" ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("core-js/library/fn/symbol/iterator");
 
 /***/ }),
 

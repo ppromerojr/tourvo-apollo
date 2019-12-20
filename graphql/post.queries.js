@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-const GET_POST = gql`
+const GET_POST = `
   query Post($slug: String!) {
     postBy(slug: $slug) {
       id

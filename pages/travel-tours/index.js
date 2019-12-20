@@ -18,12 +18,11 @@ function MainPage ({ data, loading, error, ...rest }) {
     <Fragment>
       {loading && <div>Loading homepage...</div>}
 
-      {data.pageBy && (
+      {data && data.pageBy && (
         <div>
           {tags && tags.length && (
             <Fragment>
-              <h2>Popular Tags</h2>
-              <Trending tags={tags} />
+              <h2>Popular Tags</h2> 
             </Fragment>
           )}
         </div>

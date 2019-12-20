@@ -3,7 +3,6 @@ import { withRouter } from 'next/router'
 
 import App from '../App'
 import TabBar from '../TabBar'
-import { withApollo } from '../../lib/apollo'
 import Head from '../Head'
 
 import useQueryCategory from '../../hooks/useQueryCategory'
@@ -30,7 +29,7 @@ export default options => {
 }
 
 function renderMetaTags ({ data }, router) {
-  if (data.productCategories && data.productCategories.edges) {
+  if (data && data.productCategories && data.productCategories.edges) {
     const page = data.productCategories.edges[0].node
 
     let tags = {
@@ -88,5 +87,5 @@ function createCategoryPage (options, InnerComponent) {
 
   Page = memo(Page)
 
-  return withRouter(withApollo(Page))
+  return withRouter(Page)
 }

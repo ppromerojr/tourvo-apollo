@@ -3,7 +3,6 @@ import { withRouter } from 'next/router'
 
 import App from '../App'
 import TabBar from '../TabBar'
-import { withApollo } from '../../lib/apollo'
 import Head from '../Head'
 import useQueryProduct from '../../hooks/useQueryProduct'
 
@@ -29,7 +28,7 @@ export default options => {
 }
 
 function renderMetaTags ({ data }, router) {
-  if (data.productBy) {
+  if (data && data.productBy) {
     const { productBy: page } = data
     let tags = {
       type: 'product',
@@ -86,5 +85,5 @@ function createProductPage (options, InnerComponent) {
 
   Page = memo(Page)
 
-  return withRouter(withApollo(Page))
+  return withRouter(Page)
 }

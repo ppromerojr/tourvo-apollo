@@ -7,12 +7,8 @@ function AboutPage ({ data, loading, error }) {
     return <div>error</div>
   }
 
-  if (loading) {
-    return <div>loading...</div>
-  }
-
   return (
-    <Fragment>{data.pageBy && <Body>{data.pageBy.content}</Body>}</Fragment>
+    <Fragment>{data && data.pageBy && <Body>{data.pageBy.content}</Body>}</Fragment>
   )
 }
 

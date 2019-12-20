@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-const GET_POSTS = gql`
+const GET_POSTS = `
   query Posts($first: Int, $after: String) {
     posts(first: $first, after: $after) {
       pageInfo {

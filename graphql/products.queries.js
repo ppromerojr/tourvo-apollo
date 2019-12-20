@@ -1,6 +1,4 @@
-import gql from 'graphql-tag'
-
-const GET_PRODUCTS = gql`
+const GET_PRODUCTS = `
   query Products(
     $first: Int
     $after: String

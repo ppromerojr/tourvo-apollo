@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from 'graphql-hooks'
 import GET_PRODUCT from '../graphql/product.queries'
 
 const useQueryProduct = ({ slug }) => {

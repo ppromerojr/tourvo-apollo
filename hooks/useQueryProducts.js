@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from 'graphql-hooks'
 import GET_PRODUCTS from '../graphql/products.queries'
 
 const defaultFilter = [

@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from 'graphql-hooks'
 import GET_CATEGORY from '../graphql/category.queries'
 
 const useQueryCategories = ({ first, slug }) => {
