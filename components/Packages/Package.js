@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react'
 import Link from 'next/link'
 import styled from '@emotion/styled'
-import { Tabs } from 'antd'
 
 import { Tags } from '../../utils/HttpClient'
 
@@ -21,7 +20,6 @@ import {
 import Body from '../Body'
 import { Share } from 'react-feather'
 import Lazy from '../Image'
-const { TabPane } = Tabs
 
 const SocialShare = styled('div')({
   display: 'flex',
@@ -115,14 +113,11 @@ const Package = ({ item, router }) => {
   const [isShareEnabled, setWebShare] = useState(false)
   //   const tags = []
 
-  useEffect(
-    () => {
-      item.tags.nodes.forEach((node, index) => {
-        updateViewCount(node.termTaxonomyId)
-      })
-    },
-    [item]
-  )
+  useEffect(() => {
+    item.tags.nodes.forEach((node, index) => {
+      updateViewCount(node.termTaxonomyId)
+    })
+  }, [item])
 
   useEffect(() => {
     if (navigator.share) {
@@ -210,35 +205,51 @@ const Package = ({ item, router }) => {
             ))}
         </div> */}
         {/* end hashtags */}
-        <Tabs defaultActiveKey='1'>
-          <TabPane tab='Inclusions' key='1'>
-            {item.shortDescription && <Body>{item.shortDescription}</Body>}
-          </TabPane>
 
+        <div>
+          {item.shortDescription && (
+            <Fragment>
+              <h1>Inclusions</h1>
+              <Body>{item.shortDescription}</Body>
+            </Fragment>
+          )}
+        </div>
+
+        <div>
           {item.package.packageItinerary && (
-            <TabPane tab='Itinerary' key='2'>
+            <Fragment>
+              <h1>Itinerary</h1>
               <Body>{item.package.packageItinerary}</Body>
-            </TabPane>
+            </Fragment>
           )}
+        </div>
 
-          {item.package.remarks && (
-            <TabPane tab='Remarks' key='3'>
+        <div>
+          {item.package.packageItinerary && (
+            <Fragment>
+              <h1>Remarks</h1>
               <Body>{item.package.remarks}</Body>
-            </TabPane>
+            </Fragment>
           )}
+        </div>
 
+        <div>
           {item.package.termsOfPayment && (
-            <TabPane tab='Payment terms' key='4'>
+            <Fragment>
+              <h1>Payment Terms</h1>
               <Body>{item.package.termsOfPayment}</Body>
-            </TabPane>
+            </Fragment>
           )}
+        </div>
 
+        <div>
           {item.package.departureDates && (
-            <TabPane tab='Departure Dates' key='5'>
+            <Fragment>
+              <h1>Departure Dates</h1>
               <Body>{item.package.departureDates}</Body>
-            </TabPane>
+            </Fragment>
           )}
-        </Tabs>
+        </div>
 
         {/* info */}
         <div>

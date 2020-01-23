@@ -1,12 +1,9 @@
 import dynamic from 'next/dynamic'
-import { Affix, Input, Switch, Spin } from 'antd'
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 
 const PackagesList = dynamic(import('./Packages'))
 const Categories = dynamic(import('./Categories'))
-
-const { Search } = Input
 
 function PackagePageTemplate ({ category, tag, type, loading, ...rest }) {
   let [selectedCategory, setCategory] = useState({})
@@ -43,7 +40,7 @@ function PackagePageTemplate ({ category, tag, type, loading, ...rest }) {
     if (type === 'tag') {
       return (
         <h1 style={{ marginRight: 10 }}>
-          {loading ? <Spin /> : `#${tag.name}`}
+          {loading ? 'Spinning...' : `#${tag.name}`}
         </h1>
       )
     }
@@ -89,14 +86,14 @@ function PackagePageTemplate ({ category, tag, type, loading, ...rest }) {
           width: '100%'
         }}
       >
-        <Affix style={{ width: '100%' }} offsetTop={0}>
+        {/* <Affix style={{ width: '100%' }} offsetTop={0}>
           <Search
             placeholder={`Search for Hotel, City or Location`}
             onSearch={onSearch}
             size='large'
             style={{ width: '100%' }}
           />
-        </Affix>
+        </Affix> */}
       </div>
       {/* end search bar */}
 
@@ -122,14 +119,16 @@ function PackagePageTemplate ({ category, tag, type, loading, ...rest }) {
           marginBottom: 20
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        {/* Sale */}
+        {/* <div style={{ display: 'flex', alignItems: 'center' }}>
           <Switch
             unCheckedChildren='Sale'
             checkedChildren='Sale'
             onChange={value => setOnSale(value)}
-          />
-          {/* <div>Sale</div> */}
+          /> 
         </div>
+         */}
+        {/* end sale */}
         <div>
           <div style={{ marginBottom: 2, fontSize: 12, textAlign: 'right' }}>
             Sort by:

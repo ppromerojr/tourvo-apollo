@@ -1,7 +1,5 @@
-import { Skeleton } from 'antd'
-
 const Placeholder = props => {
-  return <Skeleton {...props} />
+  return <div>Loading...</div>
 }
 
 export default Placeholder
