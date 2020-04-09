@@ -1,16 +1,20 @@
 import createPage from '../components/Page/createPage'
-import PackageTemplate from '../components/PackageTemplate'
+import { Fragment } from 'react'
 
-function Packages ({ data, loading, error, ...rest }) {
+function Home({ data, loading, error, ...rest }) {
   if (error) {
     return <div>error</div>
   }
 
-  return <PackageTemplate title='Packages' {...rest} />
+  return (
+    <Fragment>
+      <div>hello</div>
+    </Fragment>
+  )
 }
 
-Packages = createPage({
-  slug: 'packages'
-})(Packages)
+Home = createPage({
+  slug: 'homepage'
+})(Home)
 
-export default Packages
+export default Home

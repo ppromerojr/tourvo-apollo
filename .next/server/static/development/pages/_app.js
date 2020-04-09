@@ -105,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _hooks_useAddToHomescreenPrompt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hooks/useAddToHomescreenPrompt */ "./hooks/useAddToHomescreenPrompt.js");
-var _jsxFileName = "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/components/Install.js";
+var _jsxFileName = "/Users/pabs/Sites/tourvo-apollo/components/Install.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -700,7 +700,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/router */ "next/router");
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
 
-var _jsxFileName = "/Users/pabsromerojr/Documents/Projects/tourvo-apollo/pages/_app.js";
+var _jsxFileName = "/Users/pabs/Sites/tourvo-apollo/pages/_app.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
